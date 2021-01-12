@@ -1,0 +1,59 @@
+/*Estilos del menu*/
+nav{
+    background-color: #1e72bc;
+}
+
+nav img{
+    border-radius: 15px;
+}
+
+nav #collapsibleNavId ul li{
+    border-bottom: 1px transparent #1e72bc;
+    transition: 0.25s;
+}
+
+nav #collapsibleNavId ul li:hover{
+    border-bottom: 2px solid white;
+    font-size: 102.5%;
+}
+
+nav form{
+    width: 40%;
+}
+
+nav form .sesion{
+    background: white;
+    color: #1e72bc;
+    height: 30px;
+    width: 30px;
+    border: 0.5px solid black;
+    display: flex;
+    
+}
+
+nav form ::-webkit-input-placeholder { color: #1e72bc; } 
+
+nav form :-moz-placeholder { color: #1e72bc; } 
+
+nav form ::-moz-placeholder {  color: #1e72bc; } 
+
+nav form :-ms-input-placeholder { color: #1e72bc; }
+
+nav form .sesion i{
+    margin: auto;
+}
+
+nav form input{
+    border: 0.5px solid black;
+    width: 32%;
+    height: 30px;
+    
+}
+
+#btnLogin, #btnRegister{
+    color: #1e72bc;
+    background-color: white;
+    border-radius: 5px;
+    height: 30px;
+}
+/*Fin estilos del menu*/
