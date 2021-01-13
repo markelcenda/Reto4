@@ -63,9 +63,9 @@
         <div class='row justify-content-center'>
 
             <div class='col-lg-5 border rounded mt-1 p-3 mb-3' id="divTiendas">
-                <h4 class='text-center'>TIENDAS</h4>
+                <h4 class='text-center'>NUEVA TIENDA <i class="fas fa-eye" ng-click="mostrarInsertTienda()"></i></h4>
 
-                <form class='m-2'>
+                <form class='m-2' ng-show="tiendaInsert=='si'">
 
                     <div class="form-row">
                         <div class="col-lg-6">
@@ -125,9 +125,9 @@
             </div>
             <div class='col-lg-5 border rounded mt-1 p-3 mb-3' id="divProductos">
 
-            <h4 class='text-center'>PRODUCTOS</h4>
+            <h4 class='text-center'>NUEVO PRODUCTO <i class="fas fa-eye" ng-click="mostrarInsertProducto()"></i></h4>
 
-                <form class='m-2'>
+                <form class='m-2' ng-show="productoInsert=='si'">
 
                     <div class="form-row">
                         <div class="col-lg-6">
@@ -197,7 +197,9 @@
 
             <div class='col-lg-5 border rounded mt-1 p-3 mb-3' id="divTiendas2">
 
-                <div class="text-center">
+                <h4 class='text-center'>ACTUALIZAR TIENDA <i class="fas fa-eye" ng-click="mostrarSelectTienda()"></i></h4>
+
+                <div class="text-center" ng-show="tiendaSelect=='si'">
                     <select id="tiendasUpdate1" ng-model="tiendaSeleccionada"  ng-change="seleccionarTienda()">
                         <option value="" selected>Seleccionar tienda</option>
                         <option ng-repeat="item in tiendas" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
@@ -258,6 +260,7 @@
                     <div class="text-center m-2">
                         <button type="button" id="btnUpdateTienda" class="btn btn-light" ng-click="actualizarTiendaAdmin()">Actualizar</button>
                         <button type="button" id="btnDeleteTienda" class="btn btn-light" ng-click="eliminarTiendaAdmin()"><i class="fas fa-times"></i></button>
+                        <button type="button" id="btnCancelUpdateTienda" class="btn btn-light" ng-click="cancelUpdateTienda()">Cancelar</button>
 
                         <div id="modalDeleteTienda" class="modal">
                             <span onclick="document.getElementById('modalDeleteTienda').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -283,7 +286,9 @@
 
             <div class='col-lg-5 border rounded mt-1 p-3 mb-3' id="divProductos2">
 
-                <div class="text-center">
+                <h4 class='text-center'>ACTUALIZAR PRODUCTO <i class="fas fa-eye" ng-click="mostrarSelectProducto()"></i></h4>
+
+                <div class="text-center" ng-show="productoSelect=='si'">
                     <select id="productos" ng-model="productoSeleccionado" ng-change="seleccionarProducto()">
                         <option value="" selected>Seleccionar producto</option>
                         <option ng-repeat="item in productos" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
@@ -348,6 +353,7 @@
                     <div class="text-center m-2">
                         <button type="button" id="btnUpdateProducto" class="btn btn-light" ng-click="actualizarProductoAdmin()">Actualizar</button>
                         <button type="button" id="btnDeleteProducto" class="btn btn-light" ng-click="eliminarProductoAdmin()"><i class="fas fa-times"></i></button>
+                        <button type="button" id="btnCancelUpdateProducto" class="btn btn-light" ng-click="cancelUpdateProducto()">Cancelar</button>
 
                         <div id="modalDeleteProducto" class="modal">
                             <span onclick="document.getElementById('modalDeleteProducto').style.display='none'" class="close" title="Close Modal">&times;</span>

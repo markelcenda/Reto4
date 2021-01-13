@@ -89,7 +89,7 @@ form .form-row .col-lg-12 .text-center img{
   float: left;
   width: 50%;
   background-color: #1e72bc;
-  color: white;
+  color: white !important;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -102,7 +102,7 @@ form .form-row .col-lg-12 .text-center img{
     float: left;
     width: 50%;
     background-color: white;
-    color: white;
+    color: 005096 !important;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -158,6 +158,11 @@ form .form-row .col-lg-12 .text-center img{
   content: "";
   clear: both;
   display: table;
+}
+
+.container-fluid #administracion button{
+  color: #005096;
+  font-weight: 600;
 }
 
   

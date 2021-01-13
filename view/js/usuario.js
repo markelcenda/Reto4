@@ -86,6 +86,42 @@ function logout(){
 var app=angular.module("app",[]);
 app.controller("miControlador", function($scope,$http){
 
+    /*div insert tienda*/
+    $scope.tiendaInsert="no";
+    $scope.mostrarInsertTienda=function(){
+        $scope.tiendaInsert="si";
+    }
+
+    /*div insert producto*/
+    $scope.productoInsert="no";
+    $scope.mostrarInsertProducto=function(){
+        $scope.productoInsert="si";
+    }
+
+    /*div update tienda*/
+    $scope.tiendaSelect="no";
+    $scope.mostrarSelectTienda=function(){
+        $scope.tiendaSelect="si";
+    }
+
+    /*div update producto*/
+    $scope.productoSelect="no";
+    $scope.mostrarSelectProducto=function(){
+        $scope.productoSelect="si";
+    }
+
+    /*cancelar update tienda*/
+    $scope.cancelUpdateTienda=function(){
+        $scope.tiendaSelect="no";
+        $scope.tiendaUpdate="no";
+    }
+
+    /*cancelar update producto*/
+    $scope.cancelUpdateProducto=function(){
+        $scope.productoSelect="no";
+        $scope.productoUpdate="no";
+    }
+
     /*cancelar insert de tienda*/
     $scope.cancelarInsertarTienda=function(){
         document.getElementById("imagenInsertTienda").src="../img/default.png"; 
@@ -98,6 +134,8 @@ app.controller("miControlador", function($scope,$http){
         $scope.tipoTiendaNuevo="";
         $scope.telefonoTiendaNuevo="";
         $scope.emailTiendaNuevo="";
+
+        $scope.tiendaInsert="no";
     }
 
     /*Imagen tienda*/
@@ -172,6 +210,8 @@ app.controller("miControlador", function($scope,$http){
         $scope.precioProductoNuevo="";
         $scope.unidadesProductoNuevo="";
         $scope.tiendaSeleccionada="";
+
+        $scope.productoInsert="no";
     }
 
      /*Imagen producto*/
@@ -259,7 +299,6 @@ app.controller("miControlador", function($scope,$http){
     $scope.imagenSeleccionadaTiendaUpdate = function (element) {
         $scope.imagenTiendaUpdate = element.files[0];
         
-
         var reader = new FileReader();
 
         reader.onloadend = function () {
@@ -270,7 +309,6 @@ app.controller("miControlador", function($scope,$http){
         if ($scope.imagenTiendaUpdate) {
             reader.readAsDataURL($scope.imagenTiendaUpdate);
         }
-
     };
 
     $scope.savedFileBase64="";
@@ -319,16 +357,13 @@ app.controller("miControlador", function($scope,$http){
 
             /*Mostrar formulario*/
             $scope.productoUpdate="si";
-    
         });
-
     }
 
     /*Imagen tienda update*/
     $scope.imagenSeleccionadaProductoUpdate = function (element) {
         $scope.imagenProductoUpdate = element.files[0];
         
-
         var reader = new FileReader();
 
         reader.onloadend = function () {
@@ -339,7 +374,6 @@ app.controller("miControlador", function($scope,$http){
         if ($scope.imagenProductoUpdate) {
             reader.readAsDataURL($scope.imagenProductoUpdate);
         }
-
     };
 
     $scope.savedFileBase64="";
@@ -372,9 +406,7 @@ app.controller("miControlador", function($scope,$http){
                 alert(response.data.list);
                 window.location.reload();
             });
-           
         });
-
     }
 
     /*eliminar tienda*/
@@ -394,9 +426,7 @@ app.controller("miControlador", function($scope,$http){
                 alert(response.data.list);
                 window.location.reload();
             });
-
         })
-
     }
 
     /*eliminar producto*/
@@ -415,9 +445,6 @@ app.controller("miControlador", function($scope,$http){
                 alert(response.data.list);
                 window.location.reload();
             });
-
         })
-
     }
-
 });
