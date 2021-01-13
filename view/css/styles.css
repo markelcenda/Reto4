@@ -1,59 +1,220 @@
-/*Estilos del menu*/
-nav{
+/*Menu*/
+
+nav {
     background-color: #1e72bc;
+    margin-bottom: 1.5%;
 }
 
-nav img{
-    border-radius: 15px;
+nav img {
+    border-radius: 25px;
 }
 
-nav #collapsibleNavId ul li{
-    border-bottom: 1px transparent #1e72bc;
+nav #collapsibleNavId ul li {
+    border-bottom: 1px solid #1e72bc;
     transition: 0.25s;
+    width: max-content;
 }
 
-nav #collapsibleNavId ul li:hover{
+nav #collapsibleNavId ul li:hover {
     border-bottom: 2px solid white;
     font-size: 102.5%;
 }
 
-nav form{
-    width: 40%;
+nav form {
+    width: max-content;
+    display: flex;
+    justify-content: left;
 }
 
-nav form .sesion{
+nav form input {
+    border: 0.5px solid black;
+    width: 30%;
+    height: 30px;
+    margin-right: 40px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+nav form ::-webkit-input-placeholder {
+    padding: 2%;
+}
+
+#btnLogin {
+    margin-right: 40px;
+}
+
+#btnMostrarLogin, #btnLogout {
+    display: none;
+}
+
+nav form button, #btnMostrarLogin {
+    color: #1e72bc;
+    background-color: white;
+    border-radius: 5px;
+    height: 30px;
+    border: 0.5px solid black;
+}
+
+nav form .sesion {
     background: white;
     color: #1e72bc;
     height: 30px;
     width: 30px;
     border: 0.5px solid black;
     display: flex;
-    
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
-nav form ::-webkit-input-placeholder { color: #1e72bc; } 
+@media (max-width: 1250px) {
+    nav form input, #btnLogin {
+        margin-right: 33px;
+    }
+}
 
-nav form :-moz-placeholder { color: #1e72bc; } 
+@media (max-width: 1199px) {
+    #btnCollapse {
+        display: block;
+    }
+}
 
-nav form ::-moz-placeholder {  color: #1e72bc; } 
+@media (max-width: 991.5px) {
+    nav form {
+        width: 40%;
+        justify-content: center;
+        margin: auto;
+    }
+    nav form input, nav form .sesion, #btnLogin, #btnRegister {
+        display: flex;
+    }
+    #btnLogin i, #btnRegister i {
+        margin: auto;
+    }
+    nav form input {
+        width: 85%;
+        margin-top: auto;
+        margin-bottom: 3%;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    nav form .sesion {
+        margin-top: auto;
+        margin-bottom: 3%;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}
 
-nav form :-ms-input-placeholder { color: #1e72bc; }
+@media (max-width: 549px) {
+    nav form {
+        width: 50%;
+    }
+    nav form input {
+        width: 76%;
+    }
+}
 
-nav form .sesion i{
+/*Fin menu*/
+
+/*Carousel*/
+
+#carouselId {
+    width: 95%;
+    height: 535px;
+    border: #1e72bc 4px solid;
     margin: auto;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
 }
 
-nav form input{
-    border: 0.5px solid black;
-    width: 32%;
-    height: 30px;
-    
+#carouselId ol li {
+    background-color: #1e72bc;
+    border: 6px solid #1e72bc;
+    border-style: double;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    margin: 1%;
 }
 
-#btnLogin, #btnRegister{
-    color: #1e72bc;
+#carouselId img {
+    width: 101%;
+    height: 527px;
+}
+
+#carouselId .cambio {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #1e72bc;
+    margin: auto;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+#carouselId .texto {
+    background-color: #1e72bcc0;
+    position: absolute;
+    height: max-content;
+    padding: 3%;
+    border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 135px;
+    margin-bottom: 135px;
+}
+
+#carouselId .texto h2 {
+    font-size: 250%;
+}
+
+#carouselId .texto p {
+    font-size: 150%;
+}
+
+#carouselId .texto button {
+    display: none;
     background-color: white;
+    color: #1e72bc;
     border-radius: 5px;
-    height: 30px;
+    margin: auto;
+    margin-top: 7%;
+    font-size: 115%;
+    font-weight: bold;
 }
-/*Fin estilos del menu*/
+
+.modal-content {
+    background-color: #1e72bc;
+    color: white;
+}
+
+.modal-content button span {
+    color: white;
+}
+
+@media(max-width: 1120px) {
+    #carouselId .cambio {
+        width: 40px;
+        height: 40px;
+    }
+    #carouselId .texto {
+        height: 175px;
+    }
+    #carouselId .texto p {
+        display: none;
+    }
+    #carouselId .texto button {
+        display: block;
+    }
+    #carouselId .texto h2 {
+        font-size: 210%;
+    }
+    #carouselId .texto p {
+        font-size: 135%;
+    }
+}
+
+/*Fin carousel*/
