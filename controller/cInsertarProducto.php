@@ -33,7 +33,6 @@ if($savedFileBase64 != ""){
 }
 
 $response['list']= $producto->insertarProducto();
-$response['error']='no error';
 
 echo json_encode($response);
 

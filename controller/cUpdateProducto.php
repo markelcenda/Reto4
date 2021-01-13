@@ -1,29 +1,25 @@
 <?php
 
-include_once '../model/tiendaModel.php';
+include_once '../model/productoModel.php';
 
 $data=json_decode(file_get_contents("php://input"),true);
 
 $nombre=$data['nombre'];
-$direccion=$data['direccion'];
 $tipo=$data['tipo'];
-$telefono=$data['telefono'];
-$email=$data['email'];
 $imagen=$data['imagen'];
 $savedFileBase64=$data['savedFileBase64'];
+$id=$data["id"];
 
 $response=array();
 
-$tienda=new tiendaModel();
-$tienda->setNombre($nombre);
-$tienda->setDireccion($direccion);
-$tienda->setTipo($tipo);
-$tienda->setTelefono($telefono);
-$tienda->setEmail($email);
+$producto=new productoModel();
+$producto->setId($id);
+$producto->setNombre($nombre);
+$producto->setTipo($tipo);
 
 if($savedFileBase64 != ""){
 
-    $tienda->setImagen($imagen);
+    $producto->setImagen($imagen);
     
     $fileBase64 = explode(',', $savedFileBase64)[1]; 
     
@@ -35,11 +31,11 @@ if($savedFileBase64 != ""){
     file_put_contents($writable_dir.$imagen, $file,  LOCK_EX);
     
 }else{
-        $tienda->setImagen($imagen);
+    $producto->setImagen($imagen);
 }
 
-$response['list']= $tienda->insertarTienda();
+$response['list']= $producto->updateProducto();
 
 echo json_encode($response);
 
-unset($tienda);
+unset($producto);

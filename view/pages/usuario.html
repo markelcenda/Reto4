@@ -58,41 +58,41 @@
 
     <div id="administracion" ng-controller="miControlador">
 
-        <h2 class='text-center m-2'>ADMINISTRACIÓN</h2>
+        <h2 class='text-center m-2 text-white'>ADMINISTRACIÓN</h2>
 
         <div class='row justify-content-center'>
 
-            <div class='col-lg-5 border mt-1 p-3'>
+            <div class='col-lg-5 border rounded mt-1 p-3 mb-3' id="divTiendas">
                 <h4 class='text-center'>TIENDAS</h4>
 
                 <form class='m-2'>
 
                     <div class="form-row">
                         <div class="col-lg-6">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" id="nombreTienda" ng-model="nombreTiendaNuevo">
+                            <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="nombre" id="nombreTienda" ng-model="nombreTiendaNuevo" placeholder="Nombre...">
                         </div>
                         <div class="col-lg-6">
-                            <label for="direccion">Dirección:</label>
-                            <input type="text" class="form-control" name="direccion" id="direccionTienda" ng-model="direccionTiendaNuevo">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-lg-6">
-                            <label for="tipo">Tipo:</label>
-                            <input type="text" class="form-control" name="tipo" id="tipoTienda" ng-model="tipoTiendaNuevo">
-                        </div>
-                        <div class="col-lg-6">
-                            <label for="telefono">Teléfono:</label>
-                            <input type="number" class="form-control" name="telefono" id="telefonoTienda" ng-model="telefonoTiendaNuevo" min="900000000" max="999999999">
+                            <label for="direccion">Dirección<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="direccion" id="direccionTienda" ng-model="direccionTiendaNuevo" placeholder="Dirección...">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-lg-6">
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" name="email" id="emailTienda" ng-model="emailTiendaNuevo">
+                            <label for="tipo">Tipo<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="tipo" id="tipoTienda" ng-model="tipoTiendaNuevo" placeholder="Tipo...">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="telefono">Teléfono<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="telefono" id="telefonoTienda" ng-model="telefonoTiendaNuevo" placeholder="Teléfono..." min="900000000" max="999999999">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="email">Email<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" name="email" id="emailTienda" ng-model="emailTiendaNuevo" placeholder="Email...">
                         </div>
                         <div class="col-lg-6">
 
@@ -117,13 +117,13 @@
                     </div>
 
                     <div class="text-center m-2">
-                        <button type="button" id="btnInsertarTienda" class="btn btn-primary" ng-click="insertarTienda()">Insertar</button>
-                        <button type="button" id="btnCancelarInsertarTienda" class="btn btn-primary" ng-click="cancelarInsertarTienda()">Cancelar</button>
+                        <button type="button" id="btnInsertarTienda" class="btn btn-light" ng-click="insertarTienda()">Insertar</button>
+                        <button type="button" id="btnCancelarInsertarTienda" class="btn btn-light" ng-click="cancelarInsertarTienda()">Cancelar</button>
                     </div>
 
                 </form>
             </div>
-            <div class='col-lg-5 border mt-1 p-3'>
+            <div class='col-lg-5 border rounded mt-1 p-3 mb-3' id="divProductos">
 
             <h4 class='text-center'>PRODUCTOS</h4>
 
@@ -131,29 +131,29 @@
 
                     <div class="form-row">
                         <div class="col-lg-6">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" id="nombreProducto" ng-model="nombreProductoNuevo">
+                            <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="nombre" id="nombreProducto" ng-model="nombreProductoNuevo" placeholder="Nombre...">
                         </div>
                         <div class="col-lg-6">
-                            <label for="tipo">Tipo:</label>
-                            <input type="text" class="form-control" name="tipo" id="tipoProducto" ng-model="tipoProductoNuevo">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-lg-6">
-                            <label for="precio">Precio:</label>
-                            <input type="number" class="form-control" name="precio" id="precioProducto" ng-model="precioProductoNuevo" min="0">
-                        </div>
-                        <div class="col-lg-6">
-                            <label for="unidades">Unidades:</label>
-                            <input type="number" class="form-control" name="unidades" id="unidadesProducto" ng-model="unidadesProductoNuevo" min="0" max="100">
+                            <label for="tipo">Tipo<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="tipo" id="tipoProducto" ng-model="tipoProductoNuevo" placeholder="Tipo...">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-lg-6">
-                            <label for="tiendas">Tienda:</label>
+                            <label for="precio">Precio<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="precio" id="precioProducto" ng-model="precioProductoNuevo" placeholder="Precio..." min="0">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="unidades">Unidades<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="unidades" id="unidadesProducto" ng-model="unidadesProductoNuevo" placeholder="Unidades..." min="0" max="100">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="tiendas">Tienda<span class="text-danger">*</span></label>
                             <br>
                             <select id="tiendas" ng-model="tiendaSeleccionada" >
                                 <option value="" selected>Seleccionar tienda</option>
@@ -183,15 +183,195 @@
                     </div>
 
                     <div class="text-center m-2">
-                        <button type="button" id="btnInsertarProducto" class="btn btn-primary" ng-click="insertarProducto()">Insertar</button>
-                        <button type="button" id="btnCancelarInsertarProducto" class="btn btn-primary" ng-click="cancelarInsertarProducto()">Cancelar</button>
+                        <button type="button" id="btnInsertarProducto" class="btn btn-light" ng-click="insertarProducto()">Insertar</button>
+                        <button type="button" id="btnCancelarInsertarProducto" class="btn btn-light" ng-click="cancelarInsertarProducto()">Cancelar</button>
                     </div>
 
                 </form>
 
             </div>
 
-        </div>            
+        </div>  
+        
+        <div class='row justify-content-center'>
+
+            <div class='col-lg-5 border rounded mt-1 p-3 mb-3' id="divTiendas2">
+
+                <div class="text-center">
+                    <select id="tiendasUpdate1" ng-model="tiendaSeleccionada"  ng-change="seleccionarTienda()">
+                        <option value="" selected>Seleccionar tienda</option>
+                        <option ng-repeat="item in tiendas" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
+                    </select>
+                </div>
+
+                <form class='m-2' ng-show="tiendaUpdate=='si'">
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="nombre" id="nombreTiendaUpdate" ng-model="nombreTiendaUpdate">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="direccion">Dirección<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="direccion" id="direccionTiendaUpdate" ng-model="direccionTiendaUpdate">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="tipo">Tipo<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="tipo" id="tipoTiendaUpdate" ng-model="tipoTiendaUpdate">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="telefono">Teléfono<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="telefono" id="telefonoTiendaUpdate" ng-model="telefonoTiendaUpdate" min="900000000" max="999999999">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="email">Email<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" name="email" id="emailTiendaUpdate" ng-model="emailTiendaUpdate">
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="wrapper">
+                                <div class="file-upload" id="fileTienda">
+                                  <input type="file" name="tienda" id="imagenTiendaUpdate" onchange="angular.element(this).scope().imagenSeleccionadaTiendaUpdate(this)" accept=".png,.jpeg,.jpg,.gif" />
+                                  <i class="fa fa-upload"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-12 mt-2">
+
+                            <div class="text-center">
+                                <img src="../img/{{imagenTiendaUpdate}}" id="imagenUpdateTienda">
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="text-center m-2">
+                        <button type="button" id="btnUpdateTienda" class="btn btn-light" ng-click="actualizarTiendaAdmin()">Actualizar</button>
+                        <button type="button" id="btnDeleteTienda" class="btn btn-light" ng-click="eliminarTiendaAdmin()"><i class="fas fa-times"></i></button>
+
+                        <div id="modalDeleteTienda" class="modal">
+                            <span onclick="document.getElementById('modalDeleteTienda').style.display='none'" class="close" title="Close Modal">&times;</span>
+                            <form class="modal-contentDelete">
+                                <div class="container">
+                                    <h1>¿Eliminar Tienda?</h1>
+                                    <p id="modalText"></p>
+                    
+                                    <div class="clearfix">
+                                        <button type="button" class="cancelbtnTienda" onclick="document.getElementById('modalDeleteTienda').style.display='none'">Cancelar</button>
+                                        <button type="button" class="deletebtnTienda" id="deletebtnTienda">Eliminar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </form>
+
+
+            </div>
+
+            <div class='col-lg-5 border rounded mt-1 p-3 mb-3' id="divProductos2">
+
+                <div class="text-center">
+                    <select id="productos" ng-model="productoSeleccionado" ng-change="seleccionarProducto()">
+                        <option value="" selected>Seleccionar producto</option>
+                        <option ng-repeat="item in productos" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
+                    </select>
+                </div>
+
+                <form class='m-2' ng-show="productoUpdate=='si'">
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="nombre" id="nombreProductoUpdate" ng-model="nombreProductoUpdate">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="tipo">Tipo<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="tipo" id="tipoProductoUpdate" ng-model="tipoProductoUpdate">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="precio">Precio<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="precio" id="precioProductoUpdate" ng-model="precioProductoUpdate" min="0">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="unidades">Unidades<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="unidades" id="unidadesProductoUpdate" ng-model="unidadesProductoUpdate" min="0" max="100">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="tiendasUpdate3">Tienda<span class="text-danger">*</span></label>
+                            <br>
+                            <select id="tiendasUpdate3">
+                                <option value="{{idTienda}}">{{idTienda}} -- {{nombreTienda}}</option>
+                                <option ng-repeat="item in tiendas" ng-if="idTienda!=item.id" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="wrapper">
+                                <div class="file-upload" id="fileProducto">
+                                  <input type="file" name="imagen" id="imagenProductoUpdate" onchange="angular.element(this).scope().imagenSeleccionadaProductoUpdate(this)" accept=".png,.jpeg,.jpg,.gif" />
+                                  <i class="fa fa-upload"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-lg-12 mt-3">
+
+                            <div class="text-center">
+                                <img src="../img/{{imagenProductoUpdate}}" id="imagenUpdateProducto">
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="text-center m-2">
+                        <button type="button" id="btnUpdateProducto" class="btn btn-light" ng-click="actualizarProductoAdmin()">Actualizar</button>
+                        <button type="button" id="btnDeleteProducto" class="btn btn-light" ng-click="eliminarProductoAdmin()"><i class="fas fa-times"></i></button>
+
+                        <div id="modalDeleteProducto" class="modal">
+                            <span onclick="document.getElementById('modalDeleteProducto').style.display='none'" class="close" title="Close Modal">&times;</span>
+                            <form class="modal-contentDelete">
+                                <div class="container">
+                                    <h1>¿Eliminar Producto?</h1>
+                                    <p id="modalText"></p>
+                    
+                                    <div class="clearfix">
+                                        <button type="button" class="cancelbtnProducto" onclick="document.getElementById('modalDeleteProducto').style.display='none'">Cancelar</button>
+                                        <button type="button" class="deletebtnProducto" id="deletebtnProducto">Eliminar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </form>
+                
+            </div>
+
+
+
+        </div>
 
     </div>
       

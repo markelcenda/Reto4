@@ -2,11 +2,16 @@
 
 include_once ("../model/productoModel.php");
 
+$data=json_decode(file_get_contents("php://input"),true);
+
+$id=$data['id'];
+
 $producto= new productoModel();
+$producto->setId($id);
 
 $response=array();
 
-$producto->lastId();
+$producto->findProductoById();
 
 $response['list']=$producto->ObjVars();
 

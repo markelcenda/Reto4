@@ -11,10 +11,12 @@ $telefono=$data['telefono'];
 $email=$data['email'];
 $imagen=$data['imagen'];
 $savedFileBase64=$data['savedFileBase64'];
+$id=$data["id"];
 
 $response=array();
 
 $tienda=new tiendaModel();
+$tienda->setId($id);
 $tienda->setNombre($nombre);
 $tienda->setDireccion($direccion);
 $tienda->setTipo($tipo);
@@ -38,7 +40,7 @@ if($savedFileBase64 != ""){
         $tienda->setImagen($imagen);
 }
 
-$response['list']= $tienda->insertarTienda();
+$response['list']= $tienda->updateTienda();
 
 echo json_encode($response);
 

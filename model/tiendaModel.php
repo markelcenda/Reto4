@@ -35,22 +35,21 @@ class tiendaModel extends tiendaClass{
     /*Insertar Tienda*/
     public function insertarTienda(){
         
-        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexiï¿½n
         
-        $nombre=$this->nombre;
-        $direccion=$this->direccion;
-        $tipo=$this->tipo;
-        $telefono=$this->telefono;
-        $email=$this->email;
-        $imagen=$this->imagen;
+        $nombre=$this->getNombre();
+        $direccion=$this->getDireccion();
+        $tipo=$this->getTipo();
+        $telefono=$this->getTelefono();
+        $email=$this->getEmail();
+        $imagen=$this->getImagen();
         
-        $sql="CALL spInsertarTienda('$nombre', '$direccion', '$tipo', '$telefono', '$email', '$imagen')";
+        $sql="CALL spInsertarTienda('$nombre', '$direccion', '$tipo', $telefono, '$email', '$imagen')";
         
-        if ($this->link->query($sql))
-        {
+        if ($this->link->query($sql)){
             return "Tienda insertada correctamente";
-        } else {
-            return "Error al modificar";
+        }else{
+            return "Se ha producido un error";
         }
         
         $this->CloseConnect();
@@ -59,7 +58,7 @@ class tiendaModel extends tiendaClass{
     /*Lista de todas las Tienda*/
     public function setTiendas(){
         
-        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexiï¿½n
 
         $sql="CALL spAllTiendas()";
         
@@ -78,14 +77,77 @@ class tiendaModel extends tiendaClass{
             $tienda->setTelefono($row["telefono"]);
             $tienda->setEmail($row["email"]);
       
-            array_push($list, $tienda->getObjectVars());
+            array_push($list, get_object_vars($tienda));
         }
         mysqli_free_result($result);
         $this->CloseConnect();
         return $list;
     }
     
-    
+    /*Buscar tienda por id*/
+    public function findTiendaById(){
+        
+        $this->OpenConnect();
+        
+        $idTienda=$this->getId();
+        
+        $sql="CALL spFindTiendaById($idTienda)";
+        
+        $result = $this->link->query($sql);
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
+            
+            $this->setId($row['id']);
+            $this->setNombre($row['nombre']);
+            $this->setDireccion($row['direccion']);
+            $this->setTipo($row['tipo']);
+            $this->setImagen($row['imagen']);
+            $this->setTelefono($row['telefono']);
+            $this->setEmail($row['email']);
+            
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+    }
+
+    /*Update Tienda*/
+    public function updateTienda(){
+        
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexiï¿½n
+        
+        $nombre=$this->getNombre();
+        $direccion=$this->getDireccion();
+        $tipo=$this->getTipo();
+        $telefono=$this->getTelefono();
+        $email=$this->getEmail();
+        $imagen=$this->getImagen();
+        $id=$this->getId();
+        
+        $sql="CALL spUpdateTienda('$nombre', '$direccion', '$tipo', '$imagen', $telefono, '$email', $id)";
+        
+        if ($this->link->query($sql)){
+            return "Tienda actualizada correctamente";
+        }else{
+            return "Se ha producido un error";
+        }
+        
+        $this->CloseConnect();
+    }
+
+    public function deleteTienda(){
+        $this->OpenConnect();
+        
+        $id=$this->getId();
+        
+        $sql="call spDeleteTienda($id)";
+        
+        if ($this->link->query($sql)){
+            return "Tienda eliminada correctamente";
+        }else{
+            return "Error al eliminar";
+        }
+        $this->CloseConnect();
+    }
     
     function ObjVars(){
         return get_object_vars($this);
