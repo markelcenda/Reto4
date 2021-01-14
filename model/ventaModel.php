@@ -1,6 +1,9 @@
 <?php
-
-include_once 'connect_data.php';
+if($_SERVER["SERVER_NAME"]=="grupo4.zerbitzaria.net"){
+    include_once("connect_data_remote.php");
+}else{
+    include_once("connect_data.php");
+}
 include_once 'ventaClass.php';
 
 class ventaModel extends ventaClass{
