@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <title>Asociados</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../img/logoCarrito.PNG" type="image/png">
+    <script src="../js/angular.min.js" type="text/javascript"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/asociados.css">
+</head>
+
+<body ng-controller='myController' ng-init='load()'>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-xl navbar-dark">
+        <img src="../img/logo.PNG" class="navbar-brand" alt="">
+        <button id="btnCollapse" class="navbar-toggler border-white" type="button" data-toggle="collapse"
+            data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../../index.html">Inicio</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Tienda online</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Asociados</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+            </ul>
+            <form id="zonaLogin" class="form-inline my-2 my-lg-0">
+                <label class="sesion">
+                    <i class="m-auto fas fa-user"></i>
+                </label>
+                <input id="username" type="text" name="username" placeholder="Usuario">
+                <label class="sesion">
+                    <i class="m-auto fas fa-key"></i>
+                </label>
+                <input id="password" type="password" name="password" placeholder="Contraseña">
+                <button id="btnLogin"><i class="fas fa-sign-in-alt"></i></button>
+                <button id="btnRegister"><i class="fas fa-user-plus"></i></button>
+                <button id="btnLogout"><i class="fas fa-window-close"></i></button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Categorias de las tiendas asociadas-->
+    <div class="typesGroup">
+        <p class="types" ng-click='typeFilter()'>Todos</p>
+        <p ng-repeat="item in listaAsociados" class="types" ng-click='typeFilter()'>{{item.tipo}}</p>
+    </div>
+
+    <hr>
+
+    <!-- Cards de las tiendas asociadas-->
+    <div class="cardGroup">
+        <a href="#" ng-repeat="item in listaAsociados | filter : filter">
+            <div class="card"><img ng-src="../img/{{item.imagen}}"></div>
+        </a>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="../js/asociados.js"></script>
+    <script src="../js/fontAwesome.js" type="text/javascript"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
