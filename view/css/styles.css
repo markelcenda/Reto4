@@ -215,6 +215,73 @@ nav form .sesion {
 
 /*Fin carousel*/
 
+/*Seccion Nuestra Historia*/
+
+section {
+    background-color: #1e72bc;
+    color: white;
+    margin-top: 1.5%;
+    text-align: center;
+}
+
+section::before {
+    content: "";
+    width: 100%;
+    height: 120px;
+    background: url(../img/top_layer.png);
+    display: block;
+    position: relative;
+    background-size: 100% 100%;
+    background-color: #1e72bc;
+}
+
+section::after {
+    content: "";
+    width: 100%;
+    height: 120px;
+    background: url(../img/bottom_layer.png);
+    display: block;
+    position: relative;
+    background-color: #1e72bc;
+    background-size: 100% 100%;
+}
+
+section h2 {
+    font-size: 300%;
+}
+
+section p {
+    font-size: 130%;
+    width: 75%;
+    margin: auto;
+}
+
+@media(max-width: 1373px) {
+    section h2 {
+        font-size: 280%;
+    }
+    section p {
+        font-size: 122.5%;
+    }
+}
+
+@media(max-width: 1269px) {
+    section h2 {
+        font-size: 250%;
+    }
+    section p {
+        font-size: 115%;
+    }
+}
+
+@media(max-width: 400px) {
+    section p {
+        width: 85%;
+    }
+}
+
+/*Fin Seccion Nuestra Historia*/
+
 /*Footer*/
 
 footer {
