@@ -735,7 +735,7 @@ function mostrarVentas(idUsuario){
         $scope.ventas=response.data.list;
 
         if($scope.ventas.length==0){
-            $("#rowConsultas").html("<h2 class='text-white'>¡NO TIENES PEDIDOS REALIZADOS!</h2>")
+            $("#rowConsultas").html("<h2 class='text-white text-center'>¡NO TIENES PEDIDOS REALIZADOS!</h2>")
         }
 
     });

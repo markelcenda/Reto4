@@ -55,9 +55,7 @@ function login(){
 
         if (result.mensaje=="no error"){ 
 
-			window.location.reload();
-
-			alert(result.mensaje);
+			alert("Sesión iniciada");
 
 			var newRow="";
 			newRow="<div class='row bg-white justify-content-center align-items-center p-2 border'>";

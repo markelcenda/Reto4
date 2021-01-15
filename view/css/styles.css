@@ -43,10 +43,6 @@ nav form ::-webkit-input-placeholder {
     margin-right: 40px;
 }
 
-#btnMostrarLogin, #btnLogout {
-    display: none;
-}
-
 nav form button, #btnMostrarLogin {
     color: #1e72bc;
     background-color: white;

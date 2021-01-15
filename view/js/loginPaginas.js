@@ -10,9 +10,6 @@ function loggedVerify(){
 	  method: 'GET'  
 	})
 	.then(res => res.json()).then(result => {
-       		
-        //alert(result.mensaje);
-        console.log(result);
 		
         if (result.mensaje==="logged"){
 
@@ -55,9 +52,7 @@ function login(){
 
         if (result.mensaje=="no error"){ 
 
-			window.location.reload();
-
-			alert(result.mensaje);
+			alert("Sesión iniciada");
 
 			var newRow="";
 			newRow="<div class='row bg-white justify-content-center align-items-center p-2 border'>";
@@ -71,8 +66,6 @@ function login(){
 			$("#btnLogout").click(function(){
 				logout();
 			});
-
-			
 
         }else {
             alert(result.mensaje);  
