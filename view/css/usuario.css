@@ -5,7 +5,7 @@ form .form-row .col-lg-12 .text-center img{
 }
 
 /*div principal*/
-#administracion{
+#administracion, #consultas{
   border: 5px solid #1e72bc;
   margin: 5px;
   background-image: linear-gradient(to bottom, #0086ff, #98c4b8);
@@ -50,7 +50,7 @@ form .form-row .col-lg-12 .text-center img{
   }
 
   /*div izquierdo de la tiendas y derecho de los productos*/
-  #administracion .row #divTiendas, #divProductos, #divTiendas2, #divProductos2{
+  #administracion .row #divTiendas, #divProductos, #divTiendas2, #divProductos2, #divProductosAdminTienda, #divTiendasAdminTienda, #divProductosAdminTienda{
     background-color: #1e72bc;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: 0.5s;
@@ -59,7 +59,7 @@ form .form-row .col-lg-12 .text-center img{
   }
 
 /*Al hacer hover añadir efecto*/
-  #administracion .row #divTiendas:hover, #divProductos:hover, #divTiendas2:hover, #divProductos2:hover{
+  #administracion .row #divTiendas:hover, #divProductos:hover, #divTiendas2:hover, #divProductos2:hover, #divProductosAdminTienda:hover, #divTiendasAdminTienda:hover, #divProductosAdminTienda:hover{
     transform: scale(1.02);
     z-index: 2;
   }
@@ -68,24 +68,24 @@ form .form-row .col-lg-12 .text-center img{
 * {box-sizing: border-box}
 
 /*Modal*/
-#modalDeleteTienda, #modalDeleteProducto{
+#modalDeleteTienda, #modalDeleteProducto, #modalDeleteProductoAdminTienda{
     display: none;
     color: white;  
 }
 
 /*h1*/
-#modalDeleteTienda .modal-content .container h1, #modalDeleteProducto .modal-content .container h1{
+#modalDeleteTienda .modal-content .container h1, #modalDeleteProducto .modal-content .container h1, #modalDeleteProductoAdminTienda .modal-content .container h1{
     font-weight: 200;
 }
 
 /*p*/
-#modalDeleteTienda .modal-content .container #modalText, #modalDeleteProducto .modal-content .container #modalText{
+#modalDeleteTienda .modal-content .container #modalText, #modalDeleteProducto .modal-content .container #modalText, #modalDeleteProductoAdminTienda .modal-content .container #modalText{
     font-size: 20px;
     font-weight: 300;
 }
 
 /*Boton eliminar*/
-.deletebtnTienda, .deletebtnProducto {
+.deletebtnTienda, .deletebtnProducto, #deletebtnProductoAdminTienda{
   float: left;
   width: 50%;
   background-color: #1e72bc;
@@ -98,7 +98,7 @@ form .form-row .col-lg-12 .text-center img{
 }
 
 /*Boton cancelar*/
-.cancelbtnTienda, .cancelbtnProducto {
+.cancelbtnTienda, .cancelbtnProducto, #cancelbtnProductoAdminTienda{
     float: left;
     width: 50%;
     background-color: white;
@@ -160,9 +160,32 @@ form .form-row .col-lg-12 .text-center img{
   display: table;
 }
 
+/*botones del div administracio*/
 .container-fluid #administracion button{
   color: #005096;
   font-weight: 600;
 }
 
-  
+#consultas #ventas{
+  border-collapse: collapse;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#consultas #ventas td, #consultas #ventas th {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+#consultas #ventas #datos{
+ background-color: rgb(255, 255, 255);
+}
+
+#consultas #ventas th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #2f77c5;
+  color: white;
+}

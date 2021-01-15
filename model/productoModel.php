@@ -1,6 +1,10 @@
 <?php
+if($_SERVER["SERVER_NAME"]=="grupo4.zerbitzaria.net"){
+    include_once("connect_data_remote.php");
+}else{
+    include_once("connect_data.php");
+}
 
-include_once 'connect_data.php';
 include_once 'productoClass.php';
 include_once 'productoTiendaModel.php';
 
@@ -37,7 +41,7 @@ class productoModel extends productoClass{
     /*Insertar producto*/
     public function insertarProducto(){
         
-        $this->OpenConnect();  // konexio zabaldu  - abrir conexi�n
+        $this->OpenConnect();
         
         $nombre=$this->getNombre();
         $tipo=$this->getTipo();
@@ -57,9 +61,9 @@ class productoModel extends productoClass{
     /*conseguir la id del producto para hacer el insert en la tabla productosTiendas*/
     public function lastId(){
         
-        $this->OpenConnect();  // konexio zabaldu  - abrir conexi�n
+        $this->OpenConnect();
         
-        $sql = "CALL spLastId()"; // SQL sententzia - sentencia SQL
+        $sql = "CALL spLastId()";
         
         $result = $this->link->query($sql);
         
@@ -117,7 +121,7 @@ class productoModel extends productoClass{
         
         $result = $this->link->query($sql);
         
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             
             /*Datos de los productos*/
             $this->setId($row["id"]);
@@ -140,7 +144,7 @@ class productoModel extends productoClass{
     /*Update producto*/
     public function updateProducto(){
         
-        $this->OpenConnect();  // konexio zabaldu  - abrir conexi�n
+        $this->OpenConnect();
         
         $id=$this->getId();
         $nombre=$this->getNombre();

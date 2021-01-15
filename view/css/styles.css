@@ -218,3 +218,131 @@ nav form .sesion {
 }
 
 /*Fin carousel*/
+
+/*Footer*/
+
+footer {
+    background-color: #1e72bc;
+    color: white;
+    margin-top: 1.5%;
+    padding-top: 1.5%;
+}
+
+footer #footerBody {
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+footer #footerBody div {
+    width: 245px;
+    height: 270px;
+    margin: auto;
+}
+
+footer #footerBody div:last-child {
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5%;
+    height: max-content;
+}
+
+footer #footerBody div:last-child a {
+    color: white;
+    transition: 0.25s;
+    border-radius: 50%;
+    padding: 0.5%;
+    font-size: 200%;
+    margin: 1%;
+}
+
+footer #footerBody div:last-child a i {
+    width: 3.25%;
+}
+
+footer #footerBody div:last-child a:hover {
+    background-color: white;
+    color: #1e72bc;
+}
+
+footer #footerBody div img {
+    border-radius: 25px;
+    margin-bottom: 2%;
+}
+
+footer #footerBody div button {
+    margin-top: 5%;
+    color: #1e72bc;
+    background-color: white;
+    border-radius: 5px;
+    height: 30px;
+    border: 0.5px solid black;
+}
+
+footer #footerBody div h5 {
+    font-size: 155%;
+}
+
+footer #copy {
+    padding: 1.5%;
+    border-top: 1px solid white;
+    text-align: center;
+}
+
+@media(max-width: 1500px) {
+    footer #footerBody div:last-child a i {
+        width: 3.75%;
+    }
+}
+
+@media(max-width: 1220px) {
+    footer #footerBody div:last-child a i {
+        width: 4.75%;
+    }
+}
+
+@media(max-width: 950px) {
+    footer #footerBody div:last-child a i {
+        width: 5.75%;
+    }
+}
+
+@media(max-width: 875px) {
+    footer #footerBody div:last-child a i {
+        width: 6.75%;
+    }
+}
+
+@media(max-width: 700px) {
+    footer #footerBody div:last-child a i {
+        width: 7.75%;
+    }
+}
+
+@media(max-width: 600px) {
+    footer #footerBody div:last-child a i {
+        width: 8.75%;
+    }
+}
+
+@media(max-width: 587px) {
+    footer #footerBody div:first-child {
+        margin-bottom: 5%;
+        margin-top: 2%;
+    }
+    footer #footerBody div:last-child {
+        margin-bottom: 2%;
+    }
+}
+
+@media(max-width: 525px) {
+    footer #footerBody div:last-child a i {
+        width: 10.25%;
+    }
+}
+
+/*Fin Footer*/

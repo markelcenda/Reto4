@@ -1,6 +1,10 @@
 <?php
+if($_SERVER["SERVER_NAME"]=="grupo4.zerbitzaria.net"){
+    include_once("connect_data_remote.php");
+}else{
+    include_once("connect_data.php");
+}
 
-include_once 'connect_data.php';
 include_once 'tiendaClass.php';
 
 class tiendaModel extends tiendaClass{
@@ -35,7 +39,7 @@ class tiendaModel extends tiendaClass{
     /*Insertar Tienda*/
     public function insertarTienda(){
         
-        $this->OpenConnect();  // konexio zabaldu  - abrir conexi�n
+        $this->OpenConnect();
         
         $nombre=$this->getNombre();
         $direccion=$this->getDireccion();
@@ -58,14 +62,14 @@ class tiendaModel extends tiendaClass{
     /*Lista de todas las Tienda*/
     public function setTiendas(){
         
-        $this->OpenConnect();  // konexio zabaldu  - abrir conexi�n
+        $this->OpenConnect();  
 
         $sql="CALL spAllTiendas()";
         
         $result = $this->link->query($sql);
         $list=array();
         
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
             
             /*Datos de las tiendas*/
             $tienda=new tiendaModel();
@@ -95,7 +99,7 @@ class tiendaModel extends tiendaClass{
         
         $result = $this->link->query($sql);
         
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             
             $this->setId($row['id']);
             $this->setNombre($row['nombre']);
@@ -113,7 +117,7 @@ class tiendaModel extends tiendaClass{
     /*Update Tienda*/
     public function updateTienda(){
         
-        $this->OpenConnect();  // konexio zabaldu  - abrir conexi�n
+        $this->OpenConnect();
         
         $nombre=$this->getNombre();
         $direccion=$this->getDireccion();

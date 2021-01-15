@@ -1,13 +1,20 @@
 <?php
 
-include_once 'connect_data.php';
+if($_SERVER["SERVER_NAME"]=="grupo4.zerbitzaria.net"){
+    include_once("connect_data_remote.php");
+}else{
+    include_once("connect_data.php");
+}
+
 include_once 'productoTiendaClass.php';
 include_once 'tiendaModel.php';
+include_once 'productoModel.php';
 
 class productoTiendaModel extends productoTiendaClass{
     
     private $link;
     private $objTienda;
+    private $objProducto;
     
     public function OpenConnect()
     {
@@ -45,8 +52,6 @@ class productoTiendaModel extends productoTiendaClass{
         $unidades=$this->getUnidades();
         
         $sql="CALL spInsertarProductoTienda($idProducto, $idTienda, $precio, $unidades)";
-
-        $this->link->query($sql);
         
         if ($this->link->query($sql)){
             return "Producto insertado correctamente";
@@ -105,6 +110,48 @@ class productoTiendaModel extends productoTiendaClass{
         }
         
         $this->CloseConnect();
+    }
+
+    /*buscar producto por id*/
+    public function findProductoTiendaByIdTienda(){
+        
+        $this->OpenConnect();
+        $idTienda=$this->getIdTienda();
+        
+        $sql="CALL spFindProductoByIdTienda($idTienda)";
+        
+        $result = $this->link->query($sql);
+        $list=array();
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
+            
+            /*Datos de los productos*/
+            $productoTienda=new productoTiendaModel();
+            $productoTienda->setIdProducto($row["idProducto"]);
+            $productoTienda->setIdTienda($row["idTienda"]);
+            $productoTienda->setPrecio($row["precio"]);
+            $productoTienda->setUnidades($row["unidades"]);
+            
+            /*objTienda*/
+            $tienda=new tiendaModel();
+            $tienda->setId($row['idTienda']);
+            $tienda->findTiendaById();
+            
+            $productoTienda->objTienda=$tienda->ObjVars();
+
+            /*objProducto*/
+            $producto=new productoModel();
+            $producto->setId($row['idProducto']);
+            $producto->findProductoById();
+            
+            $productoTienda->objProducto=$producto->ObjVars();
+
+            array_push($list, get_object_vars($productoTienda));
+            
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
     }
     
     function ObjVars(){
