@@ -50,7 +50,7 @@ form .form-row .col-lg-12 .text-center img{
   }
 
   /*div izquierdo de la tiendas y derecho de los productos*/
-  #administracion .row #divTiendas, #divProductos, #divTiendas2, #divProductos2, #divProductosAdminTienda, #divTiendasAdminTienda, #divProductosAdminTienda, #divZonaPersonal{
+  #administracion .row #divTiendas, #divProductos, #divTiendas2, #divProductos2, #divProductosAdminTienda, #divTiendasAdminTienda, #divProductosAdminTienda, #divZonaPersonal, #divZonaAdministradores{
     background-color: #1e72bc;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: 0.5s;
@@ -59,7 +59,7 @@ form .form-row .col-lg-12 .text-center img{
   }
 
 /*Al hacer hover añadir efecto*/
-  #administracion .row #divTiendas:hover, #divProductos:hover, #divTiendas2:hover, #divProductos2:hover, #divProductosAdminTienda:hover, #divTiendasAdminTienda:hover, #divProductosAdminTienda:hover, #divZonaPersonal:hover{
+  #administracion .row #divTiendas:hover, #divProductos:hover, #divTiendas2:hover, #divProductos2:hover, #divProductosAdminTienda:hover, #divTiendasAdminTienda:hover, #divProductosAdminTienda:hover, #divZonaPersonal:hover, #divZonaAdministradores:hover{
     transform: scale(1.02);
     z-index: 2;
   }
@@ -160,8 +160,8 @@ form .form-row .col-lg-12 .text-center img{
   display: table;
 }
 
-/*botones del div administracio*/
-.container-fluid #administracion button{
+/*botones de los div principales */
+.container-fluid #administracion button, #consultas button, #zonaPersonal button{
   color: #005096;
   font-weight: 600;
 }

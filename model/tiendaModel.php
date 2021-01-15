@@ -151,6 +151,30 @@ class tiendaModel extends tiendaClass{
         }
         $this->CloseConnect();
     }
+
+    /*Lista de todas las Tienda*/
+    public function setTiendasSinAdmin(){
+        
+        $this->OpenConnect();  
+
+        $sql="CALL spFindTiendasSinAdmin()";
+        
+        $result = $this->link->query($sql);
+        $list=array();
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+            
+            /*Datos de las tiendas*/
+            $tienda=new tiendaModel();
+            $tienda->setId($row["id"]);
+            $tienda->setNombre($row["nombre"]);
+      
+            array_push($list, get_object_vars($tienda));
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
     
     function ObjVars(){
         return get_object_vars($this);

@@ -638,7 +638,7 @@
 
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divZonaPersonal">
         
-                        <h4 class='text-center'>ACTUALIZAR INFORMACION <i class="fas fa-eye" ng-click="mostrarUpdateUsuario()"></i></h4>
+                        <h4 class='text-center'>INFORMACION <i class="fas fa-eye" ng-click="mostrarUpdateUsuario()"></i></h4>
         
                         <form class='m-2' ng-show="formUpdateUsuario=='si'">
         
@@ -673,17 +673,32 @@
                         
                     </div>
 
+                    <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divZonaAdministradores">
+        
+                        <h4 class='text-center'>ADMINISTRADORES <i class="fas fa-eye" ng-click="mostrarNoAdministradores()"></i></h4>
+
+                        <div class="text-center" ng-show="selectNoAdministradores=='si'">
+
+                            <select id="selectUsuariosNoAdministradores" ng-model="usuarioSeleccionadoAdminTienda">
+                                <option value="" selected>Seleccionar Usuario</option>
+                                <option ng-repeat="item in usuariosNoAdmin" value="{{item.id}}">{{item.id}} -- {{item.nombre}} {{item.apellidos}}</option>
+                            </select>
+
+                            <select id="selectTiendasNoAdministradores" ng-model="tiendaSeleccionadoAdminTienda">
+                                <option value="" selected>Seleccionar Tienda</option>
+                                <option ng-repeat="item in tiendasSinAdmin" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
+                            </select>
+
+                            <div class="text-center m-2">
+                                <button type="button" id="updateUsuarioAdminTienda" class="btn btn-light" ng-click="updateUsuarioAdminTienda()">Actualizar</button>
+                                <button type="button" id="cancelUpdateUsuario" class="btn btn-light" ng-click="cancelUpdateUsuarioAdminTienda()">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                
-
             </div>
-            
         </div>
-
     </div>
-
-    
 
     <!-- Optional JavaScript -->
     <script src="../js/usuario.js"></script>

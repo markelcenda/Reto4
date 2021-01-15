@@ -40,22 +40,16 @@ app.controller("miControlador", function($scope,$http){
             if(response.data.admin==0){
   
                 if(response.data.adminTienda==null){
-                    //Si eres usuario normal
-                    //zonaUsuario();
-                    
                 }else{
                     //Si eres administrador de una tienda
                     zonaAdminTienda(response.data.adminTienda);
                 }
-                
             }else{
                 //Si eres administrador general
                  zonaAdmin();
             }
-
             mostrarVentas(response.data.id);
-            zonaUsuario(response.data.id);
-
+            zonaUsuario(response.data.id, response.data.admin);
         }else{
             window.location.href="../../index.html";
         }
@@ -743,7 +737,14 @@ function mostrarVentas(idUsuario){
 
 }
 
-function zonaUsuario(idUsuario){
+function zonaUsuario(idUsuario, admin){
+
+    if(admin==0){/*si no eres admin ocultar div para actualizar los administradores*/
+        $("#divZonaAdministradores").hide();
+    }else{/*si eres admin mostrar div para actualizar los administradores*/
+        $("#divZonaAdministradores").show();
+        updateAdministradores();
+    }
 
     /*mostrar formulario para actualizar informacion de los usuarios*/
     $scope.formUpdateUsuario="no";
@@ -786,6 +787,56 @@ function zonaUsuario(idUsuario){
             });
         }
     } 
+
+    function updateAdministradores(){
+
+        /*mostrar select de usuarios que no son administradores de tiendas*/
+        $scope.selectNoAdministradores="no";
+        $scope.mostrarNoAdministradores=function(){
+            $scope.selectNoAdministradores="si";
+
+            /*usuarios que no son adminTieda*/
+            var url1 = "../../controller/cUsuariosNoAdmin.php";
+            $http.get(url1).then(function(response){
+                $scope.usuariosNoAdmin=response.data.list;
+            });
+
+            /*tiendas sin administradores*/
+            var url2 = "../../controller/cTiendasSinAdmin.php";
+            $http.get(url2).then(function(response){
+                $scope.tiendasSinAdmin=response.data.list;
+            });
+
+        }
+
+        /*cancelar update usuario*/
+        $scope.cancelUpdateUsuarioAdminTienda=function(){
+            $scope.selectNoAdministradores="no";
+        }
+
+        /*añadir usuario como admin tienda*/
+        $scope.updateUsuarioAdminTienda=function(){
+
+            var data={"idUsuario": $scope.usuarioSeleccionadoAdminTienda, "idTienda": $scope.tiendaSeleccionadoAdminTienda};
+            var url="../../controller/cUpdateUsuarioAdminTienda.php";
+
+            if($scope.usuarioSeleccionadoAdminTienda==undefined){
+                alert("Selecciona un usuario");
+            }else if($scope.tiendaSeleccionadoAdminTienda==undefined){
+                alert("Selecciona una tienda");
+            }else{
+                $http.post(url, data).then(function(response){
+                    //mensaje
+                    alert(response.data.mensaje);
+                    window.location.reload();
+                });
+            }
+
+           
+
+        }
+
+    }
 }
  
 });

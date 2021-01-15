@@ -40,7 +40,7 @@ class usuarioModel extends usuarioClass{
         $this->OpenConnect();
         
         $username=$this->getUsername();
-        $password=$this->getPassword;
+        $password=$this->getPassword();
         
         $mensaje="no error"; 
 
@@ -91,7 +91,7 @@ class usuarioModel extends usuarioClass{
         $this->CloseConnect();
     }
 
-    /*Update Tienda*/
+    /*Update usuario*/
     public function updateUsuario(){
         
         $this->OpenConnect();
@@ -110,6 +110,54 @@ class usuarioModel extends usuarioClass{
             return "Se ha producido un error";
         }
         
+        $this->CloseConnect();
+    }
+
+    /*Lista de todos los usuarios no administradores*/
+    public function setUsuariosNoAdminTienda(){
+        
+        $this->OpenConnect();  
+
+        $sql="CALL spUsuariosNoAdminTienda()";
+        
+        $result = $this->link->query($sql);
+        $list=array();
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+            
+            /*Datos de los usuarios*/
+            $usuario=new usuarioModel();
+            $usuario->setId($row["id"]);
+            $usuario->setNombre($row["nombre"]);
+            $usuario->setApellidos($row["apellidos"]);
+            $usuario->setUsername($row["username"]);
+            $usuario->setPassword($row["password"]);
+            $usuario->setAdmin($row["admin"]);
+            $usuario->setAdminTienda($row["adminTienda"]);
+      
+            array_push($list, get_object_vars($usuario));
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
+
+    /*Update usuario*/
+    public function updateUsuarioAdminTienda(){
+        
+        $this->OpenConnect();
+            
+        $idUsuario=$this->getId();
+        $idTienda=$this->getAdminTienda();
+            
+        $sql="CALL spUpdateUsuarioAdminTienda($idTienda, $idUsuario)";
+            
+        if ($this->link->query($sql)){
+            return "Usuario convertido en AdminTienda";
+        }else{
+            return "Se ha producido un error";
+        }
+            
         $this->CloseConnect();
     }
 
