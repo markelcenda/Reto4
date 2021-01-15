@@ -4,7 +4,6 @@ if($_SERVER["SERVER_NAME"]=="grupo4.zerbitzaria.net"){
 }else{
     include_once("connect_data.php");
 }
-
 include_once 'tiendaClass.php';
 
 class tiendaModel extends tiendaClass{

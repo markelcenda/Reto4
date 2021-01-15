@@ -1,0 +1,50 @@
+.cardGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 2%;
+}
+
+.cardGroup .card {
+    width: 400px;
+    height: 150px;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 2% 0% 4% 0%;
+    overflow: hidden;
+    padding: .01%;
+    transition: .3s;
+}
+
+.cardGroup .card:hover {
+    transform: scale(1.008);
+}
+
+.cardGroup .card img {
+    height: 110%;
+}
+
+.typesGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 2%;
+}
+
+.typesGroup p {
+    font-size: 15pt;
+    cursor: pointer;
+}
+
+.types {
+    background-color: white;
+    border-radius: 8px;
+    margin: 2% 5% 1% 5%;
+    padding: .01%;
+    transition: .5s;
+}
