@@ -39,8 +39,8 @@ class usuarioModel extends usuarioClass{
         
         $this->OpenConnect();
         
-        $username=$this->username;
-        $password=$this->password;
+        $username=$this->getUsername();
+        $password=$this->getPassword;
         
         $mensaje="no error"; 
 
@@ -49,13 +49,13 @@ class usuarioModel extends usuarioClass{
         
         if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {   
             
-            $this->id=$row['id'];
-            $this->nombre=$row['nombre'];
-            $this->apellidos=$row['apellidos'];
-            $this->username=$row['username'];
-            $this->password=$row['password'];
-            $this->admin=$row['admin'];
-            $this->adminTienda=$row['adminTienda'];
+            $this->setId($row['id']);
+            $this->setNombre($row['nombre']);
+            $this->setApellidos($row['apellidos']);
+            $this->setUsername($row['username']);
+            $this->setPassword($row['password']);
+            $this->setAdmin($row['admin']);
+            $this->setAdminTienda($row['adminTienda']);
  
             $mensaje="no error"; 
             
@@ -65,6 +65,52 @@ class usuarioModel extends usuarioClass{
         mysqli_free_result($result);
         $this->CloseConnect();
         return $mensaje;
+    }
+
+    public function findUsuarioById() {
+        
+        $this->OpenConnect();
+        
+        $id=$this->getId();
+
+        $sql="call spFindUsuarioById($id)";
+        $result= $this->link->query($sql);
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {   
+            
+            $this->setId($row['id']);
+            $this->setNombre($row['nombre']);
+            $this->setApellidos($row['apellidos']);
+            $this->setUsername($row['username']);
+            $this->setPassword($row['password']);
+            $this->setAdmin($row['admin']);
+            $this->setAdminTienda($row['adminTienda']);
+            
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+    }
+
+    /*Update Tienda*/
+    public function updateUsuario(){
+        
+        $this->OpenConnect();
+        
+        $id=$this->getId();
+        $nombre=$this->getNombre();
+        $apellidos=$this->getApellidos();
+        $username=$this->getUsername();
+        $password=$this->getPassword();
+        
+        $sql="CALL spUpdateUsuario('$nombre', '$apellidos', '$username', '$password', $id)";
+        
+        if ($this->link->query($sql)){
+            return "Usuario actualizado correctamente";
+        }else{
+            return "Se ha producido un error";
+        }
+        
+        $this->CloseConnect();
     }
 
     

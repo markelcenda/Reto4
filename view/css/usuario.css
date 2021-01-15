@@ -5,7 +5,7 @@ form .form-row .col-lg-12 .text-center img{
 }
 
 /*div principal*/
-#administracion, #consultas{
+#administracion, #consultas, #zonaPersonal{
   border: 5px solid #1e72bc;
   margin: 5px;
   background-image: linear-gradient(to bottom, #0086ff, #98c4b8);
@@ -50,7 +50,7 @@ form .form-row .col-lg-12 .text-center img{
   }
 
   /*div izquierdo de la tiendas y derecho de los productos*/
-  #administracion .row #divTiendas, #divProductos, #divTiendas2, #divProductos2, #divProductosAdminTienda, #divTiendasAdminTienda, #divProductosAdminTienda{
+  #administracion .row #divTiendas, #divProductos, #divTiendas2, #divProductos2, #divProductosAdminTienda, #divTiendasAdminTienda, #divProductosAdminTienda, #divZonaPersonal{
     background-color: #1e72bc;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: 0.5s;
@@ -59,7 +59,7 @@ form .form-row .col-lg-12 .text-center img{
   }
 
 /*Al hacer hover añadir efecto*/
-  #administracion .row #divTiendas:hover, #divProductos:hover, #divTiendas2:hover, #divProductos2:hover, #divProductosAdminTienda:hover, #divTiendasAdminTienda:hover, #divProductosAdminTienda:hover{
+  #administracion .row #divTiendas:hover, #divProductos:hover, #divTiendas2:hover, #divProductos2:hover, #divProductosAdminTienda:hover, #divTiendasAdminTienda:hover, #divProductosAdminTienda:hover, #divZonaPersonal:hover{
     transform: scale(1.02);
     z-index: 2;
   }

@@ -629,6 +629,55 @@
                     </table>
                 </div>
             </div>
+
+            <div id="zonaPersonal">
+
+                <h2 class='text-center m-2 text-white'>ZONA PERSONAL</h2>
+
+                <div class="row justify-content-center">
+
+                    <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divZonaPersonal">
+        
+                        <h4 class='text-center'>ACTUALIZAR INFORMACION <i class="fas fa-eye" ng-click="mostrarUpdateUsuario()"></i></h4>
+        
+                        <form class='m-2' ng-show="formUpdateUsuario=='si'">
+        
+                            <div class="form-row">
+                                <div class="col-lg-6">
+                                    <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="updateNombreUsuario" name="nombre" value="{{nombreUsuario}}">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="apellidos">Apellidos<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="updateApellidosUsuario" name="apellidos" value="{{apellidosUsuario}}">
+                                </div>
+                            </div>
+        
+                            <div class="form-row">
+                                <div class="col-lg-6">
+                                    <label for="username">Usuario<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="updateUsernameUsuario" name="username" value="{{usernameUsuario}}" disabled>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="password">Contraseña<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="updatePasswordUsuario" name="password" value="{{passwordUsuario}}">
+                                </div>
+                            </div>
+        
+                            <div class="text-center m-2">
+                                <button type="button" id="updateUsuario" class="btn btn-light" ng-click="updateUsuario()">Actualizar</button>
+                                <button type="button" id="cancelUpdateUsuario" class="btn btn-light" ng-click="cancelUpdateUsuario()">Cancelar</button>
+                            </div>
+        
+                        </form>
+                        
+                    </div>
+
+                </div>
+
+                
+
+            </div>
             
         </div>
 

@@ -54,6 +54,7 @@ app.controller("miControlador", function($scope,$http){
             }
 
             mostrarVentas(response.data.id);
+            zonaUsuario(response.data.id);
 
         }else{
             window.location.href="../../index.html";
@@ -740,6 +741,51 @@ function mostrarVentas(idUsuario){
 
     });
 
+}
+
+function zonaUsuario(idUsuario){
+
+    /*mostrar formulario para actualizar informacion de los usuarios*/
+    $scope.formUpdateUsuario="no";
+    $scope.mostrarUpdateUsuario=function(){
+        $scope.formUpdateUsuario="si";
+
+        var url = "../../controller/cFindUsuario.php";
+        var data={"idUsuario": idUsuario};
+
+        $http.post(url, data).then(function(response){
+            $scope.usuario=response.data.list;
+            /*datos para añadir al formulario*/
+            $scope.nombreUsuario=$scope.usuario.nombre;
+            $scope.apellidosUsuario=$scope.usuario.apellidos;
+            $scope.usernameUsuario=$scope.usuario.username;
+            $scope.passwordUsuario=$scope.usuario.password;
+        });
+
+        /*ocultar formulario*/
+        $scope.cancelUpdateUsuario=function(){
+            $scope.formUpdateUsuario="no";
+        }
+
+        /*update usuario*/
+        $scope.updateUsuario=function(){
+
+            /*datos del usuario*/
+            var nombre=$("#updateNombreUsuario").val();
+            var apellidos=$("#updateApellidosUsuario").val();
+            var username=$("#updateUsernameUsuario").val();
+            var password=$("#updatePasswordUsuario").val();
+
+            var url = "../../controller/cUpdateUsuario.php";
+            var data={"idUsuario": idUsuario, "nombre": nombre, "apellidos": apellidos, "username": username, "password": password};
+
+            $http.post(url, data).then(function(response){
+                //mensaje
+                alert(response.data.mensaje);
+                window.location.reload();
+            });
+        }
+    } 
 }
  
 });
