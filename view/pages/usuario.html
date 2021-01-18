@@ -675,13 +675,13 @@
 
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divZonaAdministradores">
         
-                        <h4 class='text-center'>ADMINISTRADORES <i class="fas fa-eye" ng-click="mostrarNoAdministradores()"></i></h4>
+                        <h4 class='text-center'>CONVERTIR ADMINISTRADORES <i class="fas fa-eye" ng-click="mostrarNoAdministradores()"></i></h4>
 
                         <div class="text-center" ng-show="selectNoAdministradores=='si'">
 
                             <select id="selectUsuariosNoAdministradores" ng-model="usuarioSeleccionadoAdminTienda">
                                 <option value="" selected>Seleccionar Usuario</option>
-                                <option ng-repeat="item in usuariosNoAdmin" value="{{item.id}}">{{item.id}} -- {{item.nombre}} {{item.apellidos}}</option>
+                                <option ng-repeat="item in usuariosNoAdmin" value="{{item.id}}">{{item.id}} -- {{item.apellidos}}, {{item.nombre}}</option>
                             </select>
 
                             <select id="selectTiendasNoAdministradores" ng-model="tiendaSeleccionadoAdminTienda">
@@ -695,6 +695,39 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divZonaAdministradores2">
+        
+                        <h4 class='text-center'>BORRAR ADMINISTRADORES <i class="fas fa-eye" ng-click="mostrarAdministradoresTienda()"></i></h4>
+
+                        <div class="text-center" ng-show="selectAdministradoresTienda=='si'">
+
+                            <select id="selectUsuariosAdminTienda" ng-model="usuarioSeleccionadoAdminTienda" ng-change="quitarAdminTienda()">
+                                <option value="" selected>Seleccionar Usuario</option>
+                                <option ng-repeat="item in usuariosAdminTienda" value="{{item.id}}">{{item.id}} -- {{item.apellidos}}, {{item.nombre}}</option>
+                            </select>
+
+                            <div id="modalDeleteAdminTienda" class="modal">
+                                <span onclick="document.getElementById('modalDeleteAdminTienda').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                <form class="modal-contentDelete">
+                                    <div class="container">
+                                        <h1>¿Eliminar Producto?</h1>
+                                        <p id="modalText"></p>
+                        
+                                        <div class="clearfix">
+                                            <button type="button" class="cancelbtnAdminTienda" id="cancelbtnAdminTienda" onclick="document.getElementById('modalDeleteProductoAdminTienda').style.display='none'">Cancelar</button>
+                                            <button type="button" class="deletebtnAdminTienda" id="deletebtnAdminTienda">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="text-center m-2">
+                                <button type="button" id="cancelUpdateUsuarioNoAdminTienda" class="btn btn-light" ng-click="cancelUpdateUsuarioNoAdminTienda()">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

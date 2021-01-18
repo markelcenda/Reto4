@@ -50,7 +50,7 @@ form .form-row .col-lg-12 .text-center img{
   }
 
   /*div izquierdo de la tiendas y derecho de los productos*/
-  #administracion .row #divTiendas, #divProductos, #divTiendas2, #divProductos2, #divProductosAdminTienda, #divTiendasAdminTienda, #divProductosAdminTienda, #divZonaPersonal, #divZonaAdministradores{
+  #administracion .row #divTiendas, #divProductos, #divTiendas2, #divProductos2, #divProductosAdminTienda, #divTiendasAdminTienda, #divProductosAdminTienda, #divZonaPersonal, #divZonaAdministradores, #divZonaAdministradores2{
     background-color: #1e72bc;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: 0.5s;
@@ -59,7 +59,7 @@ form .form-row .col-lg-12 .text-center img{
   }
 
 /*Al hacer hover añadir efecto*/
-  #administracion .row #divTiendas:hover, #divProductos:hover, #divTiendas2:hover, #divProductos2:hover, #divProductosAdminTienda:hover, #divTiendasAdminTienda:hover, #divProductosAdminTienda:hover, #divZonaPersonal:hover, #divZonaAdministradores:hover{
+  #administracion .row #divTiendas:hover, #divProductos:hover, #divTiendas2:hover, #divProductos2:hover, #divProductosAdminTienda:hover, #divTiendasAdminTienda:hover, #divProductosAdminTienda:hover, #divZonaPersonal:hover, #divZonaAdministradores:hover, #divZonaAdministradores2:hover{
     transform: scale(1.02);
     z-index: 2;
   }
@@ -68,24 +68,24 @@ form .form-row .col-lg-12 .text-center img{
 * {box-sizing: border-box}
 
 /*Modal*/
-#modalDeleteTienda, #modalDeleteProducto, #modalDeleteProductoAdminTienda{
+#modalDeleteTienda, #modalDeleteProducto, #modalDeleteProductoAdminTienda, #modalDeleteAdminTienda{
     display: none;
     color: white;  
 }
 
 /*h1*/
-#modalDeleteTienda .modal-content .container h1, #modalDeleteProducto .modal-content .container h1, #modalDeleteProductoAdminTienda .modal-content .container h1{
+#modalDeleteTienda .modal-content .container h1, #modalDeleteProducto .modal-content .container h1, #modalDeleteProductoAdminTienda .modal-content .container h1, #modalDeleteAdminTienda .modal-content .container h1{
     font-weight: 200;
 }
 
 /*p*/
-#modalDeleteTienda .modal-content .container #modalText, #modalDeleteProducto .modal-content .container #modalText, #modalDeleteProductoAdminTienda .modal-content .container #modalText{
+#modalDeleteTienda .modal-content .container #modalText, #modalDeleteProducto .modal-content .container #modalText, #modalDeleteProductoAdminTienda .modal-content .container #modalText, #modalDeleteAdminTienda .modal-content .container #modalText{
     font-size: 20px;
     font-weight: 300;
 }
 
 /*Boton eliminar*/
-.deletebtnTienda, .deletebtnProducto, #deletebtnProductoAdminTienda{
+.deletebtnTienda, .deletebtnProducto, #deletebtnProductoAdminTienda, #deletebtnAdminTienda{
   float: left;
   width: 50%;
   background-color: #1e72bc;
@@ -98,7 +98,7 @@ form .form-row .col-lg-12 .text-center img{
 }
 
 /*Boton cancelar*/
-.cancelbtnTienda, .cancelbtnProducto, #cancelbtnProductoAdminTienda{
+.cancelbtnTienda, .cancelbtnProducto, #cancelbtnProductoAdminTienda, #cancelbtnAdminTienda{
     float: left;
     width: 50%;
     background-color: white;

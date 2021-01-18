@@ -161,6 +161,53 @@ class usuarioModel extends usuarioClass{
         $this->CloseConnect();
     }
 
+    /*Lista de todos los usuarios AdminTienda*/
+    public function setUsuariosAdminTienda(){
+        
+        $this->OpenConnect();  
+
+        $sql="CALL spUsuariosAdminTienda()";
+        
+        $result = $this->link->query($sql);
+        $list=array();
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+            
+            /*Datos de los usuarios*/
+            $usuario=new usuarioModel();
+            $usuario->setId($row["id"]);
+            $usuario->setNombre($row["nombre"]);
+            $usuario->setApellidos($row["apellidos"]);
+            $usuario->setUsername($row["username"]);
+            $usuario->setPassword($row["password"]);
+            $usuario->setAdmin($row["admin"]);
+            $usuario->setAdminTienda($row["adminTienda"]);
+      
+            array_push($list, get_object_vars($usuario));
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
+
+    /*Update usuario, quitar adminTienda*/
+    public function updateUsuarioNoAdminTienda(){
+        
+        $this->OpenConnect();
+            
+        $idUsuario=$this->getId();
+            
+        $sql="CALL spUpdateUsuarioNoAdminTienda($idUsuario)";
+            
+        if ($this->link->query($sql)){
+            return "Usuario eliminado como administrador tienda";
+        }else{
+            return "Se ha producido un error";
+        }
+            
+        $this->CloseConnect();
+    }
+
     
     function ObjVars(){
         return get_object_vars($this);

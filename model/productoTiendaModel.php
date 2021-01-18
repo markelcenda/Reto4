@@ -102,7 +102,7 @@ class productoTiendaModel extends productoTiendaClass{
         $sql="CALL spUpdateProductoTienda($idTienda, $precio, $unidades, $idProducto)";
         
         if ($this->link->query($sql)){
-            return "Producto actualizada correctamente";
+            return "Producto actualizado correctamente";
         }else{
             return "Se ha producido un error";
         }

@@ -6,7 +6,7 @@ app.controller("miControlador", function($scope,$http){
         $scope.tiendas=response.data.list;
     });
 
-    /*Lista de tiendas para el select*/
+    /*Lista de productos para el select*/
     $http.get("../../controller/cProductos.php").then(function(response){
         $scope.productos=response.data.list;
     });
@@ -173,27 +173,56 @@ function zonaAdmin(){
         var tipo=$scope.tipoTiendaNuevo;
         var telefono=$scope.telefonoTiendaNuevo;
         var email=$scope.emailTiendaNuevo;
+        permitirInsert = true;
         
+        if(nombre==undefined || direccion==undefined || tipo==undefined || telefono==undefined || email==undefined){//si hay datos vacios
+            alert("Se ha producido un error. ¡Rellena todo el formulario!");
+        }else{//si no hay datos vacios
 
-        if(nombre==undefined || direccion==undefined || tipo==undefined || telefono==undefined || email==undefined){
+            for(let i=0; i<$scope.tiendas.length; i++){
+               
+                if (nombre == $scope.tiendas[i].nombre || telefono == $scope.tiendas[i].telefono || email==$scope.tiendas[i].email) {
 
-            alert("Se ha producido un error");
-            
-        }else{
- 
-            if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
-                var data={"nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": "default.png", "savedFileBase64": $scope.savedFileBase64};
-            }else{/*Si se ha hecho el change de la imagen*/
-                var data={"nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTienda.name, "savedFileBase64": $scope.savedFileBase64};
+                    permitirInsert = false;
+
+                    if(nombre == $scope.tiendas[i].nombre){
+                        $("#nombreTienda").css("border","2px solid red");
+                    }else{
+                        $("#nombreTienda").css("border","2px solid green");
+                    }
+
+                    if(telefono == $scope.tiendas[i].telefono){
+                        $("#telefonoTienda").css("border","2px solid red");
+                    }else{
+                        $("#telefonoTienda").css("border","2px solid green");
+                    }
+
+                    if(email==$scope.tiendas[i].email){
+                        $("#emailTienda").css("border","2px solid red");
+                    }else{
+                        $("#emailTienda").css("border","2px solid green");
+                    }
+                }
             }
-        
-            var url="../../controller/cInsertarTienda.php";
-        
-            $http.post(url, data).then(function(response){
-                //mensaje
-                alert(response.data.list);
-                window.location.reload();
-            });
+            
+            if(permitirInsert == true){//si todos los datos son correctos
+                if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
+                    var data={"nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": "default.png", "savedFileBase64": $scope.savedFileBase64};
+                }else{/*Si se ha hecho el change de la imagen*/
+                    var data={"nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTienda.name, "savedFileBase64": $scope.savedFileBase64};
+                }
+            
+                var url="../../controller/cInsertarTienda.php";
+            
+                $http.post(url, data).then(function(response){
+                    //mensaje
+                    alert(response.data.list);
+                    window.location.reload();
+                });
+            }else{
+                alert("¡Datos repetidos!");
+            }
+            
         }  
     }
 
@@ -241,34 +270,38 @@ function zonaAdmin(){
         var unidades=$scope.unidadesProductoNuevo;
         var idTienda=$scope.tiendaSeleccionada;
 
-        if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
-            var data={"nombre": nombre, "tipo": tipo, "imagen": "default.png", "savedFileBase64": $scope.savedFileBase64};
-        }else{/*Si se ha hecho el change de la imagen*/
-            var data={"nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProducto.name, "savedFileBase64": $scope.savedFileBase64};
-        }
+        //si los datos estan vavios
+        if(nombre==undefined || tipo==undefined || precio==undefined || precio==undefined || idTienda==undefined){
+            alert("Se ha producido un error. ¡Rellena todo el formulario!");
+        }else{//si no estan vacios
 
-        var url="../../controller/cInsertarProducto.php";
-
-        $http.post(url, data).then(function(response){
-            
-            /*id del ultimo producto*/
-            $http.get("../../controller/cLastId.php").then(function(response){
-                $scope.lastId=response.data.list.id;
-
-                var data={"idProducto": $scope.lastId, "idTienda": idTienda, "precio": precio, "unidades": unidades};
-
-                var url="../../controller/cInsertarProductoTienda.php";
-
-                $http.post(url, data).then(function(response){
-                    //Mensaje
-                    alert(response.data.list);
-                    window.location.reload();
+            if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
+                var data={"nombre": nombre, "tipo": tipo, "imagen": "default.png", "savedFileBase64": $scope.savedFileBase64};
+            }else{/*Si se ha hecho el change de la imagen*/
+                var data={"nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProducto.name, "savedFileBase64": $scope.savedFileBase64};
+            }
+    
+            var url="../../controller/cInsertarProducto.php";
+    
+            $http.post(url, data).then(function(response){
+                
+                /*id del ultimo producto*/
+                $http.get("../../controller/cLastId.php").then(function(response){
+                    $scope.lastId=response.data.list.id;
+    
+                    var data={"idProducto": $scope.lastId, "idTienda": idTienda, "precio": precio, "unidades": unidades};
+    
+                    var url="../../controller/cInsertarProductoTienda.php";
+    
+                    $http.post(url, data).then(function(response){
+                        //Mensaje
+                        alert(response.data.list);
+                        window.location.reload();
+                    });
                 });
-            });
-        }); 
+            }); 
+        }  
     }
-
-    /*UPDATE*/
 
     /*Conseguir datos para updateTienda*/
     $scope.tiendaUpdate="no";
@@ -320,20 +353,24 @@ function zonaAdmin(){
         var telefono=$("#telefonoTiendaUpdate").val();
         var email=$("#emailTiendaUpdate").val();
 
-        if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
-            var data={"id": $scope.tiendaSeleccionada, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdate, "savedFileBase64": $scope.savedFileBase64};
-        }else{/*Si se ha hecho el change de la imagen*/
-            var data={"id": $scope.tiendaSeleccionada, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdate.name, "savedFileBase64": $scope.savedFileBase64};
+        //si hay algun dato vacio
+        if(nombre=="" || direccion=="" || tipo=="" || telefono=="" || email==""){
+            alert("Se ha producido un error. ¡Rellena todo el formulario!");
+        }else{//si no hay datos vacios
+            if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
+                var data={"id": $scope.tiendaSeleccionada, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdate, "savedFileBase64": $scope.savedFileBase64};
+            }else{/*Si se ha hecho el change de la imagen*/
+                var data={"id": $scope.tiendaSeleccionada, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdate.name, "savedFileBase64": $scope.savedFileBase64};
+            }
+    
+            var url="../../controller/cUpdateTienda.php";
+    
+            $http.post(url, data).then(function(response){
+                //Mensaje
+                alert(response.data.list);
+                window.location.reload();
+            });
         }
-
-        var url="../../controller/cUpdateTienda.php";
-
-        $http.post(url, data).then(function(response){
-            //Mensaje
-            alert(response.data.list);
-            window.location.reload();
-        });
-
     }
 
     /*Conseguir datos para updateProducto*/
@@ -382,30 +419,40 @@ function zonaAdmin(){
         var nombre=$("#nombreProductoUpdate").val();
         var tipo=$("#tipoProductoUpdate").val();
 
-        if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
-            var data={"id": $scope.productoSeleccionado, "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoUpdate, "savedFileBase64": $scope.savedFileBase64};
-        }else{/*Si se ha hecho el change de la imagen*/
-            var data={"id": $scope.productoSeleccionado, "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoUpdate.name, "savedFileBase64": $scope.savedFileBase64};
-        }
-
-        var url="../../controller/cUpdateProducto.php";
-
-        $http.post(url, data).then(function(response){
-
-            /*datos del producto*/
-            var precio=$("#precioProductoUpdate").val();
-            var unidades=$("#unidadesProductoUpdate").val();
-            var idTiendaSeleccionada=$("#tiendasUpdate3").val();
-
-            var data={"idProducto": $scope.productoSeleccionado, "idTienda": idTiendaSeleccionada, "precio": precio, "unidades": unidades};
-            var url="../../controller/cUpdateProductoTienda.php";
-
+        if(nombre=="" || tipo==""){//si hay datos vacios
+            alert("Se ha producido un error. ¡Rellena todo el formulario!");
+        }else{//si no hay datos vacios
+            if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
+                var data={"id": $scope.productoSeleccionado, "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoUpdate, "savedFileBase64": $scope.savedFileBase64};
+            }else{/*Si se ha hecho el change de la imagen*/
+                var data={"id": $scope.productoSeleccionado, "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoUpdate.name, "savedFileBase64": $scope.savedFileBase64};
+            }
+    
+            var url="../../controller/cUpdateProducto.php";
+    
             $http.post(url, data).then(function(response){
-                //Mensaje
-                alert(response.data.list);
-                window.location.reload();
+    
+                /*datos del producto*/
+                var precio=$("#precioProductoUpdate").val();
+                var unidades=$("#unidadesProductoUpdate").val();
+                var idTiendaSeleccionada=$("#tiendasUpdate3").val();
+
+                if(precio=="" || unidades=="" || idTiendaSeleccionada==""){//si hay datos vacios
+                    alert("Se ha producido un error. ¡Rellena todo el formulario!");
+                }else{//si no hay datos vacios
+                    var data={"idProducto": $scope.productoSeleccionado, "idTienda": idTiendaSeleccionada, "precio": precio, "unidades": unidades};
+                    var url="../../controller/cUpdateProductoTienda.php";
+        
+                    $http.post(url, data).then(function(response){
+                        //Mensaje
+                        alert(response.data.list);
+                        window.location.reload();
+                    });
+                }
+    
+                
             });
-        });
+        }
     }
 
     /*eliminar tienda*/
@@ -486,16 +533,14 @@ function zonaAdminTienda(idTienda){
         var precio=$scope.precioProductoNuevo;
         var unidades=$scope.unidadesProductoNuevo;
 
-        if(nombre==undefined || tipo==undefined || precio==undefined || unidades==undefined){
-            alert("Se ha producido un error");
-        }else{
-
+        if(nombre==undefined || tipo==undefined || precio==undefined || unidades==undefined){//si hay datos vacios
+            alert("Se ha producido un error. ¡Rellena todo el formulario!");
+        }else{//si no hay datos vacios
             if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
                 var data={"nombre": nombre, "tipo": tipo, "imagen": "default.png", "savedFileBase64": $scope.savedFileBase64};
             }else{/*Si se ha hecho el change de la imagen*/
                 var data={"nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoAdminTienda.name, "savedFileBase64": $scope.savedFileBase64};
             }
-            console.log(data)
     
             var url="../../controller/cInsertarProducto.php";
     
@@ -507,7 +552,6 @@ function zonaAdminTienda(idTienda){
     
                     var data={"idProducto": $scope.lastId, "idTienda": idTienda, "precio": precio, "unidades": unidades};
                     var url="../../controller/cInsertarProductoTienda.php";
-                    console.log(data);
     
                     $http.post(url, data).then(function(response){
                         //Mensaje
@@ -516,10 +560,7 @@ function zonaAdminTienda(idTienda){
                     });
                 });
             });
-
         }
-
-         
     }
 
     $scope.cancelarInsertarProductoAdminTienda=function(){
@@ -588,20 +629,23 @@ function zonaAdminTienda(idTienda){
         var telefono=$("#telefonoTiendaUpdateAdminTienda").val();
         var email=$("#emailTiendaUpdateAdminTienda").val();
 
-        if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
-            var data={"id": idTienda, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdateAdminTienda, "savedFileBase64": $scope.savedFileBase64};
-        }else{/*Si se ha hecho el change de la imagen*/
-            var data={"id": idTienda, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdateAdminTienda.name, "savedFileBase64": $scope.savedFileBase64};
+        if(nombre=="" || direccion=="" || tipo=="" || telefono=="" || email==""){//si hay datos vacios
+            alert("Se ha producido un error. ¡Rellena todo el formulario!");
+        }else{//si no hay datos vacios
+            if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
+                var data={"id": idTienda, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdateAdminTienda, "savedFileBase64": $scope.savedFileBase64};
+            }else{/*Si se ha hecho el change de la imagen*/
+                var data={"id": idTienda, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdateAdminTienda.name, "savedFileBase64": $scope.savedFileBase64};
+            }
+    
+            var url="../../controller/cUpdateTienda.php";
+    
+            $http.post(url, data).then(function(response){
+                //Mensaje
+                alert(response.data.list);
+                window.location.reload();
+            });
         }
-
-        var url="../../controller/cUpdateTienda.php";
-
-        $http.post(url, data).then(function(response){
-            //Mensaje
-            alert(response.data.list);
-            window.location.reload();
-        });
-
     }
 
     /*cancelar update tienda*/
@@ -667,29 +711,37 @@ function zonaAdminTienda(idTienda){
         var nombre=$("#nombreProductoUpdateAdminTienda").val();
         var tipo=$("#tipoProductoUpdateAdminTienda").val();
 
-        if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
-            var data={"id": $scope.productoSeleccionadoAdminTienda, "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoUpdateAdminTienda, "savedFileBase64": $scope.savedFileBase64};
-        }else{/*Si se ha hecho el change de la imagen*/
-            var data={"id": $scope.productoSeleccionadoAdminTienda, "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoUpdateAdminTienda.name, "savedFileBase64": $scope.savedFileBase64};
-        }
-
-        var url="../../controller/cUpdateProducto.php";
-
-        $http.post(url, data).then(function(response){
-
-            /*datos del producto*/
-            var precio=$("#precioProductoUpdateAdminTienda").val();
-            var unidades=$("#unidadesProductoUpdateAdminTienda").val();
-
-            var data={"idProducto": $scope.productoSeleccionadoAdminTienda, "idTienda": idTienda, "precio": precio, "unidades": unidades};
-            var url="../../controller/cUpdateProductoTienda.php";
-
+        if(nombre=="" || tipo==""){//si hay datos vacios
+            alert("Se ha producido un error. ¡Rellena todo el formulario!");
+        }else{//si no hay datos vacios
+            if($scope.savedFileBase64==""){/*Si no se ha hecho el change de la imagen*/
+                var data={"id": $scope.productoSeleccionadoAdminTienda, "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoUpdateAdminTienda, "savedFileBase64": $scope.savedFileBase64};
+            }else{/*Si se ha hecho el change de la imagen*/
+                var data={"id": $scope.productoSeleccionadoAdminTienda, "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProductoUpdateAdminTienda.name, "savedFileBase64": $scope.savedFileBase64};
+            }
+    
+            var url="../../controller/cUpdateProducto.php";
+    
             $http.post(url, data).then(function(response){
-                //Mensaje
-                alert(response.data.list);
-                window.location.reload();
+    
+                /*datos del producto*/
+                var precio=$("#precioProductoUpdateAdminTienda").val();
+                var unidades=$("#unidadesProductoUpdateAdminTienda").val();
+
+                if(precio=="" || unidades==""){//si hay datos vacios
+                    alert("Se ha producido un error. ¡Rellena todo el formulario!");
+                }else{//si no hay datos vacios
+                    var data={"idProducto": $scope.productoSeleccionadoAdminTienda, "idTienda": idTienda, "precio": precio, "unidades": unidades};
+                    var url="../../controller/cUpdateProductoTienda.php";
+        
+                    $http.post(url, data).then(function(response){
+                        //Mensaje
+                        alert(response.data.list);
+                        window.location.reload();
+                    });
+                }
             });
-        });
+        }
     }
 
     /*cancelar update producto*/
@@ -741,8 +793,10 @@ function zonaUsuario(idUsuario, admin){
 
     if(admin==0){/*si no eres admin ocultar div para actualizar los administradores*/
         $("#divZonaAdministradores").hide();
+        $("#divZonaAdministradores2").hide();
     }else{/*si eres admin mostrar div para actualizar los administradores*/
         $("#divZonaAdministradores").show();
+        $("#divZonaAdministradores2").show();
         updateAdministradores();
     }
 
@@ -777,14 +831,20 @@ function zonaUsuario(idUsuario, admin){
             var username=$("#updateUsernameUsuario").val();
             var password=$("#updatePasswordUsuario").val();
 
-            var url = "../../controller/cUpdateUsuario.php";
-            var data={"idUsuario": idUsuario, "nombre": nombre, "apellidos": apellidos, "username": username, "password": password};
+            if(nombre=="" || apellidos=="" || password==""){
+                alert("Se ha producido un error. ¡Rellena todo el formulario!");
+            }else{
+                var url = "../../controller/cUpdateUsuario.php";
+                var data={"idUsuario": idUsuario, "nombre": nombre, "apellidos": apellidos, "username": username, "password": password};
+    
+                $http.post(url, data).then(function(response){
+                    //mensaje
+                    alert(response.data.mensaje);
+                    window.location.reload();
+                });
+            }
 
-            $http.post(url, data).then(function(response){
-                //mensaje
-                alert(response.data.mensaje);
-                window.location.reload();
-            });
+            
         }
     } 
 
@@ -836,6 +896,43 @@ function zonaUsuario(idUsuario, admin){
 
         }
 
+        /*mostrar select de usuarios que no son administradores de tiendas*/
+        $scope.selectAdministradoresTienda="no";
+        $scope.mostrarAdministradoresTienda=function(){
+            $scope.selectAdministradoresTienda="si";
+
+            /*usuarios que no son adminTieda*/
+            var url = "../../controller/cUsuariosAdminTienda.php";
+            $http.get(url).then(function(response){
+                $scope.usuariosAdminTienda=response.data.list;
+            });
+
+        }
+
+        /*cancelar quitarAdminTienda*/
+        $scope.cancelUpdateUsuarioNoAdminTienda=function(){
+            $scope.selectAdministradoresTienda="no";
+        }
+
+        /*al hacer change, quitar el admin de una tienda*/
+        $scope.quitarAdminTienda=function(){
+
+             /*mostrar modal*/
+            $("#modalDeleteAdminTienda").css("display", "block");
+
+            /*al hacer click en el boton delete*/
+            $("#modalDeleteAdminTienda").click(function(){
+
+                var url = "../../controller/cUpdateNoAdminTienda.php";
+                var data={"idUsuario": $scope.usuarioSeleccionadoAdminTienda};
+
+                $http.post(url, data).then(function(response){
+                    //mensaje
+                    alert(response.data.mensaje);
+                    window.location.reload();
+                });
+            })
+        }
     }
 }
  
