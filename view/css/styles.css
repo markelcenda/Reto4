@@ -368,7 +368,7 @@ section .info:nth-child(2)::before {
 footer {
     background-color: #1e72bc;
     color: white;
-    margin-top: 1.5%;
+    margin-top: 5%;
     padding-top: 1.5%;
 }
 
