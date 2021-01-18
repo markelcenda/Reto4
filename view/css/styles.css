@@ -282,6 +282,86 @@ section p {
 
 /*Fin Seccion Nuestra Historia*/
 
+/*Informacion*/
+
+section {
+    width: 100%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    text-align: center;
+    /* border: 1px solid black; */
+    justify-content: center;
+}
+
+section .info {
+    background-color: #1e72bc;
+    position: relative;
+    padding: 3%;
+    width: 50%;
+    transition: 0.75s;
+    height: 360px;
+}
+
+section .info h3{
+    font-size: 225%;
+}
+
+section .info p{
+    font-size: 125%;
+    font-weight: bolder;
+    margin-top: 5%;
+    margin-bottom: 7.5%;
+}
+
+section .info button {
+    background-color: white;
+    color: #1e72bc;
+    border-radius: 5px;
+    width: 25%;
+    height: 15%;
+}
+
+section .info:first-child {
+    margin-right: 3.75%;
+}
+
+section .info:first-child:hover {
+    width: 75%;
+}
+
+section .info:nth-child(2):hover {
+    width: 75%;
+}
+
+
+section .info:nth-child(2) {
+    margin-left: 3.75%;
+}
+
+section .info:first-child::after, section .info:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+}
+
+section .info:first-child::after {
+    left: 100%;
+    border-top: 360px solid #1e72bc;
+    border-right: 80px solid transparent;
+    
+}
+
+section .info:nth-child(2)::before {
+    right: 100%;
+    border-bottom: 360px solid #1e72bc;
+    border-left: 80px solid transparent;
+   
+}
+
+/*Fin Informacion*/
+
 /*Footer*/
 
 footer {
