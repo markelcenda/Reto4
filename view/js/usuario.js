@@ -912,16 +912,20 @@ function zonaUsuario(idUsuario, admin){
         /*cancelar quitarAdminTienda*/
         $scope.cancelUpdateUsuarioNoAdminTienda=function(){
             $scope.selectAdministradoresTienda="no";
+            $("#divZonaAdministradores2").css("height","auto");
         }
 
         /*al hacer change, quitar el admin de una tienda*/
         $scope.quitarAdminTienda=function(){
 
+            //hacer mas grande el div para que entre el modal
+            $("#divZonaAdministradores2").css("height","500px");
+
              /*mostrar modal*/
             $("#modalDeleteAdminTienda").css("display", "block");
 
             /*al hacer click en el boton delete*/
-            $("#modalDeleteAdminTienda").click(function(){
+            $("#deletebtnAdminTienda").click(function(){
 
                 var url = "../../controller/cUpdateNoAdminTienda.php";
                 var data={"idUsuario": $scope.usuarioSeleccionadoAdminTienda};
@@ -931,6 +935,11 @@ function zonaUsuario(idUsuario, admin){
                     alert(response.data.mensaje);
                     window.location.reload();
                 });
+            })
+
+            //volver a poner la misma altura al div al cancelar
+            $("#cancelbtnAdminTienda").click(function(){
+                $("#divZonaAdministradores2").css("height","auto");
             })
         }
     }

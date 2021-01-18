@@ -132,9 +132,7 @@ form .form-row .col-lg-12 .text-center img{
 
 /* la caja del modal */
 .modal-contentDelete {
-  background-color: #1e72bc;
   margin: 5% auto 15% auto; 
-  border: 2px solid rgb(58, 58, 58);
   width: 80%; 
 }
 
