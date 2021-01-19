@@ -1,0 +1,52 @@
+.container-fluid .divContacto {
+    background: #536976; 
+    background: -webkit-linear-gradient(to right, #5867bb, #247caf);
+    background: linear-gradient(to right, #5867bb, #247caf);
+    color: white;
+}
+
+/*botones enviar */
+.container-fluid .divContacto .col-lg-6 .m-2 .m-2 button{
+    background-color: rgb(102, 159, 224);
+    color: white;
+    font-weight: 200;
+    border: transparent;
+    transition: 0.2s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  .container-fluid .divContacto .col-lg-6 .m-2 .m-2 button:hover{
+    background-color: white;
+    color: #005096;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.85);
+  }
+
+  /*iconos*/
+  .container-fluid .divContacto .col-lg-12 .row .col-lg-4 p i{
+    border: 2px solid white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    vertical-align: middle;
+    transition: 0.5s;
+ 
+  }
+  .container-fluid .divContacto .col-lg-12 .row .col-lg-4 p i:hover{
+    color: #005096;
+    background-color: white;
+    -webkit-transform: rotate(360deg) scale(1.15);
+    transform: rotate(360deg) scale(1.15);
+  }
+
+  /*borde del div para separarlos*/
+  .container-fluid .divContacto .contacto{
+      border-bottom: 2px solid white;
+  }
+
+   /*div azul*/
+   .container-fluid .divContacto{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.85);
+}

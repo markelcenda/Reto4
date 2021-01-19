@@ -11,6 +11,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/contacto.css">
   </head>
   <body>
 
@@ -54,18 +55,34 @@
 
   <div class="container-fluid">
 
-    <div class="row justify-content-center m-3">
+    <div class="row justify-content-center m-3 p-2 rounded divContacto align-items-center">
 
-        <div class="col-lg-6 mt-5">
-    
-            <h2 class="display-4 text-center">INFORMACIÓN</h2>
-            <p><i class="fa fa-map-marker-alt text-primary"></i> Luis Urrengoetxea Hiribidea, 9, 48340 Amorebieta-Etxano, Bizkaia</p>
-            <p><i class="fa fa-phone text-primary"></i> 946 08 84 92</p>
-            <p><i class="fa fa-envelope text-primary"></i> comerciantesamorebieta@gmail.com</p>
-    
+        <div class="col-lg-12 mt-3 justify-content-center contacto">
+
+            <h2 class="display-4 text-center m-2">INFORMACIÓN</h2>
+
+            <div class="row justify-content-center m-3">
+
+                <div class="col-lg-4 col-12">
+                    <p class="text-center"><i class="fa fa-map-marker-alt fa-3x"></i></p>
+                    <h6 class="text-center">Luis Urrengoetxea Hiribidea, 9, 48340 Amorebieta-Etxano</h6>
+                </div>
+
+                <div class="col-lg-4 col-12">
+                    <p class="text-center"><i class="fa fa-phone fa-3x fa-circle"></i></p>
+                    <h6 class="text-center">946 08 84 92</h6>
+                </div>
+
+                <div class="col-lg-4 col-sm-12 col-12">
+                    <p class="text-center"><i class="fa fa-envelope fa-3x fa-circle"></i></p>
+                    <h6 class="text-center">comerciantesamorebieta@gmail.com</h6>
+                </div>
+
+            </div>
         </div>
+
     
-        <div class="col-lg-6 mt-5 justify-content-center">
+        <div class="col-lg-6 mt-3 justify-content-center">
 
             <h2 class="display-4 text-center">CONTÁCTANOS</h2>
 
@@ -79,6 +96,7 @@
                     <div class="col-lg-12">
                         <label for="mensaje">Mensaje<span class="text-danger">*</span></label>
                         <textarea class="form-control" name="mensaje" id="mensaje" placeholder="Mensaje..." rows="3"></textarea>
+                        <small id="ayuda" class="form-text text-white">¡Menciona tu correo para ponernos en contacto contigo!</small>
                     </div>
                 </div>
 
