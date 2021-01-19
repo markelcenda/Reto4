@@ -1,15 +1,31 @@
 function enviarComentario(){
 
-    var url="../../controller/cComentario.php";
+    var email=$("#email").val();
+    var asunto=$("#asunto").val();
+    var mensaje=$("#mensaje").val();
 
-	fetch(url, {
-	  method: 'GET'
-	})
-	.then(res => res.json()).then(result => {
+    if(email=="" || asunto=="" || mensaje==""){
+        alert("Por favor rellena todo el formulario.")
+    }else{
 
-        console.log(result);
+        var url="../../controller/cComentario.php";
+        var data={"email":email, "asunto":asunto, "mensaje": mensaje};
+        console.log(data);
 
-	})
-	.catch(error => console.error('Error status:', error));	
+        fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{'Content-Type': 'application/json'} 
+        })
+        .then(res => res.json()).then(result => {
+
+            console.log(result);
+
+        })
+        .catch(error => console.error('Error status:', error));	
+
+    }
+
+    
     
 }
