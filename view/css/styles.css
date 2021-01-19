@@ -288,12 +288,8 @@ article p {
 section {
     width: 100%;
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
     color: white;
     text-align: center;
-    /* border: 1px solid black; */
-    justify-content: center;
 }
 
 section .info {
@@ -305,40 +301,35 @@ section .info {
     height: 360px;
 }
 
-section .info h3{
+section .info h3 {
     font-size: 225%;
 }
 
-section .info p{
-    font-size: 125%;
+section .info p {
+    font-size: 120%;
     font-weight: bolder;
-    margin-top: 5%;
-    margin-bottom: 7.5%;
+    margin-top: 35px;
+    margin-bottom: 35px;
 }
 
 section .info button {
     background-color: white;
     color: #1e72bc;
     border-radius: 5px;
-    width: 25%;
-    height: 15%;
+    width: 125px;
+    height: 50px;
 }
 
 section .info:first-child {
-    margin-right: 3.75%;
+    margin-right: 70px;
 }
-
-section .info:first-child:hover {
-    width: 75%;
-}
-
-section .info:nth-child(2):hover {
-    width: 75%;
-}
-
 
 section .info:nth-child(2) {
-    margin-left: 3.75%;
+    margin-left: 70px;
+}
+
+section .info:first-child:hover, section .info:nth-child(2):hover {
+    width: 55%;
 }
 
 section .info:first-child::after, section .info:nth-child(2)::before {
@@ -351,14 +342,90 @@ section .info:first-child::after {
     left: 100%;
     border-top: 360px solid #1e72bc;
     border-right: 80px solid transparent;
-    
 }
 
 section .info:nth-child(2)::before {
     right: 100%;
     border-bottom: 360px solid #1e72bc;
     border-left: 80px solid transparent;
-   
+}
+
+@media(max-width: 1515px) {
+    section .info p {
+        font-size: 110%;
+    }
+}
+
+@media(max-width: 1294px) {
+    section .info p {
+        font-size: 117.5%;
+    }
+}
+
+@media(max-width: 1178px) {
+    section .info p {
+        font-size: 105%;
+    }
+}
+
+@media(max-width: 1073px) {
+    section .info p {
+        font-size: 97%;
+    }
+}
+
+@media(max-width: 1000px) {
+    section {
+        flex-wrap: wrap;
+    }
+    section .info:nth-child(2) {
+        margin-left: auto;
+        margin-top: 5%;
+    }
+    section .info {
+        width: 75%;
+    }
+    section .info p {
+        font-size: 125%;
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+    section .info:first-child:hover, section .info:nth-child(2):hover {
+        width: 85%;
+    }
+}
+
+@media(max-width: 884px) {
+    section .info p {
+        font-size: 120%;
+    }
+}
+
+@media(max-width: 633px) {
+    section .info p {
+        font-size: 115%;
+    }
+}
+
+@media(max-width: 546px) {
+    section .info p {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+}
+
+@media(max-width: 415px) {
+    section .info p {
+        font-size: 99%;
+        margin-top: 19px;
+        margin-bottom: 19px;
+    }
+    section .info h3 {
+        font-size: 210%;
+    }
+    section .info:first-child:hover, section .info:nth-child(2):hover {
+        width: 75%;
+    }
 }
 
 /*Fin Informacion*/
