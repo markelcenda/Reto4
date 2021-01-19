@@ -1,16 +1,14 @@
 function enviarComentario(){
 
-    var email=$("#email").val();
     var asunto=$("#asunto").val();
     var mensaje=$("#mensaje").val();
 
-    if(email=="" || asunto=="" || mensaje==""){
+    if( asunto=="" || mensaje==""){
         alert("Por favor rellena todo el formulario.")
     }else{
 
         var url="../../controller/cComentario.php";
-        var data={"email":email, "asunto":asunto, "mensaje": mensaje};
-        console.log(data);
+        var data={"asunto":asunto, "mensaje": mensaje};
 
         fetch(url, {
         method: 'POST',
