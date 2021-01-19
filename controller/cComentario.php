@@ -15,6 +15,7 @@ ini_set( 'display_errors', 1 );
     $headers = "De:" . $email;
     if(mail($to,$asunto,$mensaje, $headers)){
         echo "El email fue enviado"; 
+        echo $email;
     }else{
         echo "Error al enviar el email"; 
     }
