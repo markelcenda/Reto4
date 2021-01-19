@@ -9,7 +9,7 @@ ini_set( 'display_errors', 1 );
     error_reporting( E_ALL );
     $email="anonimo";
     $para = "mmanemane932@gmail.com";
-    $headers = "De:" $email;
+    $headers = "De:" . $email;
     if(mail($para,$asunto,$mensaje, $headers)){
         echo "El email fue enviado"; 
     }else{
