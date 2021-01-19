@@ -13,19 +13,23 @@ function loggedVerify(){
 		
         if (result.mensaje==="logged"){
 
+			//esconder div inicial
+			$("#zonaLogin").html("");
+
+			//añadir los 2 iconos nuevos
 			var newRow="";
-			newRow="<div class='row justify-content-center align-items-center p-2'>";
-				newRow+="<button type='button' class='btn btn-outline-light'>" + result.username + "</button>";
-				newRow+="<button type='button' class='btn btn-outline-light' id='paginaUsuario'>Mi Perfil</button>";
-				newRow+="<button type='button' class='btn btn-outline-light' id='btnLogout'>Cerrar Sesión</button>";
+			newRow="<div class='row justify-content-center'>";
+				newRow+="<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
+				newRow+="<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
 			newRow+="</div>";
-
-			$("#zonaLogin").html(newRow);
-
+			$("#insertarLogin").html(newRow);
+			
+			/*al hacer click en btnLogout*/
 			$("#btnLogout").click(function(){
 				logout();
 			});
 
+			/*al hacer click en paginaUsuario*/
 			$("#paginaUsuario").click(function(){
 				window.location.href="usuario.html";
 			});
@@ -49,22 +53,31 @@ function login(){
 	  
 	})
 	.then(res => res.json()).then(result => {
+		console.log(result);
 
         if (result.mensaje=="no error"){ 
 
 			alert("Sesión iniciada");
 
+			//esconder div inicial
+			$("#zonaLogin").html("");
+
+			//añadir los 2 iconos nuevos
 			var newRow="";
-			newRow="<div class='row bg-white justify-content-center align-items-center p-2 border'>";
-				newRow+="<p class='m-2'>" + result.username + "</p>";
-				newRow+="<p href='#' class='m-2'>Mi perfil</p>";
-				newRow+="<button type='button' class='btn btn-primary' id='btnLogout'>Cerrar Sesión</button>";
+			newRow="<div class='row justify-content-center'>";
+				newRow+="<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
+				newRow+="<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
 			newRow+="</div>";
-
-			$("#zonaLogin").html(newRow);
-
+			$("#insertarLogin").html(newRow);
+			
+			/*al hacer click en btnLogout*/
 			$("#btnLogout").click(function(){
 				logout();
+			});
+
+			/*al hacer click en paginaUsuario*/
+			$("#paginaUsuario").click(function(){
+				window.location.href="usuario.html";
 			});
 
         }else {

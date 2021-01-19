@@ -18,10 +18,12 @@
 
     <div class="prueba" ng-init="loggedVerify()">
 
-        <nav class="navbar navbar-expand-sm navbar-dark">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-xl navbar-dark">
             <img src="../img/logo.PNG" class="navbar-brand" alt="">
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-                aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <button id="btnCollapse" class="navbar-toggler border-white" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -30,28 +32,30 @@
                         <a class="nav-link" href="../../index.html">Inicio</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Tienda online</a>
+                        <a class="nav-link" href="../pages/tienda.html">Tienda online</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Asociados</a>
+                        <a class="nav-link" href="../pages/asociados.html">Asociados</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="contacto.html">Contacto</a>
+                        <a class="nav-link" href="../pages/contacto.html">Contacto</a>
                     </li>
                 </ul>
-                <form id="zonaLogin" class="form-inline my-2 my-lg-0 d-flex justify-content-center">
-                    <div class="sesion">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <input id="username" type="text" name="username" placeholder="Nombre de Usuario" class="mr-3 text-center">
-                    <div class="sesion">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <input id="password" type="password" name="password" placeholder="Contraseña" class="mr-3 text-center">
-                    <button id="btnLogin" class="mr-3"><i class="fas fa-sign-in-alt" onclick="login()"></i></button>
+                <form id="zonaLogin" class="form-inline my-2 my-lg-0">
+                    <label class="sesion">
+                        <i class="m-auto fas fa-user"></i>
+                    </label>
+                    <input id="username" type="text" name="username" placeholder="Usuario">
+                    <label class="sesion">
+                        <i class="m-auto fas fa-key"></i>
+                    </label>
+                    <input id="password" type="password" name="password" placeholder="Contraseña">
+                    <button id="btnLogin" onclick="login()"><i class="fas fa-sign-in-alt"></i></button>
                     <button id="btnRegister"><i class="fas fa-user-plus"></i></button>
                 </form>
-                
+
+                <div id="insertarLogin"></div><!-- div para añadir desde el JS cuando estas conectado-->
+
             </div>
         </nav>
       

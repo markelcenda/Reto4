@@ -33,13 +33,13 @@
                     <a class="nav-link" href="../../index.html">Inicio</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Tienda online</a>
+                    <a class="nav-link" href="../pages/tienda.html">Tienda online</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Asociados</a>
+                    <a class="nav-link" href="../pages/asociados.html">Asociados</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="../pages/contacto.html">Contacto</a>
                 </li>
             </ul>
             <form id="zonaLogin" class="form-inline my-2 my-lg-0">
@@ -51,12 +51,15 @@
                     <i class="m-auto fas fa-key"></i>
                 </label>
                 <input id="password" type="password" name="password" placeholder="Contraseña">
-                <button id="btnLogin"><i class="fas fa-sign-in-alt"></i></button>
+                <button id="btnLogin" onclick="login()"><i class="fas fa-sign-in-alt"></i></button>
                 <button id="btnRegister"><i class="fas fa-user-plus"></i></button>
-                <button id="btnLogout"><i class="fas fa-window-close"></i></button>
             </form>
+
+            <div id="insertarLogin"></div><!-- div para añadir desde el JS cuando estas conectado-->
+
         </div>
     </nav>
+
     <span id="myBtn" ng-click='modal()'><i class="shopping-cart"></i></span>
     <div class="container page-wrapper">
         <div class="page-inner">
@@ -107,6 +110,7 @@
 
     <!-- Optional JavaScript -->
     <script src="../js/tienda.js"></script>
+    <script src="../js/loginPaginas.js"></script>
     <script src="../js/fontAwesome.js" type="text/javascript"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

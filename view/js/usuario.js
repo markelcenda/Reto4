@@ -20,22 +20,26 @@ app.controller("miControlador", function($scope,$http){
 
         if (response.data.mensaje==="logged"){
 
-            var newRow="";
-            newRow="<div class='row justify-content-center align-items-center p-2'>";
-                newRow+="<button type='button' class='btn btn-outline-light'>" + response.data.username + "</button>";
-                newRow+="<button type='button' class='btn btn-outline-light' id='paginaUsuario'>Mi Perfil</button>";
-                newRow+="<button type='button' class='btn btn-outline-light' id='btnLogout'>Cerrar Sesión</button>";
-            newRow+="</div>";
-            
-            $("#zonaLogin").html(newRow);
-            
-            $("#btnLogout").click(function(){
-                logout();
-            });
-            
-            $("#paginaUsuario").click(function(){
-                window.location.href="usuario.html";
-            });      
+            //esconder div inicial
+			$("#zonaLogin").html("");
+
+			//añadir los 2 iconos nuevos
+			var newRow="";
+			newRow="<div class='row justify-content-center'>";
+				newRow+="<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
+				newRow+="<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
+			newRow+="</div>";
+			$("#insertarLogin").html(newRow);
+			
+			/*al hacer click en btnLogout*/
+			$("#btnLogout").click(function(){
+				logout();
+			});
+
+			/*al hacer click en paginaUsuario*/
+			$("#paginaUsuario").click(function(){
+				window.location.href="usuario.html";
+			});    
             
             if(response.data.admin==0){
   
