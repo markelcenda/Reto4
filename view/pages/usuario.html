@@ -118,8 +118,8 @@
                             </div>
         
                             <div class="text-center m-2">
-                                <button type="button" id="btnInsertarTienda" class="btn btn-light" ng-click="insertarTienda()">Insertar</button>
-                                <button type="button" id="btnCancelarInsertarTienda" class="btn btn-light" ng-click="cancelarInsertarTienda()">Cancelar</button>
+                                <button type="button" id="btnInsertarTienda" class="btn btn-light" ng-click="insertarTienda()"><i class="fas fa-plus"></i></button>
+                                <button type="button" id="btnCancelarInsertarTienda" class="btn btn-light" ng-click="cancelarInsertarTienda()"><i class="far fa-times-circle"></i></button>
                             </div>
         
                         </form>
@@ -184,8 +184,8 @@
                             </div>
         
                             <div class="text-center m-2">
-                                <button type="button" id="btnInsertarProducto" class="btn btn-light" ng-click="insertarProducto()">Insertar</button>
-                                <button type="button" id="btnCancelarInsertarProducto" class="btn btn-light" ng-click="cancelarInsertarProducto()">Cancelar</button>
+                                <button type="button" id="btnInsertarProducto" class="btn btn-light" ng-click="insertarProducto()"><i class="fas fa-plus"></i></button>
+                                <button type="button" id="btnCancelarInsertarProducto" class="btn btn-light" ng-click="cancelarInsertarProducto()"><i class="far fa-times-circle"></i></button>
                             </div>
         
                         </form>
@@ -259,25 +259,9 @@
                             </div>
         
                             <div class="text-center m-2">
-                                <button type="button" id="btnUpdateTienda" class="btn btn-light" ng-click="actualizarTiendaAdmin()">Actualizar</button>
-                                <button type="button" id="btnDeleteTienda" class="btn btn-light" ng-click="eliminarTiendaAdmin()"><i class="fas fa-times"></i></button>
-                                <button type="button" id="btnCancelUpdateTienda" class="btn btn-light" ng-click="cancelUpdateTienda()">Cancelar</button>
-        
-                                <div id="modalDeleteTienda" class="modal">
-                                    <span onclick="document.getElementById('modalDeleteTienda').style.display='none'" class="close" title="Close Modal">&times;</span>
-                                    <form class="modal-contentDelete">
-                                        <div class="container">
-                                            <h1>¿Eliminar Tienda?</h1>
-                                            <p id="modalText"></p>
-                            
-                                            <div class="clearfix">
-                                                <button type="button" class="cancelbtnTienda" onclick="document.getElementById('modalDeleteTienda').style.display='none'">Cancelar</button>
-                                                <button type="button" class="deletebtnTienda" id="deletebtnTienda">Eliminar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-        
+                                <button type="button" id="btnUpdateTienda" class="btn btn-light" ng-click="actualizarTiendaAdmin()"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" id="btnDeleteTienda" class="btn btn-light" ng-click="eliminarTiendaAdmin()"><i class="fas fa-trash-alt"></i></button>
+                                <button type="button" id="btnCancelUpdateTienda" class="btn btn-light" ng-click="cancelUpdateTienda()"><i class="far fa-times-circle"></i></button>
                             </div>
         
                         </form>
@@ -352,24 +336,9 @@
                             </div>
         
                             <div class="text-center m-2">
-                                <button type="button" id="btnUpdateProducto" class="btn btn-light" ng-click="actualizarProductoAdmin()">Actualizar</button>
-                                <button type="button" id="btnDeleteProducto" class="btn btn-light" ng-click="eliminarProductoAdmin()"><i class="fas fa-times"></i></button>
-                                <button type="button" id="btnCancelUpdateProducto" class="btn btn-light" ng-click="cancelUpdateProducto()">Cancelar</button>
-        
-                                <div id="modalDeleteProducto" class="modal">
-                                    <span onclick="document.getElementById('modalDeleteProducto').style.display='none'" class="close" title="Close Modal">&times;</span>
-                                    <form class="modal-contentDelete">
-                                        <div class="container">
-                                            <h1>¿Eliminar Producto?</h1>
-                                            <p id="modalText"></p>
-                            
-                                            <div class="clearfix">
-                                                <button type="button" class="cancelbtnProducto" onclick="document.getElementById('modalDeleteProducto').style.display='none'">Cancelar</button>
-                                                <button type="button" class="deletebtnProducto" id="deletebtnProducto">Eliminar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                <button type="button" id="btnUpdateProducto" class="btn btn-light" ng-click="actualizarProductoAdmin()"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" id="btnDeleteProducto" class="btn btn-light" ng-click="eliminarProductoAdmin()"><i class="fas fa-trash-alt"></i></button>
+                                <button type="button" id="btnCancelUpdateProducto" class="btn btn-light" ng-click="cancelUpdateProducto()"><i class="far fa-times-circle"></i></button>
                             </div>
         
                         </form>
@@ -440,8 +409,8 @@
                             </div>
         
                             <div class="text-center m-2">
-                                <button type="button" id="btnInsertarProductoAdminTienda" class="btn btn-light" ng-click="insertarProductoAdminTienda()">Insertar</button>
-                                <button type="button" id="btnCancelarInsertarProductoAdminTienda" class="btn btn-light" ng-click="cancelarInsertarProductoAdminTienda()">Cancelar</button>
+                                <button type="button" id="btnInsertarProductoAdminTienda" class="btn btn-light" ng-click="insertarProductoAdminTienda()"><i class="fas fa-plus"></i></button>
+                                <button type="button" id="btnCancelarInsertarProductoAdminTienda" class="btn btn-light" ng-click="cancelarInsertarProductoAdminTienda()"><i class="far fa-times-circle"></i></button>
                             </div>
         
                         </form>
@@ -504,8 +473,8 @@
                             </div>
         
                             <div class="text-center m-2">
-                                <button type="button" id="btnUpdateTiendaAdminTienda" class="btn btn-light" ng-click="actualizarAdminTienda()">Actualizar</button>
-                                <button type="button" id="btnCancelUpdateTiendaAdminTienda" class="btn btn-light" ng-click="cancelUpdateTiendaAdminTienda()">Cancelar</button>
+                                <button type="button" id="btnUpdateTiendaAdminTienda" class="btn btn-light" ng-click="actualizarAdminTienda()"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" id="btnCancelUpdateTiendaAdminTienda" class="btn btn-light" ng-click="cancelUpdateTiendaAdminTienda()"><i class="far fa-times-circle"></i></button>
                             </div>
         
                         </form>
@@ -576,24 +545,9 @@
                             </div>
         
                             <div class="text-center m-2">
-                                <button type="button" id="btnUpdateProductoAdminTienda" class="btn btn-light" ng-click="actualizarProductoAdmin()">Actualizar</button>
-                                <button type="button" id="btnDeleteProductoAdminTienda" class="btn btn-light" ng-click="eliminarProductoAdminTienda()"><i class="fas fa-times"></i></button>
-                                <button type="button" id="btnCancelUpdateProductoAdminTienda" class="btn btn-light" ng-click="cancelUpdateProducto()">Cancelar</button>
-        
-                                <div id="modalDeleteProductoAdminTienda" class="modal">
-                                    <span onclick="document.getElementById('modalDeleteProductoAdminTienda').style.display='none'" class="close" title="Close Modal">&times;</span>
-                                    <form class="modal-contentDelete">
-                                        <div class="container">
-                                            <h1>¿Eliminar Producto?</h1>
-                                            <p id="modalText"></p>
-                            
-                                            <div class="clearfix">
-                                                <button type="button" class="cancelbtnProductoAdminTienda" id="cancelbtnProductoAdminTienda" onclick="document.getElementById('modalDeleteProductoAdminTienda').style.display='none'">Cancelar</button>
-                                                <button type="button" class="deletebtnProductoAdminTienda" id="deletebtnProductoAdminTienda">Eliminar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                <button type="button" id="btnUpdateProductoAdminTienda" class="btn btn-light" ng-click="actualizarProductoAdmin()"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" id="btnDeleteProductoAdminTienda" class="btn btn-light" ng-click="eliminarProductoAdminTienda()"><i class="fas fa-trash-alt"></i></button>
+                                <button type="button" id="btnCancelUpdateProductoAdminTienda" class="btn btn-light" ng-click="cancelUpdateProducto()"><i class="far fa-times-circle"></i></button>
                             </div>
         
                         </form>
@@ -665,8 +619,8 @@
                             </div>
         
                             <div class="text-center m-2">
-                                <button type="button" id="updateUsuario" class="btn btn-light" ng-click="updateUsuario()">Actualizar</button>
-                                <button type="button" id="cancelUpdateUsuario" class="btn btn-light" ng-click="cancelUpdateUsuario()">Cancelar</button>
+                                <button type="button" id="updateUsuario" class="btn btn-light" ng-click="updateUsuario()"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" id="cancelUpdateUsuario" class="btn btn-light" ng-click="cancelUpdateUsuario()"><i class="far fa-times-circle"></i></button>
                             </div>
         
                         </form>
@@ -690,8 +644,8 @@
                             </select>
 
                             <div class="text-center m-2">
-                                <button type="button" id="updateUsuarioAdminTienda" class="btn btn-light" ng-click="updateUsuarioAdminTienda()">Actualizar</button>
-                                <button type="button" id="cancelUpdateUsuario" class="btn btn-light" ng-click="cancelUpdateUsuarioAdminTienda()">Cancelar</button>
+                                <button type="button" id="updateUsuarioAdminTienda" class="btn btn-light" ng-click="updateUsuarioAdminTienda()"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" id="cancelUpdateUsuario" class="btn btn-light" ng-click="cancelUpdateUsuarioAdminTienda()"><i class="far fa-times-circle"></i></button>
                             </div>
                         </div>
                     </div>
@@ -707,28 +661,76 @@
                                 <option ng-repeat="item in usuariosAdminTienda" value="{{item.id}}">{{item.id}} -- {{item.apellidos}}, {{item.nombre}}</option>
                             </select>
 
-                            <div id="modalDeleteAdminTienda" class="modal">
-                                <form class="modal-contentDelete">
-                                    <div class="container">
-                                        <h1>¿Quitar administrador de la tienda?</h1>
-                                        <p id="modalText"></p>
-                        
-                                        <div class="clearfix">
-                                            <button type="button" class="cancelbtnAdminTienda" id="cancelbtnAdminTienda" onclick="document.getElementById('modalDeleteAdminTienda').style.display='none'">Cancelar</button>
-                                            <button type="button" class="deletebtnAdminTienda" id="deletebtnAdminTienda">Eliminar</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
                             <div class="text-center m-2">
-                                <button type="button" id="cancelUpdateUsuarioNoAdminTienda" class="btn btn-light" ng-click="cancelUpdateUsuarioNoAdminTienda()">Cancelar</button>
+                                <button type="button" id="cancelUpdateUsuarioNoAdminTienda" class="btn btn-light" ng-click="cancelUpdateUsuarioNoAdminTienda()"><i class="far fa-times-circle"></i></button>
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
+
+            <!-- Modal para eliminar tiendas, productos o adminitradores de tiendas -->
+
+            <div id="modalDeleteTienda" class="modal">
+                <span onclick="document.getElementById('modalDeleteTienda').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <form class="modal-contentDelete">
+                    <div class="container">
+                        <h1>¿Eliminar Tienda?</h1>
+                        <p id="modalText"></p>
+        
+                        <div class="clearfix">
+                            <button type="button" class="cancelbtnTienda" onclick="document.getElementById('modalDeleteTienda').style.display='none'">Cancelar</button>
+                            <button type="button" class="deletebtnTienda" id="deletebtnTienda">Eliminar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="modalDeleteProducto" class="modal">
+                <span onclick="document.getElementById('modalDeleteProducto').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <form class="modal-contentDelete">
+                    <div class="container">
+                        <h1>¿Eliminar Producto?</h1>
+                        <p id="modalText"></p>
+        
+                        <div class="clearfix">
+                            <button type="button" class="cancelbtnProducto" onclick="document.getElementById('modalDeleteProducto').style.display='none'">Cancelar</button>
+                            <button type="button" class="deletebtnProducto" id="deletebtnProducto">Eliminar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="modalDeleteProductoAdminTienda" class="modal">
+                <span onclick="document.getElementById('modalDeleteProductoAdminTienda').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <form class="modal-contentDelete">
+                    <div class="container">
+                        <h1>¿Eliminar Producto?</h1>
+                        <p id="modalText"></p>
+        
+                        <div class="clearfix">
+                            <button type="button" class="cancelbtnProductoAdminTienda" id="cancelbtnProductoAdminTienda" onclick="document.getElementById('modalDeleteProductoAdminTienda').style.display='none'">Cancelar</button>
+                            <button type="button" class="deletebtnProductoAdminTienda" id="deletebtnProductoAdminTienda">Eliminar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="modalDeleteAdminTienda" class="modal">
+                <form class="modal-contentDelete">
+                    <div class="container">
+                        <h1>¿Quitar administrador de la tienda?</h1>
+                        <p id="modalText"></p>
+        
+                        <div class="clearfix">
+                            <button type="button" class="cancelbtnAdminTienda" id="cancelbtnAdminTienda" onclick="document.getElementById('modalDeleteAdminTienda').style.display='none'">Cancelar</button>
+                            <button type="button" class="deletebtnAdminTienda" id="deletebtnAdminTienda">Eliminar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 
