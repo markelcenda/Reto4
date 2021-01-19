@@ -151,6 +151,17 @@ class productoTiendaModel extends productoTiendaClass{
         $this->CloseConnect();
         return $list;
     }
+
+    /*Actualizar el stock al comprar*/
+    function updateStock(){
+        $this->OpenConnect();  
+    
+        $sql="CALL spUpdateStock($this->idProducto, $this->idTienda, $this->unidades)";
+        
+        $this->link->query($sql);
+        
+        $this->CloseConnect();
+    }
     
     function ObjVars(){
         return get_object_vars($this);
