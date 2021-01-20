@@ -60,7 +60,7 @@
         </div>
     </nav>
 
-    <span id="myBtn" ng-click='modal()'><i class="shopping-cart"></i></span>
+    <span id="myBtn" ng-click='modal()'><i class="shopping-cart" id="shopping-cart"></i></span>
     <div class="container page-wrapper">
         <div class="page-inner">
             <div class="row">
@@ -72,7 +72,8 @@
                                 <span class="p-name">{{item.nombre}}</span>
                                 <span class="p-company">Stock: {{item.objProductoTienda.unidades}}</span>
                             </div>
-                            <div class="a-size">Tienda: <span class="size">{{item.objProductoTienda.objTienda.nombre}}</span></div>
+                            <div class="a-size">Tienda: <span
+                                    class="size">{{item.objProductoTienda.objTienda.nombre}}</span></div>
                         </div>
                     </div>
                     <div class="box-down">
@@ -83,7 +84,11 @@
                         <div class="cart">
                             <span class="price">{{item.objProductoTienda.precio}}€</span>
                             <span class="add-to-cart">
-                                <span class="txt" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}' data-idProducto='{{item.objProductoTienda.idProducto}}' data-idTienda='{{item.objProductoTienda.idTienda}}' data-precio='{{item.objProductoTienda.precio}}' ng-click="addToCart()" >Añadir al carrito</span>
+                                <span class="txt" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}'
+                                    data-idProducto='{{item.objProductoTienda.idProducto}}'
+                                    data-idTienda='{{item.objProductoTienda.idTienda}}'
+                                    data-precio='{{item.objProductoTienda.precio}}' ng-click="addToCart()">Añadir al
+                                    carrito</span>
                             </span>
                         </div>
                     </div>
@@ -94,18 +99,26 @@
 
     <!-- Modal -->
     <div id="myModal" class="modal">
-
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
             <div ng-repeat="item in cart">
-                <img ng-src="../img/{{item.imgProducto}}"><p class="cartText">{{item.nombre}} &nbsp&nbsp&nbsp Cantidad: {{item.cantidad}} &nbsp&nbsp&nbsp Precio por unidad: {{item.precio}}€</p>
+                <img class="img" ng-src="../img/{{item.imgProducto}}">
+                <p class="cartText">{{item.nombre}} &nbsp&nbsp&nbsp Cantidad: {{item.cantidad}} &nbsp&nbsp&nbsp Precio
+                    por unidad: {{item.precio}}€</p>
             </div><br>
             <p>Precio total: {{total}}€</p>
             <br>
-            <a class="btn btn-primary" href="#" ng-click="buy()" role="button">Finalizar Compra</a>
+            <p><a class="btn btn-primary" href="#" ng-click="buy()" role="button">Finalizar Compra</a><a class="btn btn-primary" href="#" ng-click="clearCart()" role="button">Vaciar Carrito</a></p>
         </div>
+    </div>
 
+    <div id="myModal2" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="https://cdn.dribbble.com/users/204955/screenshots/4930541/emptycart.png" alt="Carrito vacio">
+        </div>
     </div>
 
     <!-- Optional JavaScript -->
@@ -113,9 +126,15 @@
     <script src="../js/loginPaginas.js"></script>
     <script src="../js/fontAwesome.js" type="text/javascript"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
