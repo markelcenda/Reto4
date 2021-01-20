@@ -70,7 +70,7 @@
     <!-- Cards de las tiendas asociadas-->
     <div class="cardGroup">
         <a href="#" ng-repeat="item in listaAsociados | filter : filter">
-            <div class="card"><img ng-src="../img/{{item.imagen}}"></div>
+            <div class="card" id="{{item.id}}" ng-click="abrirTienda(item.id)"><img ng-src="../img/{{item.imagen}}"></div>
         </a>
     </div>
 
