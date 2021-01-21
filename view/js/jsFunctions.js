@@ -24,16 +24,18 @@ function leerMas() {
 
 }
 
- varmybutton = document.querySelector("#topBtn");
+var mybutton = document.querySelector("#topBtn");
 
 function scrollFunction() {
 
-    
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-    } else {
-        mybutton.style.display = "none";
+    if (mybutton != null) {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
     }
+
 }
 
 // When the user clicks on the button, scroll to the top of the document
@@ -80,7 +82,7 @@ miApp.controller("miControlador", function ($scope, $http) {
                         }
 
                     });
-            }else{
+            } else {
 
                 $scope.error = "El correo electronico no es valido";
 
