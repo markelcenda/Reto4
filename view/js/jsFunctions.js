@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     }
 
+    window.onscroll = function () { scrollFunction() };
+
 });
 
 function leerMas() {

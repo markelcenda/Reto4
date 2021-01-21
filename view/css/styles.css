@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /*Menu*/
 
 nav {
@@ -639,3 +643,50 @@ footer #copy {
 }
 
 /*Fin Footer*/
+
+/*botones insertarLogin cuando estas conectado*/
+#insertarLogin .row {
+    display: flex;
+    align-items: center;
+}
+#insertarLogin .row button{
+    display: flex;
+    align-items: center;
+}
+#insertarLogin .row button i{
+    font-size: 30px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    line-height: 48px;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+#insertarLogin .row button i:hover{
+    color: #1e72bc !important;
+    background-color: white;
+  }
+
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #1e72bc;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 35px;
+    height: 50px;
+    width: 55px;
+    transition: .4s;
+}
+
+#topBtn:hover {
+    background-color: white;
+    color: #1e72bc;
+}

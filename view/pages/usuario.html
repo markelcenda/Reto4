@@ -18,10 +18,12 @@
 
     <div class="prueba" ng-init="loggedVerify()">
 
-        <nav class="navbar navbar-expand-sm navbar-dark">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-xl navbar-dark">
             <img src="../img/logo.PNG" class="navbar-brand" alt="">
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-                aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <button id="btnCollapse" class="navbar-toggler border-white" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -30,39 +32,42 @@
                         <a class="nav-link" href="../../index.html">Inicio</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Tienda online</a>
+                        <a class="nav-link" href="../pages/tienda.html">Tienda online</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Asociados</a>
+                        <a class="nav-link" href="../pages/asociados.html">Asociados</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="contacto.html">Contacto</a>
+                        <a class="nav-link" href="../pages/contacto.html">Contacto</a>
                     </li>
                 </ul>
-                <form id="zonaLogin" class="form-inline my-2 my-lg-0 d-flex justify-content-center">
-                    <div class="sesion">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <input id="username" type="text" name="username" placeholder="Nombre de Usuario" class="mr-3 text-center">
-                    <div class="sesion">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <input id="password" type="password" name="password" placeholder="Contraseña" class="mr-3 text-center">
-                    <button id="btnLogin" class="mr-3"><i class="fas fa-sign-in-alt" onclick="login()"></i></button>
+                <form id="zonaLogin" class="form-inline my-2 my-lg-0">
+                    <label class="sesion">
+                        <i class="m-auto fas fa-user"></i>
+                    </label>
+                    <input id="username" type="text" name="username" placeholder="Usuario">
+                    <label class="sesion">
+                        <i class="m-auto fas fa-key"></i>
+                    </label>
+                    <input id="password" type="password" name="password" placeholder="Contraseña">
+                    <button id="btnLogin" onclick="login()"><i class="fas fa-sign-in-alt"></i></button>
                     <button id="btnRegister"><i class="fas fa-user-plus"></i></button>
                 </form>
-                
+
+                <div id="insertarLogin"></div><!-- div para añadir desde el JS cuando estas conectado-->
+
             </div>
         </nav>
       
         <div class="container-fluid" >
       
+            <!--div para crear, borrar y actualizar tiendas y productos-->
             <div id="administracion" ng-show="adminGeneral=='si'">
       
                 <h2 class='text-center m-2 text-white'>ADMINISTRACIÓN</h2>
         
                 <div class='row justify-content-center'>
-        
+                    <!--Nueva tienda-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divTiendas">
                         <h4 class='text-center'>NUEVA TIENDA <i class="fas fa-eye" ng-click="mostrarInsertTienda()"></i></h4>
         
@@ -124,8 +129,8 @@
         
                         </form>
                     </div>
+                    <!--Nuevo producto-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divProductos">
-        
                     <h4 class='text-center'>NUEVO PRODUCTO <i class="fas fa-eye" ng-click="mostrarInsertProducto()"></i></h4>
         
                         <form class='m-2' ng-show="productoInsert=='si'">
@@ -196,8 +201,9 @@
                 
                 <div class='row justify-content-center'>
         
+                    <!--Actualizar y borrar tienda-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divTiendas2">
-        
+
                         <h4 class='text-center'>ACTUALIZAR TIENDA <i class="fas fa-eye" ng-click="mostrarSelectTienda()"></i></h4>
         
                         <div class="text-center" ng-show="tiendaSelect=='si'">
@@ -268,7 +274,8 @@
         
         
                     </div>
-        
+                    
+                    <!--Actualizar y borrar producto-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divProductos2">
         
                         <h4 class='text-center'>ACTUALIZAR PRODUCTO <i class="fas fa-eye" ng-click="mostrarSelectProducto()"></i></h4>
@@ -351,12 +358,14 @@
         
             </div>
 
+            <!--Insertar, eliminar y actualizar producto y actualizar tienda-->
             <div id="administracion" ng-show="adminTienda=='si'">
       
                 <h2 class='text-center m-2 text-white'>ADMINISTRACIÓN</h2>
         
                 <div class='row justify-content-center'>
         
+                    <!--Nuevo producto-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divProductosAdminTienda">
         
                         <h4 class='text-center'>NUEVO PRODUCTO <i class="fas fa-eye" ng-click="mostrarInsertProductoAdminTienda()"></i></h4>
@@ -417,6 +426,7 @@
         
                     </div>
 
+                    <!--actualizar tienda-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divTiendasAdminTienda">
         
                         <h4 class='text-center'>ACTUALIZAR TIENDA <i class="fas fa-eye" ng-click="mostrarUpdateTiendaAdminTienda()"></i></h4>
@@ -486,6 +496,7 @@
 
                 <div class='row justify-content-center align-items-center'>
 
+                    <!--actualizar y eliminar producto-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divProductosAdminTienda">
         
                         <h4 class='text-center'>ACTUALIZAR PRODUCTO <i class="fas fa-eye" ng-click="mostrarSelectProductoAdminTienda()"></i></h4>
@@ -558,6 +569,7 @@
         
             </div>
 
+            <!--tabla de los pedidos realizados-->
             <div id="consultas">
 
                 <h2 class='text-center m-2 text-white'>CONSULTAS</h2>
@@ -584,12 +596,14 @@
                 </div>
             </div>
 
+            <!--div usuarios-->
             <div id="zonaPersonal">
 
                 <h2 class='text-center m-2 text-white'>ZONA PERSONAL</h2>
 
                 <div class="row justify-content-center">
 
+                    <!--actualizar informacion de usuario-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divZonaPersonal">
         
                         <h4 class='text-center'>INFORMACION <i class="fas fa-eye" ng-click="mostrarUpdateUsuario()"></i></h4>
@@ -627,6 +641,7 @@
                         
                     </div>
 
+                    <!--añadir administradores de tiendas-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divZonaAdministradores">
         
                         <h4 class='text-center'>CONVERTIR ADMINISTRADORES <i class="fas fa-eye" ng-click="mostrarNoAdministradores()"></i></h4>
@@ -650,6 +665,7 @@
                         </div>
                     </div>
 
+                    <!--quitar administradores tiendas-->
                     <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divZonaAdministradores2">
         
                         <h4 class='text-center'>BORRAR ADMINISTRADORES <i class="fas fa-eye" ng-click="mostrarAdministradoresTienda()"></i></h4>
