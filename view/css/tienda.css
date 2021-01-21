@@ -362,37 +362,37 @@ body {
 }
 
 @media screen and (max-width: 420px) {
-    .modal .btn {
+    #myModal .btn {
        width: 100%;
     }
 }
 
 @media screen and (max-width: 1300px) {
-    .modal-content {
+    #myModal .modal-content {
         width: 75%;
     }
 }
 
 @media screen and (max-width: 1130px) {
-    .modal-content {
+    #myModal .modal-content {
         width: 80%;
     }
 }
 
 @media screen and (max-width: 1030px) {
-    .modal-content {
+    #myModal .modal-content {
         width: 85%;
     }
 }
 
 @media screen and (max-width: 950px) {
-    .modal-content {
+    #myModal .modal-content {
         width: 90%;
     }
 }
 
 @media screen and (max-width: 890px) {
-    .modal-content {
+    #myModal .modal-content {
         width: 98%;
     }
 }
@@ -401,7 +401,7 @@ body {
     #myModal img{
        opacity: 0;
     }
-    .modal-content {
+    #myModal .modal-content {
         width: 70%;
     }
 }
