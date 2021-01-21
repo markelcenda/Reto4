@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /*Menu*/
 
 nav {
@@ -581,3 +585,26 @@ footer #copy {
     color: #1e72bc !important;
     background-color: white;
   }
+
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #1e72bc;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 35px;
+    height: 50px;
+    width: 55px;
+    transition: .4s;
+}
+
+#topBtn:hover {
+    background-color: white;
+    color: #1e72bc;
+}

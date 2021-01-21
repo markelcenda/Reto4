@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     for (let i = 0; i < btnLeerMas.length; i++) {
 
-        btnLeerMas[i].addEventListener('click',leerMas);
+        btnLeerMas[i].addEventListener('click', leerMas);
 
     }
+
+    window.onscroll = function () { scrollFunction() };
 
 });
 
@@ -22,3 +24,18 @@ function leerMas() {
 
 }
 
+var mybutton = document.getElementById("topBtn");
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
