@@ -112,6 +112,88 @@ nav form .sesion {
 
 /*Fin menu*/
 
+/*Modal de registro*/
+
+#modelRegister {
+    border: 1px solid white;
+    padding-top: 7.5%;
+}
+
+#modelRegister .avatar {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -60px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 1;
+    background: #1e72bc;
+    padding: 15px;
+    display: flex;
+}
+
+#modelRegister .avatar i {
+    margin: auto;
+}
+
+.modal-title {
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+#modelRegister .cuerpoResgister {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: none !important;
+}
+
+#modelRegister .cuerpoResgister label {
+    width: 150px;
+    line-height: 35.2px;
+}
+
+#modelRegister .cuerpoResgister h5 {
+    font-size: 150%;
+}
+
+#modelRegister .cuerpoResgister p {
+    width: 100%;
+    border: 7.5px solid #9c0404;
+    text-align: center;
+    border-radius: 5px;
+    line-height: 50px;
+    background-color: #f72f2f;
+    color: white;
+}
+
+#modelRegister .cuerpoResgister input {
+    width: 200px;
+    height: 35.2px;
+}
+
+#modelRegister .modal-footer {
+    border-top: none !important;
+    justify-content: center;
+}
+
+#modelRegister .modal-footer button {
+    width: 122px;
+    color: white;
+}
+
+#modelRegister .modal-footer button:first-child {
+    background-color: #f72f2f;
+}
+
+#modelRegister .modal-footer button:nth-child(2) {
+    background-color: #1e72bc;
+}
+
+/*Fin modal de registro*/
+
 /*Carousel*/
 
 #carouselId {
@@ -182,12 +264,12 @@ nav form .sesion {
     font-weight: bold;
 }
 
-.modal-content {
+.informacion {
     background-color: #1e72bc;
     color: white;
 }
 
-.modal-content button span {
+.informacion button span {
     color: white;
 }
 
