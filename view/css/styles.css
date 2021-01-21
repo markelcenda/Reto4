@@ -558,7 +558,8 @@ footer #footerBody div:last-child a {
 }
 
 footer #footerBody div:last-child a i {
-    width: 3.25%;
+    width: 40px;
+    line-height: 40px;
 }
 
 footer #footerBody div:last-child a:hover {
@@ -590,70 +591,31 @@ footer #copy {
     text-align: center;
 }
 
-@media(max-width: 1500px) {
-    footer #footerBody div:last-child a i {
-        width: 3.75%;
-    }
-}
-
-@media(max-width: 1220px) {
-    footer #footerBody div:last-child a i {
-        width: 4.75%;
-    }
-}
-
-@media(max-width: 950px) {
-    footer #footerBody div:last-child a i {
-        width: 5.75%;
-    }
-}
-
-@media(max-width: 875px) {
-    footer #footerBody div:last-child a i {
-        width: 6.75%;
-    }
-}
-
-@media(max-width: 700px) {
-    footer #footerBody div:last-child a i {
-        width: 7.75%;
-    }
-}
-
-@media(max-width: 600px) {
-    footer #footerBody div:last-child a i {
-        width: 8.75%;
-    }
-}
-
-@media(max-width: 587px) {
-    footer #footerBody div:first-child {
-        margin-bottom: 5%;
-        margin-top: 2%;
+@media(max-width: 591px) {
+    footer #footerBody div {
+        margin-top: 20px;
     }
     footer #footerBody div:last-child {
-        margin-bottom: 2%;
-    }
-}
-
-@media(max-width: 525px) {
-    footer #footerBody div:last-child a i {
-        width: 10.25%;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 
 /*Fin Footer*/
 
 /*botones insertarLogin cuando estas conectado*/
+
 #insertarLogin .row {
     display: flex;
     align-items: center;
 }
-#insertarLogin .row button{
+
+#insertarLogin .row button {
     display: flex;
     align-items: center;
 }
-#insertarLogin .row button i{
+
+#insertarLogin .row button i {
     font-size: 30px;
     color: white;
     border: 2px solid white;
@@ -663,10 +625,11 @@ footer #copy {
     height: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
-#insertarLogin .row button i:hover{
+
+#insertarLogin .row button i:hover {
     color: #1e72bc !important;
     background-color: white;
-  }
+}
 
 #topBtn {
     display: none;
