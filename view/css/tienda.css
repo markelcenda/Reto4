@@ -232,7 +232,7 @@ body {
     padding: 20px;
     border: 1px solid #888;
     width: 53%;
-    min-width: 200px;
+    min-width: 350px;
 }
 
 .close {
@@ -249,38 +249,27 @@ body {
     cursor: pointer;
 }
 
-.modal .img {
-    height: 100px;
-    width: 100px;
-    margin-left: 5%;
-    margin-top: 5%;
-}
-
-.modal .cartText {
-    margin-left: 5%;
-    margin-top: -10%
-}
-
 .modal .btn {
     align-self: center;
-    color: 1e72bc;
-    background-color: #1e72bc;
+    background-color: red;
+    border: 1px solid red;
     width: 250px;
     margin: 1%;
 }
 
 .modal .btn:hover {
-    color: #1e72bc;
+    color: red;
     background-color: white;
 }
 
 .modal .btn:not(:first-child) {
-    background-color: red;
-    border: 1px solid red;
+    background-color: #1e72bc;
+    border: 1px solid #1e72bc;
+    white-space: nowrap;
 }
 
 .modal .btn:not(:first-child):hover {
-    color: red;
+    color: #1e72bc;
     background-color: white;
 }
 
@@ -294,44 +283,14 @@ body {
     #myModal .btn {
         width: 100%;
     }
-}
-
-@media screen and (max-width: 1300px) {
-    #myModal .modal-content {
-        width: 75%;
+    #myModal .modal-body img {
+        display: none;
     }
 }
 
-@media screen and (max-width: 1130px) {
-    #myModal .modal-content {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 1030px) {
-    #myModal .modal-content {
-        width: 85%;
-    }
-}
-
-@media screen and (max-width: 950px) {
-    #myModal .modal-content {
-        width: 90%;
-    }
-}
-
-@media screen and (max-width: 890px) {
-    #myModal .modal-content {
-        width: 98%;
-    }
-}
-
-@media screen and (max-width: 840px) {
-    #myModal img {
-        opacity: 0;
-    }
-    #myModal .modal-content {
-        width: 70%;
+@media screen and (max-width: 810px) {
+    #myModal .modal-body img {
+        display: none;
     }
 }
 
