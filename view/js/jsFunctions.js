@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 });
 
+//Carga los textos necesario al modal de carusel cuando la pantlla tiene un ancho menor a 1120px
 function leerMas() {
 
     var posicion = this.value;
@@ -24,11 +25,11 @@ function leerMas() {
 
 }
 
- varmybutton = document.querySelector("#topBtn");
+varmybutton = document.querySelector("#topBtn");
 
 function scrollFunction() {
 
-    
+
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
     } else {
@@ -52,6 +53,24 @@ miApp.controller("miControlador", function ($scope, $http) {
     $scope.email = "";
     $scope.password = "";
 
+    loadUltimosAsociados();
+
+    //Carga las tres ultimas tiendas asociadas para mostrarlas en el index
+    function loadUltimosAsociados() {
+
+        var url = "controller/cTiendas.php";
+
+        $http.get(url)
+            .then(function (response) {
+                
+                $scope.tiendas = response.data.listUltimasTres;
+
+            });
+
+    }
+
+
+    //Funcion de registro de usuario
     $scope.registrarse = function () {
 
         if ($scope.username == "" || $scope.nombre == "" || $scope.apellidos == "" || $scope.email == "" || $scope.password == "") {
@@ -60,6 +79,7 @@ miApp.controller("miControlador", function ($scope, $http) {
 
         } else {
 
+            //Detecta si el formato del correo electronico es valio para permitir el registro
             if (/\w+\@\w+\.\w+/.test($scope.email)) {
 
                 var url = "controller/cInsertarUsuario.php";
@@ -80,7 +100,7 @@ miApp.controller("miControlador", function ($scope, $http) {
                         }
 
                     });
-            }else{
+            } else {
 
                 $scope.error = "El correo electronico no es valido";
 
@@ -90,6 +110,7 @@ miApp.controller("miControlador", function ($scope, $http) {
 
     }
 
+    //Vacia todas las variables al cerrar el modal de registro
     $scope.cerrarRegistro = function () {
         $scope.error = "";
         $scope.username = "";

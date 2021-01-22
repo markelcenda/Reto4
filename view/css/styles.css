@@ -303,7 +303,7 @@ nav form .sesion {
 
 /*Seccion Nuestra Historia*/
 
-article {
+#historia {
     background-color: #1e72bc;
     color: white;
     margin-top: 1.5%;
@@ -311,7 +311,7 @@ article {
     text-align: center;
 }
 
-article::before {
+#historia::before {
     content: "";
     width: 100%;
     height: 120px;
@@ -322,7 +322,7 @@ article::before {
     background-color: #1e72bc;
 }
 
-article::after {
+#historia::after {
     content: "";
     width: 100%;
     height: 120px;
@@ -333,52 +333,107 @@ article::after {
     background-size: 100% 100%;
 }
 
-article h2 {
+#historia h2 {
     font-size: 300%;
 }
 
-article p {
+#historia p {
     font-size: 130%;
     width: 75%;
     margin: auto;
 }
 
 @media(max-width: 1373px) {
-    article h2 {
+    #historia h2 {
         font-size: 280%;
     }
-    article p {
+    #historia p {
         font-size: 122.5%;
     }
 }
 
 @media(max-width: 1269px) {
-    article h2 {
+    #historia h2 {
         font-size: 250%;
     }
-    article p {
+    #historia p {
         font-size: 115%;
     }
 }
 
 @media(max-width: 400px) {
-    article p {
+    #historia p {
         width: 85%;
     }
 }
 
 /*Fin Seccion Nuestra Historia*/
 
+/*Ultimos tres asociados */
+
+#ultimosAsociados{
+    margin-bottom: 5%;
+    color: white;
+}
+
+#ultimosAsociados h2{
+    background-color: #1e72bc;
+    text-align: center;
+    font-size: 300%;
+    padding: 15px;
+    margin: 0%;
+    width: 100%;
+}
+
+#ultimosAsociados .contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+#ultimosAsociados .contenedor article{
+    background-color: #1e72bc;
+    height: 600px;
+    display: block;
+    width: 300px;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#ultimosAsociados .contenedor article h3{
+   text-align: center;
+}
+
+#ultimosAsociados .contenedor article img{
+    margin: 0.5%;
+    border-radius: 5px;
+    background-color: white;
+    height: 35%;
+    width: 98.5%;
+}
+
+#ultimosAsociados .contenedor article button{
+    background-color: white;
+    color: #1e72bc;
+    border-radius: 5px;
+    width: 125px;
+    height: 50px;
+}
+
+/*Fin Ultimos tres asociados */
+
 /*Informacion*/
 
-section {
+#seccionInformacion {
     width: 100%;
     display: flex;
     color: white;
     text-align: center;
 }
 
-section .info {
+#seccionInformacion .info {
     background-color: #1e72bc;
     position: relative;
     padding: 3%;
@@ -387,18 +442,18 @@ section .info {
     height: 360px;
 }
 
-section .info h3 {
+#seccionInformacion .info h3 {
     font-size: 225%;
 }
 
-section .info p {
+#seccionInformacion .info p {
     font-size: 120%;
     font-weight: bolder;
     margin-top: 35px;
     margin-bottom: 35px;
 }
 
-section .info button {
+#seccionInformacion .info button {
     background-color: white;
     color: #1e72bc;
     border-radius: 5px;
@@ -406,110 +461,110 @@ section .info button {
     height: 50px;
 }
 
-section .info:first-child {
+#seccionInformacion .info:first-child {
     margin-right: 70px;
 }
 
-section .info:nth-child(2) {
+#seccionInformacion .info:nth-child(2) {
     margin-left: 70px;
 }
 
-section .info:first-child:hover, section .info:nth-child(2):hover {
+#seccionInformacion .info:first-child:hover, #seccionInformacion .info:nth-child(2):hover {
     width: 55%;
 }
 
-section .info:first-child::after, section .info:nth-child(2)::before {
+#seccionInformacion .info:first-child::after, #seccionInformacion .info:nth-child(2)::before {
     content: '';
     position: absolute;
     top: 0;
 }
 
-section .info:first-child::after {
+#seccionInformacion .info:first-child::after {
     left: 100%;
     border-top: 360px solid #1e72bc;
     border-right: 80px solid transparent;
 }
 
-section .info:nth-child(2)::before {
+#seccionInformacion .info:nth-child(2)::before {
     right: 100%;
     border-bottom: 360px solid #1e72bc;
     border-left: 80px solid transparent;
 }
 
 @media(max-width: 1515px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 110%;
     }
 }
 
 @media(max-width: 1294px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 117.5%;
     }
 }
 
 @media(max-width: 1178px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 105%;
     }
 }
 
 @media(max-width: 1073px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 97%;
     }
 }
 
 @media(max-width: 1000px) {
-    section {
+    #seccionInformacion {
         flex-wrap: wrap;
     }
-    section .info:nth-child(2) {
+    #seccionInformacion .info:nth-child(2) {
         margin-left: auto;
         margin-top: 5%;
     }
-    section .info {
+    #seccionInformacion .info {
         width: 75%;
     }
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 125%;
         margin-top: 35px;
         margin-bottom: 35px;
     }
-    section .info:first-child:hover, section .info:nth-child(2):hover {
+    #seccionInformacion .info:first-child:hover, #seccionInformacion .info:nth-child(2):hover {
         width: 85%;
     }
 }
 
 @media(max-width: 884px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 120%;
     }
 }
 
 @media(max-width: 633px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 115%;
     }
 }
 
 @media(max-width: 546px) {
-    section .info p {
+    #seccionInformacion .info p {
         margin-top: 25px;
         margin-bottom: 25px;
     }
 }
 
 @media(max-width: 415px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 99%;
         margin-top: 19px;
         margin-bottom: 19px;
     }
-    section .info h3 {
+    #seccionInformacion .info h3 {
         font-size: 210%;
     }
-    section .info:first-child:hover, section .info:nth-child(2):hover {
+    #seccionInformacion .info:first-child:hover, #seccionInformacion .info:nth-child(2):hover {
         width: 75%;
     }
 }
