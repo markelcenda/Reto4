@@ -10,8 +10,13 @@ let myApp = angular.module('app', []);
 myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
 
     $scope.listaProductos = [];
-    $scope.cart = [];
-    $scope.total = 0;
+    if (localStorage.getItem('0') != null) {
+        $scope.cart = JSON.parse(localStorage.getItem('0'));
+    } else {
+        $scope.cart = [];
+    }
+    calcTotal();
+
 
     /*cargar productos*/
     $scope.load = () => {
@@ -57,6 +62,8 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
             $http.get(url).then(function(response){
 
                 if (response.data.mensaje==="logged"){
+
+                    setStock();
 
                     /*id del usuario paraa utilizar en insertVentas*/
                     $scope.idUsuario=response.data.id;
@@ -220,7 +227,8 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 }
             }
         }
-        
+        localStorage.clear();
+        localStorage.setItem(0, angular.toJson($scope.cart));
     }
 
     /*abrir modal*/
@@ -244,8 +252,6 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     $scope.buy = () => {
         for (let i = 0; i < $scope.cart.length; i++) {
 
-            console.log($scope.cart);
-
             for(let j=0; j<$scope.cart.length; j++){
 
                 /*conseguir fecha actual en formato yyyy-mm-dd*/
@@ -255,7 +261,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 var dia=fecha.getDate();
                 var fechaCompra=año + "-" + mes + "-" + dia;
 
-
+                /*datos para hacer inserVenta y updateStock*/
                 var data = { 'idProducto': $scope.cart[j].idProducto, 'idTienda': $scope.cart[j].idTienda, "cantidad": $scope.cart[j].cantidad };
                 var data2={"idProducto":$scope.cart[j].idProducto, "idUsuario":$scope.idUsuario, "fecha":fechaCompra, "precio":$scope.cart[j].precio, "unidades":$scope.cart[j].cantidad, "idTienda":idTienda};
                 
@@ -271,17 +277,27 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
             alert("Gracias por comprar");
 
             $scope.cart = [];
-            //$scope.load();
+            localStorage.clear();
+            $scope.load();
 
         }
 
     }
 
+    /*vaciar carrito*/
+    $scope.clearCart = () => {
+        $scope.cart = [];
+        $scope.contador=0;
+        localStorage.clear();
+        document.getElementById("myModal").style.display = "none";;
+        $scope.load();
+    }
+
+    /*calcular precio total*/
     function calcTotal() {
         $scope.total = 0;
         for (let i = 0; i < $scope.cart.length; i++) {
             $scope.total = $scope.total + ($scope.cart[i].precio * $scope.cart[i].cantidad);
-
             $scope.total = Math.round($scope.total * 100) / 100;
         }
     }
@@ -321,6 +337,27 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         });
     }
 
+    /*local storage carro*/
+    function setStock() {
+        localStorageArray = [];
+        if(localStorage.length==0){
+            $scope.contador=0;
+        }else{
+            $scope.contador=Number(localStorage.length+1);
+        }
+        for (let i = 0; i < $scope.cart.length; i++) {
+            localStorageArray.push(JSON.parse(localStorage[0])[i]);
+        }
+        if (localStorage.length != 0) {
+            for (let i = 0; i < $scope.cart.length; i++) {
+                for (let j = 0; j < $scope.listaProductos.length; j++) {
+                    if ($scope.cart[i].idProducto == $scope.listaProductos[j].idProducto) {
+                        $scope.listaProductos[j].unidades = $scope.listaProductos[j].unidades - localStorageArray[i].cantidad;
+                    }
+                }
+            }
+        }
+    }
 }]);
 
 

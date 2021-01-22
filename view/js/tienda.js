@@ -100,7 +100,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
             alert("Gracias por comprar");
             $scope.cart = [];
             localStorage.clear();
-            //$scope.load();
+            $scope.load();
         }
     }
 
