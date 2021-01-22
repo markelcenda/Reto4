@@ -14,7 +14,6 @@ $user->setPassword($password);
 $mensaje=$user->findUser();
 
 $response = array();
-
 $response["mensaje"] =$mensaje;
 
 if($mensaje!="no error"){
