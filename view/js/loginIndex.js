@@ -43,7 +43,7 @@ function login(){
     var username=$("#username").val();
     var password=$("#password").val();
 
-    var url = "controller/cLogin2.php";
+    var url = "controller/cLogin.php";
 	var data = { 'username':username, 'password':password};
 
 	fetch(url, {
