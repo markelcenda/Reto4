@@ -86,6 +86,35 @@ class tiendaModel extends tiendaClass{
         $this->CloseConnect();
         return $list;
     }
+
+    /*Ultimas tres tiendas*/
+    public function setLastTiendas(){
+        
+        $this->OpenConnect();  
+
+        $sql="CALL spUltimasTresTiendas()";
+        
+        $result = $this->link->query($sql);
+        $list=array();
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+            
+            /*Datos de las tiendas*/
+            $tienda=new tiendaModel();
+            $tienda->setId($row["id"]);
+            $tienda->setNombre($row["nombre"]);
+            $tienda->setDireccion($row["direccion"]);
+            $tienda->setTipo($row["tipo"]);
+            $tienda->setImagen($row["imagen"]);
+            $tienda->setTelefono($row["telefono"]);
+            $tienda->setEmail($row["email"]);
+      
+            array_push($list, get_object_vars($tienda));
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
     
     /*Buscar tienda por id*/
     public function findTiendaById(){

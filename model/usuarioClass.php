@@ -6,7 +6,7 @@ class usuarioClass{
     protected $apellidos;
     protected $username; 
     protected $password;
-    protected $imagen;
+    protected $email;
     protected $admin;
     protected $adminTienda;
 
@@ -33,6 +33,11 @@ class usuarioClass{
     function getPassword()
     {
         return $this->password;
+    }
+
+    function getEmail()
+    {
+        return $this->email;
     }
 
     function getAdmin()
@@ -68,6 +73,11 @@ class usuarioClass{
     function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    function setEmail($email)
+    {
+        $this->email = $email;
     }
 
     function setAdmin($admin)

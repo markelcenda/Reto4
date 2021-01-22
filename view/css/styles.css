@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /*Menu*/
 
 nav {
@@ -112,6 +116,88 @@ nav form .sesion {
 
 /*Fin menu*/
 
+/*Modal de registro*/
+
+#modelRegister {
+    border: 1px solid white;
+    padding-top: 7.5%;
+}
+
+#modelRegister .avatar {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -60px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 1;
+    background: #1e72bc;
+    padding: 15px;
+    display: flex;
+}
+
+#modelRegister .avatar i {
+    margin: auto;
+}
+
+.modal-title {
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+#modelRegister .cuerpoResgister {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: none !important;
+}
+
+#modelRegister .cuerpoResgister label {
+    width: 150px;
+    line-height: 35.2px;
+}
+
+#modelRegister .cuerpoResgister h5 {
+    font-size: 150%;
+}
+
+#modelRegister .cuerpoResgister p {
+    width: 100%;
+    border: 7.5px solid #9c0404;
+    text-align: center;
+    border-radius: 5px;
+    line-height: 50px;
+    background-color: #f72f2f;
+    color: white;
+}
+
+#modelRegister .cuerpoResgister input {
+    width: 200px;
+    height: 35.2px;
+}
+
+#modelRegister .modal-footer {
+    border-top: none !important;
+    justify-content: center;
+}
+
+#modelRegister .modal-footer button {
+    width: 122px;
+    color: white;
+}
+
+#modelRegister .modal-footer button:first-child {
+    background-color: #f72f2f;
+}
+
+#modelRegister .modal-footer button:nth-child(2) {
+    background-color: #1e72bc;
+}
+
+/*Fin modal de registro*/
+
 /*Carousel*/
 
 #carouselId {
@@ -182,12 +268,12 @@ nav form .sesion {
     font-weight: bold;
 }
 
-.modal-content {
+.informacion {
     background-color: #1e72bc;
     color: white;
 }
 
-.modal-content button span {
+.informacion button span {
     color: white;
 }
 
@@ -217,7 +303,7 @@ nav form .sesion {
 
 /*Seccion Nuestra Historia*/
 
-article {
+#historia {
     background-color: #1e72bc;
     color: white;
     margin-top: 1.5%;
@@ -225,7 +311,7 @@ article {
     text-align: center;
 }
 
-article::before {
+#historia::before {
     content: "";
     width: 100%;
     height: 120px;
@@ -236,7 +322,7 @@ article::before {
     background-color: #1e72bc;
 }
 
-article::after {
+#historia::after {
     content: "";
     width: 100%;
     height: 120px;
@@ -247,52 +333,107 @@ article::after {
     background-size: 100% 100%;
 }
 
-article h2 {
+#historia h2 {
     font-size: 300%;
 }
 
-article p {
+#historia p {
     font-size: 130%;
     width: 75%;
     margin: auto;
 }
 
 @media(max-width: 1373px) {
-    article h2 {
+    #historia h2 {
         font-size: 280%;
     }
-    article p {
+    #historia p {
         font-size: 122.5%;
     }
 }
 
 @media(max-width: 1269px) {
-    article h2 {
+    #historia h2 {
         font-size: 250%;
     }
-    article p {
+    #historia p {
         font-size: 115%;
     }
 }
 
 @media(max-width: 400px) {
-    article p {
+    #historia p {
         width: 85%;
     }
 }
 
 /*Fin Seccion Nuestra Historia*/
 
+/*Ultimos tres asociados */
+
+#ultimosAsociados{
+    margin-bottom: 5%;
+    color: white;
+}
+
+#ultimosAsociados h2{
+    background-color: #1e72bc;
+    text-align: center;
+    font-size: 300%;
+    padding: 15px;
+    margin: 0%;
+    width: 100%;
+}
+
+#ultimosAsociados .contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+#ultimosAsociados .contenedor article{
+    background-color: #1e72bc;
+    height: 600px;
+    display: block;
+    width: 300px;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#ultimosAsociados .contenedor article h3{
+   text-align: center;
+}
+
+#ultimosAsociados .contenedor article img{
+    margin: 0.5%;
+    border-radius: 5px;
+    background-color: white;
+    height: 35%;
+    width: 98.5%;
+}
+
+#ultimosAsociados .contenedor article button{
+    background-color: white;
+    color: #1e72bc;
+    border-radius: 5px;
+    width: 125px;
+    height: 50px;
+}
+
+/*Fin Ultimos tres asociados */
+
 /*Informacion*/
 
-section {
+#seccionInformacion {
     width: 100%;
     display: flex;
     color: white;
     text-align: center;
 }
 
-section .info {
+#seccionInformacion .info {
     background-color: #1e72bc;
     position: relative;
     padding: 3%;
@@ -301,18 +442,18 @@ section .info {
     height: 360px;
 }
 
-section .info h3 {
+#seccionInformacion .info h3 {
     font-size: 225%;
 }
 
-section .info p {
+#seccionInformacion .info p {
     font-size: 120%;
     font-weight: bolder;
     margin-top: 35px;
     margin-bottom: 35px;
 }
 
-section .info button {
+#seccionInformacion .info button {
     background-color: white;
     color: #1e72bc;
     border-radius: 5px;
@@ -320,110 +461,110 @@ section .info button {
     height: 50px;
 }
 
-section .info:first-child {
+#seccionInformacion .info:first-child {
     margin-right: 70px;
 }
 
-section .info:nth-child(2) {
+#seccionInformacion .info:nth-child(2) {
     margin-left: 70px;
 }
 
-section .info:first-child:hover, section .info:nth-child(2):hover {
+#seccionInformacion .info:first-child:hover, #seccionInformacion .info:nth-child(2):hover {
     width: 55%;
 }
 
-section .info:first-child::after, section .info:nth-child(2)::before {
+#seccionInformacion .info:first-child::after, #seccionInformacion .info:nth-child(2)::before {
     content: '';
     position: absolute;
     top: 0;
 }
 
-section .info:first-child::after {
+#seccionInformacion .info:first-child::after {
     left: 100%;
     border-top: 360px solid #1e72bc;
     border-right: 80px solid transparent;
 }
 
-section .info:nth-child(2)::before {
+#seccionInformacion .info:nth-child(2)::before {
     right: 100%;
     border-bottom: 360px solid #1e72bc;
     border-left: 80px solid transparent;
 }
 
 @media(max-width: 1515px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 110%;
     }
 }
 
 @media(max-width: 1294px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 117.5%;
     }
 }
 
 @media(max-width: 1178px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 105%;
     }
 }
 
 @media(max-width: 1073px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 97%;
     }
 }
 
 @media(max-width: 1000px) {
-    section {
+    #seccionInformacion {
         flex-wrap: wrap;
     }
-    section .info:nth-child(2) {
+    #seccionInformacion .info:nth-child(2) {
         margin-left: auto;
         margin-top: 5%;
     }
-    section .info {
+    #seccionInformacion .info {
         width: 75%;
     }
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 125%;
         margin-top: 35px;
         margin-bottom: 35px;
     }
-    section .info:first-child:hover, section .info:nth-child(2):hover {
+    #seccionInformacion .info:first-child:hover, #seccionInformacion .info:nth-child(2):hover {
         width: 85%;
     }
 }
 
 @media(max-width: 884px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 120%;
     }
 }
 
 @media(max-width: 633px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 115%;
     }
 }
 
 @media(max-width: 546px) {
-    section .info p {
+    #seccionInformacion .info p {
         margin-top: 25px;
         margin-bottom: 25px;
     }
 }
 
 @media(max-width: 415px) {
-    section .info p {
+    #seccionInformacion .info p {
         font-size: 99%;
         margin-top: 19px;
         margin-bottom: 19px;
     }
-    section .info h3 {
+    #seccionInformacion .info h3 {
         font-size: 210%;
     }
-    section .info:first-child:hover, section .info:nth-child(2):hover {
+    #seccionInformacion .info:first-child:hover, #seccionInformacion .info:nth-child(2):hover {
         width: 75%;
     }
 }
@@ -472,7 +613,8 @@ footer #footerBody div:last-child a {
 }
 
 footer #footerBody div:last-child a i {
-    width: 3.25%;
+    width: 40px;
+    line-height: 40px;
 }
 
 footer #footerBody div:last-child a:hover {
@@ -504,70 +646,31 @@ footer #copy {
     text-align: center;
 }
 
-@media(max-width: 1500px) {
-    footer #footerBody div:last-child a i {
-        width: 3.75%;
-    }
-}
-
-@media(max-width: 1220px) {
-    footer #footerBody div:last-child a i {
-        width: 4.75%;
-    }
-}
-
-@media(max-width: 950px) {
-    footer #footerBody div:last-child a i {
-        width: 5.75%;
-    }
-}
-
-@media(max-width: 875px) {
-    footer #footerBody div:last-child a i {
-        width: 6.75%;
-    }
-}
-
-@media(max-width: 700px) {
-    footer #footerBody div:last-child a i {
-        width: 7.75%;
-    }
-}
-
-@media(max-width: 600px) {
-    footer #footerBody div:last-child a i {
-        width: 8.75%;
-    }
-}
-
-@media(max-width: 587px) {
-    footer #footerBody div:first-child {
-        margin-bottom: 5%;
-        margin-top: 2%;
+@media(max-width: 591px) {
+    footer #footerBody div {
+        margin-top: 20px;
     }
     footer #footerBody div:last-child {
-        margin-bottom: 2%;
-    }
-}
-
-@media(max-width: 525px) {
-    footer #footerBody div:last-child a i {
-        width: 10.25%;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 
 /*Fin Footer*/
 
 /*botones insertarLogin cuando estas conectado*/
+
 #insertarLogin .row {
     display: flex;
     align-items: center;
 }
-#insertarLogin .row button{
+
+#insertarLogin .row button {
     display: flex;
     align-items: center;
 }
-#insertarLogin .row button i{
+
+#insertarLogin .row button i {
     font-size: 30px;
     color: white;
     border: 2px solid white;
@@ -577,7 +680,31 @@ footer #copy {
     height: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
-#insertarLogin .row button i:hover{
+
+#insertarLogin .row button i:hover {
     color: #1e72bc !important;
     background-color: white;
+}
+
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #1e72bc;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 35px;
+    height: 50px;
+    width: 55px;
+    transition: .4s;
+}
+
+#topBtn:hover {
+    background-color: white;
+    color: #1e72bc;
 }
