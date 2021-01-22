@@ -31,7 +31,7 @@ function loggedVerify(){
   
 			  /*al hacer click en paginaUsuario*/
 			  $("#paginaUsuario").click(function(){
-				  window.location.href="usuario.html";
+				  window.location.href="view/pages/usuario.html";
 			  });
 		   
 		  } 
@@ -53,7 +53,6 @@ function login(){
 		
 	  })
 	  .then(res => res.json()).then(result => {
-		  console.log(result);
   
 		  if (result.mensaje=="no error"){ 
   
@@ -77,7 +76,7 @@ function login(){
   
 			  /*al hacer click en paginaUsuario*/
 			  $("#paginaUsuario").click(function(){
-				  window.location.href="usuario.html";
+				  window.location.href="view/pages/usuario.html";
 			  });
   
 		  }else {

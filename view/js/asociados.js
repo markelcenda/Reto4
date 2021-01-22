@@ -17,4 +17,13 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
             $scope.filter = "";
         }
     }
+
+    /*abrir pagina de la pagina seleccionada*/
+    $scope.abrirTienda = (id) => {
+        console.log(id);
+        pagina = "modeloTiendas.html?" + id;
+        window.location.href = pagina;
+    }
+
+
 }]);
