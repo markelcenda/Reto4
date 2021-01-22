@@ -133,18 +133,54 @@
 
             <!-- Modal -->
             <div id="myModal" class="modal">
-
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header border-bottom-0">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Carrito
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-image">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in cart">
+                                    <td class="w-25">
+                                        <img ng-src="../img/{{item.imgProducto}}" class="img-fluid img-thumbnail">
+                                    </td>
+                                    <td>{{item.nombre}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>{{item.precio}}€</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-end">
+                            <h5>Total: <span class="price text-success">{{total}}€</span></h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top-0 d-flex justify-content-between">
+                        <a class="btn btn-primary" href="#" ng-click="clearCart()" role="button">Vaciar Carrito</a>
+                        <a class="btn btn-primary" href="#" ng-click="buy()" role="button">Finalizar Compra</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="myModal2" class="modal">
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <div ng-repeat="item in cart">
-                        <img ng-src="../img/{{item.imgProducto}}"><p class="cartText">{{item.nombre}} &nbsp&nbsp&nbsp Cantidad: {{item.cantidad}} &nbsp&nbsp&nbsp Precio por unidad: {{item.precio}}€</p>
-                    </div><br>
-                    <p>Precio total: {{total}}€</p>
-                    <br>
-                    <a class="btn btn-primary" href="#" ng-click="buy()" role="button">Finalizar Compra</a>
+                    <img src="https://cdn.dribbble.com/users/204955/screenshots/4930541/emptycart.png" alt="Carrito vacio">
                 </div>
-
             </div>
 
         </div>

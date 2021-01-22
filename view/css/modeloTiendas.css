@@ -263,52 +263,26 @@ body, html {
 }
 
 .cart .price {
-    -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
-    -moz-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
-    -o-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
     transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
-    /* ease-out */
-    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
-    -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
-    -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
     transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
-    /* ease-out */
-    -webkit-transition-delay: 100ms;
-    -o-transition-delay: 100ms;
     transition-delay: 100ms;
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     font-size: 14px;
     color: #252525;
 }
 
 .cart .add-to-cart {
-    -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
-    -moz-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
-    -o-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
     transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
-    /* ease-out */
-    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
-    -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
-    -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
     transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
-    /* ease-out */
-    -webkit-transition-delay: 100ms;
-    -o-transition-delay: 100ms;
     transition-delay: 100ms;
     display: block;
     position: absolute;
     top: 50%;
     left: 110%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
 
@@ -329,6 +303,12 @@ body, html {
     width: 32px;
     height: 32px;
     margin: 1% 0 0 88%;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.shopping-cart:hover {
+    transform: scale(1.15);
 }
 
 .modal {
@@ -341,7 +321,7 @@ body, html {
     height: 100%;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.4);
-    overflow-y: initial !important
+    overflow-y: initial !important;
 }
 
 .modal h1, p {
@@ -354,8 +334,8 @@ body, html {
     margin: 2% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
-    min-width: 200px;
+    width: 53%;
+    min-width: 350px;
 }
 
 .close {
@@ -372,6 +352,42 @@ body, html {
     cursor: pointer;
 }
 
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal .btn {
+    align-self: center;
+    background-color: red;
+    border: 1px solid red;
+    width: 250px;
+    margin: 1%;
+}
+
+.modal .btn:hover {
+    color: red;
+    background-color: white;
+}
+
+.modal .btn:not(:first-child) {
+    background-color: #1e72bc;
+    border: 1px solid #1e72bc;
+    white-space: nowrap;
+}
+
+.modal .btn:not(:first-child):hover {
+    color: #1e72bc;
+    background-color: white;
+}
+
+#myModal2 img {
+    height: 80%;
+    width: 80%;
+    align-self: center;
+}
+
 .modal img {
     height: 100px;
     width: 100px;
@@ -384,11 +400,19 @@ body, html {
     margin-top: -10%
 }
 
-.modal .btn{
-    align-self: center;
-    color: 1e72bc;
-    background-color: #1e72bc;
-    width: 200px;
+@media screen and (max-width: 420px) {
+    #myModal .btn {
+        width: 100%;
+    }
+    #myModal .modal-body img {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    #myModal .modal-body img {
+        display: none;
+    }
 }
 
 /*botones insertarLogin cuando estas conectado*/
