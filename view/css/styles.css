@@ -299,17 +299,13 @@ nav form .sesion {
     }
 }
 
-@media(max-width: 450px){
-
+@media(max-width: 450px) {
     #carouselId {
         height: 335px;
     }
-
     #carouselId img {
-    
         height: 327px;
     }
-
     #carouselId .texto {
         background-color: #1e72bcc0;
         position: absolute;
@@ -322,7 +318,6 @@ nav form .sesion {
         margin-top: 80px;
         margin-bottom: 80px;
     }
-
     #carouselId .texto h2 {
         font-size: 175%;
     }
@@ -400,12 +395,12 @@ nav form .sesion {
 
 /*Ultimos tres asociados */
 
-#ultimosAsociados{
+#ultimosAsociados {
     margin-bottom: 3%;
     color: white;
 }
 
-#ultimosAsociados h2{
+#ultimosAsociados h2 {
     background-color: #1e72bc;
     text-align: center;
     font-size: 300%;
@@ -415,15 +410,15 @@ nav form .sesion {
     margin-bottom: 3%;
 }
 
-#ultimosAsociados .contenedor{
+#ultimosAsociados .contenedor {
     display: flex;
     flex-wrap: wrap;
     padding: 1%;
 }
 
-#ultimosAsociados .contenedor article{
+#ultimosAsociados .contenedor article {
     background-color: #1e72bc;
-    height: 600px;
+    height: 575px;
     display: block;
     width: 300px;
     margin: auto;
@@ -433,33 +428,35 @@ nav form .sesion {
     transition: 0.5s;
 }
 
-#ultimosAsociados .contenedor article h3{
-   text-align: center;
+#ultimosAsociados .contenedor article h3 {
+    text-align: center;
 }
 
-#ultimosAsociados .contenedor article img{
-    margin: 0.5%;
+#ultimosAsociados .contenedor article img {
+    /* margin: 0.5%; */
     border-radius: 5px;
     background-color: white;
-    height: 35%;
-    width: 98.5%;
+    height: 33%;
+    width: 100%;
+    border: 2px solid #1e72bc;
 }
 
-#ultimosAsociados .contenedor article button{
+#ultimosAsociados .contenedor article button {
     background-color: white;
     color: #1e72bc;
     border-radius: 5px;
     width: 125px;
     height: 50px;
+    border: 1px solid black;
 }
 
-#ultimosAsociados .contenedor article:hover{
+#ultimosAsociados .contenedor article:hover {
     box-shadow: 0px 0px 10px black;
     transform: scale(1.02);
 }
 
-@media(max-width: 935px){
-    #ultimosAsociados .contenedor article{
+@media(max-width: 935px) {
+    #ultimosAsociados .contenedor article {
         margin-bottom: 3%;
     }
 }
@@ -501,6 +498,7 @@ nav form .sesion {
     border-radius: 5px;
     width: 125px;
     height: 50px;
+    border: 1px solid black;
 }
 
 #seccionInformacion .info:first-child {
