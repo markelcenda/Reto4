@@ -71,6 +71,29 @@ class ventaModel extends ventaClass{
         $this->CloseConnect();
         return $list;
     }
+
+     /*Insertar producto*/
+     public function insertarVenta(){
+        
+        $this->OpenConnect();
+        
+        $idProducto=$this->getIdProducto();
+        $idUsuario=$this->getIdUsuario();
+        $fecha="0000-00-00";
+        $precio=$this->getPrecio();
+        $unidades=$this->getUnidades();
+        $idTienda=$this->getIdTienda();
+        
+        $sql="CALL spInsertVenta('$idProducto', '$idUsuario', '$fecha', '$precio', '$unidades', '$idTienda')";
+        
+        if ($this->link->query($sql)){
+            return "Venta insertada correctamente";
+        }else{
+            return "Se ha producido un error";
+        }
+        
+        $this->CloseConnect();
+    }
     
     function ObjVars(){
         return get_object_vars($this);
