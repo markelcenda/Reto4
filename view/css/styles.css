@@ -372,7 +372,7 @@ nav form .sesion {
 /*Ultimos tres asociados */
 
 #ultimosAsociados{
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     color: white;
 }
 
@@ -383,6 +383,7 @@ nav form .sesion {
     padding: 15px;
     margin: 0%;
     width: 100%;
+    margin-bottom: 3%;
 }
 
 #ultimosAsociados .contenedor{
@@ -400,6 +401,7 @@ nav form .sesion {
     justify-content: center;
     text-align: center;
     border-radius: 5px;
+    transition: 0.5s;
 }
 
 #ultimosAsociados .contenedor article h3{
@@ -420,6 +422,11 @@ nav form .sesion {
     border-radius: 5px;
     width: 125px;
     height: 50px;
+}
+
+#ultimosAsociados .contenedor article:hover{
+    box-shadow: 0px 0px 10px black;
+    transform: scale(1.02);
 }
 
 @media(max-width: 935px){
