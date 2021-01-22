@@ -185,7 +185,8 @@
             pusimos esta aventura en funcionamiento.
             Fue un comienzo duro y con miedos, pero todos teníamos el mismo objetivo que es el de promover el comercio
             local. Podeis confiar en los comercios de Amorebieta, en los que podreis encontrar todo cuanto deseéis,
-            porque estamos cerca, porque enriquecemos al municipio, porque somos vecinos, porque hay calidad, seguridad y
+            porque estamos cerca, porque enriquecemos al municipio, porque somos vecinos, porque hay calidad, seguridad
+            y
             confianza, porque colaboramos en actividades del municipio y sobre todo porque tenemos un carácter único y
             ofrecemos un trato personal y cercano a nuestros clientes.</p>
     </article>
@@ -206,7 +207,7 @@
                 <p>{{item.telefono}}</p>
                 <h5>Email: </h5>
                 <p>{{item.email}}</p>
-                <button value="{{item.id}}">Visitar tienda</button>
+                <button ng-click="visitarTienda(item.id)">Visitar tienda</button>
             </article>
         </div>
     </section>
@@ -219,14 +220,14 @@
                 que comporta.
                 Ponte en contacto con nosotros y te informaremos de los pasos a seguir para formar parte de esta gran
                 familia.</p>
-            <button>Contactanos</button>
+            <a href="view/pages/contacto.html"><button>Contactanos</button></a>
         </div>
         <div class="info">
             <h3>TIENDA ONLINE</h3>
             <p>Desde la asociacion queremos facilitar la vida a nuestros clientes, es por ello que te invitamos a
                 disfrutar de nuestra tienda online, en la que encontraras una variedad significativa de productos de la
                 mejor calidad al mejor precio.</p>
-            <button>Tienda online</button>
+            <a href="view/pages/tienda.html"><button>Tienda online</button></a>
         </div>
     </section>
 
