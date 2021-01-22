@@ -299,6 +299,35 @@ nav form .sesion {
     }
 }
 
+@media(max-width: 450px){
+
+    #carouselId {
+        height: 335px;
+    }
+
+    #carouselId img {
+    
+        height: 327px;
+    }
+
+    #carouselId .texto {
+        background-color: #1e72bcc0;
+        position: absolute;
+        height: max-content;
+        padding: 3%;
+        border-radius: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+    #carouselId .texto h2 {
+        font-size: 175%;
+    }
+}
+
 /*Fin carousel*/
 
 /*Seccion Nuestra Historia*/
