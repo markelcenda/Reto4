@@ -191,10 +191,28 @@
             ofrecemos un trato personal y cercano a nuestros clientes.</p>
     </article>
 
+     <!--Informacion-->
+     <section id="seccionInformacion">
+        <div class="info">
+            <h3>ASOCIATE YA</h3>
+            <p>Forma parte de nuestra asociación y disfruta de las ventajas, beneficios y la amplia gama de servicios
+                que comporta.
+                Ponte en contacto con nosotros y te informaremos de los pasos a seguir para formar parte de esta gran
+                familia.</p>
+            <a href="view/pages/contacto.html"><button>Contactanos</button></a>
+        </div>
+        <div class="info">
+            <h3>TIENDA ONLINE</h3>
+            <p>Desde la asociacion queremos facilitar la vida a nuestros clientes, es por ello que te invitamos a
+                disfrutar de nuestra tienda online, en la que encontraras una variedad significativa de productos de la
+                mejor calidad al mejor precio.</p>
+            <a href="view/pages/tienda.html"><button>Tienda online</button></a>
+        </div>
+    </section>
 
     <!--Ultimos tres asociados-->
     <section id="ultimosAsociados" ng-controller="miControlador">
-        <h2>Ultimos tres comercios asociados</h2>
+        <h2>Ultimos comercios asociados</h2>
         <div class="contenedor">
             <article ng-repeat="item in tiendas">
                 <img src="view/img/{{item.imagen}}" alt="">
@@ -212,24 +230,7 @@
         </div>
     </section>
 
-    <!--Informacion-->
-    <section id="seccionInformacion">
-        <div class="info">
-            <h3>ASOCIATE YA</h3>
-            <p>Forma parte de nuestra asociación y disfruta de las ventajas, beneficios y la amplia gama de servicios
-                que comporta.
-                Ponte en contacto con nosotros y te informaremos de los pasos a seguir para formar parte de esta gran
-                familia.</p>
-            <a href="view/pages/contacto.html"><button>Contactanos</button></a>
-        </div>
-        <div class="info">
-            <h3>TIENDA ONLINE</h3>
-            <p>Desde la asociacion queremos facilitar la vida a nuestros clientes, es por ello que te invitamos a
-                disfrutar de nuestra tienda online, en la que encontraras una variedad significativa de productos de la
-                mejor calidad al mejor precio.</p>
-            <a href="view/pages/tienda.html"><button>Tienda online</button></a>
-        </div>
-    </section>
+   
 
     <!-- Footer -->
     <footer>

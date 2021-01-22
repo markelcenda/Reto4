@@ -2,6 +2,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body{
+    background-color: #ebebeb;
+}
+
 /*Menu*/
 
 nav {
@@ -339,7 +343,7 @@ nav form .sesion {
     content: "";
     width: 100%;
     height: 120px;
-    background: url(../img/top_layer.png);
+    background: url(../img/top_layerV2.png);
     display: block;
     position: relative;
     background-size: 100% 100%;
@@ -350,7 +354,7 @@ nav form .sesion {
     content: "";
     width: 100%;
     height: 120px;
-    background: url(../img/bottom_layer.png);
+    background: url(../img/bottom_layerV2.png);
     display: block;
     position: relative;
     background-color: #1e72bc;
@@ -392,75 +396,6 @@ nav form .sesion {
 }
 
 /*Fin Seccion Nuestra Historia*/
-
-/*Ultimos tres asociados */
-
-#ultimosAsociados {
-    margin-bottom: 3%;
-    color: white;
-}
-
-#ultimosAsociados h2 {
-    background-color: #1e72bc;
-    text-align: center;
-    font-size: 300%;
-    padding: 15px;
-    margin: 0%;
-    width: 100%;
-    margin-bottom: 3%;
-}
-
-#ultimosAsociados .contenedor {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 1%;
-}
-
-#ultimosAsociados .contenedor article {
-    background-color: #1e72bc;
-    height: 575px;
-    display: block;
-    width: 300px;
-    margin: auto;
-    justify-content: center;
-    text-align: center;
-    border-radius: 5px;
-    transition: 0.5s;
-}
-
-#ultimosAsociados .contenedor article h3 {
-    text-align: center;
-}
-
-#ultimosAsociados .contenedor article img {
-    border-radius: 5px;
-    background-color: white;
-    height: 33%;
-    width: 100%;
-    border: 2.4px solid #1e72bc;
-}
-
-#ultimosAsociados .contenedor article button {
-    background-color: white;
-    color: #1e72bc;
-    border-radius: 5px;
-    width: 125px;
-    height: 50px;
-    border: 1px solid black;
-}
-
-#ultimosAsociados .contenedor article:hover {
-    box-shadow: 0px 0px 10px black;
-    transform: scale(1.02);
-}
-
-@media(max-width: 935px) {
-    #ultimosAsociados .contenedor article {
-        margin-bottom: 3%;
-    }
-}
-
-/*Fin Ultimos tres asociados */
 
 /*Informacion*/
 
@@ -609,6 +544,76 @@ nav form .sesion {
 }
 
 /*Fin Informacion*/
+
+/*Ultimos tres asociados */
+
+#ultimosAsociados {
+    margin-bottom: 3%;
+    color: white;
+}
+
+#ultimosAsociados h2 {
+    background-color: #1e72bc;
+    text-align: center;
+    font-size: 300%;
+    padding: 15px;
+    margin: 0%;
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: 5%;
+}
+
+#ultimosAsociados .contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+#ultimosAsociados .contenedor article {
+    background-color: #1e72bc;
+    height: 575px;
+    display: block;
+    width: 300px;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+#ultimosAsociados .contenedor article h3 {
+    text-align: center;
+}
+
+#ultimosAsociados .contenedor article img {
+    border-radius: 5px;
+    background-color: white;
+    height: 33%;
+    width: 100%;
+    border: 2.4px solid #1e72bc;
+}
+
+#ultimosAsociados .contenedor article button {
+    background-color: white;
+    color: #1e72bc;
+    border-radius: 5px;
+    width: 125px;
+    height: 50px;
+    border: 1px solid black;
+}
+
+#ultimosAsociados .contenedor article:hover {
+    box-shadow: 0px 0px 10px black;
+    transform: scale(1.02);
+}
+
+@media(max-width: 935px) {
+    #ultimosAsociados .contenedor article {
+        margin-bottom: 3%;
+    }
+}
+
+/*Fin Ultimos tres asociados */
 
 /*Footer*/
 
