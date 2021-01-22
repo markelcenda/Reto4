@@ -122,4 +122,12 @@ miApp.controller("miControlador", function ($scope, $http) {
         $scope.password = "";
     }
 
+    //Redirige a la pagina modeloTienda 
+    $scope.visitarTienda = function (id){
+
+        pagina = "view/pages/modeloTiendas.html?" + id;
+        window.location.href = pagina;
+
+    }
+
 });
