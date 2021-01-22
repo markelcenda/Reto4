@@ -79,12 +79,12 @@ class ventaModel extends ventaClass{
         
         $idProducto=$this->getIdProducto();
         $idUsuario=$this->getIdUsuario();
-        $fecha="0000-00-00";
+        $fecha=$this->getFecha();
         $precio=$this->getPrecio();
         $unidades=$this->getUnidades();
         $idTienda=$this->getIdTienda();
         
-        $sql="CALL spInsertVenta('$idProducto', '$idUsuario', '$fecha', '$precio', '$unidades', '$idTienda')";
+        $sql="CALL spInsertVenta($idProducto, $idUsuario, '$fecha', $precio, $unidades, $idTienda)";
         
         if ($this->link->query($sql)){
             return "Venta insertada correctamente";

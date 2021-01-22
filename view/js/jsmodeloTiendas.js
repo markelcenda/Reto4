@@ -188,9 +188,6 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         let precio = event.target.dataset.precio;
         let nombre = event.target.dataset.nombre;
         let found = false;
-
-        $scope.idProductoVenta=idProducto;
-        $scope.precioProductoVenta=precio;
         
         if ($scope.cart.length == 0) {
             if ($scope.listaProductos[position].unidades > 0) {
@@ -251,12 +248,17 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
 
             for(let j=0; j<$scope.cart.length; j++){
 
+                /*conseguir fecha actual en formato yyyy-mm-dd*/
+                var fecha=new Date();
+                var año=fecha.getFullYear();
+                var mes=Number(fecha.getMonth()+1);
+                var dia=fecha.getDate();
+                var fechaCompra=año + "-" + mes + "-" + dia;
+
+
                 var data = { 'idProducto': $scope.cart[j].idProducto, 'idTienda': $scope.cart[j].idTienda, "cantidad": $scope.cart[j].cantidad };
-                var data2={"idProducto":$scope.cart[j].idProducto, "idUsuario":$scope.idUsuario, "precio":$scope.precioProductoVenta, "unidades":$scope.cart[j].cantidad, "idTienda":idTienda};
-                console.log(data2);
-                console.log(data);
-                /*var fecha=new Date();
-                console.log(fecha);*/
+                var data2={"idProducto":$scope.cart[j].idProducto, "idUsuario":$scope.idUsuario, "fecha":fechaCompra, "precio":$scope.cart[j].precio, "unidades":$scope.cart[j].cantidad, "idTienda":idTienda};
+                
                 $http.post('../../controller/cUpdateStock.php', data).then(function () {
                 });
 
@@ -268,14 +270,9 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
             document.getElementById("myModal").style.display = "none"
             alert("Gracias por comprar");
 
-            
-            
             $scope.cart = [];
             //$scope.load();
 
-            
-
-            
         }
 
     }

@@ -9,7 +9,7 @@ $response=array();
 $venta = new ventaModel();
 $venta->setIdProducto($data['idProducto']);
 $venta->setIdUsuario($data['idUsuario']);
-//$venta->setFecha($data['fecha']);
+$venta->setFecha($data['fecha']);
 $venta->setUnidades($data['unidades']);
 $venta->setPrecio($data['precio']);
 $venta->setIdTienda($data['idTienda']);
