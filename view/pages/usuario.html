@@ -68,7 +68,7 @@
         
                 <div class='row justify-content-center'>
                     <!--Nueva tienda-->
-                    <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divTiendas">
+                    <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divTiendas" ng-show="divInsertarTienda=='si'">
                         <h4 class='text-center'>NUEVA TIENDA <i class="fas fa-eye" ng-click="mostrarInsertTienda()"></i></h4>
         
                         <form class='m-2' ng-show="tiendaInsert=='si'">
@@ -157,8 +157,8 @@
                                 </div>
                             </div>
         
-                            <div class="form-row">
-                                <div class="col-lg-6">
+                            <div class="form-row justify-content-center">
+                                <div class="col-lg-12" ng-show="divSelectTiendas=='si'">
                                     <label for="tiendas">Tienda<span class="text-danger">*</span></label>
                                     <br>
                                     <select id="tiendas" ng-model="tiendaSeleccionada" >
@@ -166,7 +166,7 @@
                                         <option ng-repeat="item in tiendas" value="{{item.id}}">{{item.nombre}}</option>
                                     </select>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12 m-2">
         
                                     <div class="wrapper">
                                         <div class="file-upload" id="fileProducto">
@@ -266,7 +266,7 @@
         
                             <div class="text-center m-2">
                                 <button type="button" id="btnUpdateTienda" class="btn btn-light" ng-click="actualizarTiendaAdmin()"><i class="fas fa-pencil-alt"></i></button>
-                                <button type="button" id="btnDeleteTienda" class="btn btn-light" ng-click="eliminarTiendaAdmin()"><i class="fas fa-trash-alt"></i></button>
+                                <button type="button" id="btnDeleteTienda" class="btn btn-light" ng-show="btnDeleteTienda=='si'" ng-click="eliminarTiendaAdmin()"><i class="fas fa-trash-alt"></i></button>
                                 <button type="button" id="btnCancelUpdateTienda" class="btn btn-light" ng-click="cancelUpdateTienda()"><i class="far fa-times-circle"></i></button>
                             </div>
         
@@ -283,7 +283,14 @@
                         <div class="text-center" ng-show="productoSelect=='si'">
                             <select id="productos" ng-model="productoSeleccionado" ng-change="seleccionarProducto()">
                                 <option value="" selected>Seleccionar producto</option>
-                                <option ng-repeat="item in productos" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
+                                <option ng-repeat="item in productos" value="{{item.id}}">{{item.id}} -- {{item.nombre}} -- {{item.objProductoTienda.objTienda.nombre}}</option>
+                            </select>
+                        </div>
+
+                        <div class="text-center" ng-show="productoSelectTienda=='si'">
+                            <select id="productos" ng-model="productoSeleccionado" ng-change="seleccionarProducto()">
+                                <option value="" selected>Seleccionar producto</option>
+                                <option ng-repeat="item in productosTienda" value="{{item.idProducto}}">{{item.idProducto}} -- {{item.objProducto.nombre}}</option>
                             </select>
                         </div>
         
@@ -312,7 +319,7 @@
                             </div>
         
                             <div class="form-row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-6" ng-show="selectTiendaUpdateProducto=='si'">
                                     <label for="tiendasUpdate3">Tienda<span class="text-danger">*</span></label>
                                     <br>
                                     <select id="tiendasUpdate3">
@@ -320,7 +327,7 @@
                                         <option ng-repeat="item in tiendas" ng-if="idTienda!=item.id" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
                                     </select>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12 m-2">
         
                                     <div class="wrapper">
                                         <div class="file-upload" id="fileProducto">
@@ -352,219 +359,6 @@
                         
                     </div>
         
-        
-        
-                </div>
-        
-            </div>
-
-            <!--Insertar, eliminar y actualizar producto y actualizar tienda-->
-            <div id="administracion" ng-show="adminTienda=='si'">
-      
-                <h2 class='text-center m-2 text-white'>ADMINISTRACIÓN</h2>
-        
-                <div class='row justify-content-center'>
-        
-                    <!--Nuevo producto-->
-                    <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divProductosAdminTienda">
-        
-                        <h4 class='text-center'>NUEVO PRODUCTO <i class="fas fa-eye" ng-click="mostrarInsertProductoAdminTienda()"></i></h4>
-        
-                        <form class='m-2' ng-show="productoInsertAdminTienda=='si'">
-        
-                            <div class="form-row">
-                                <div class="col-lg-6">
-                                    <label for="nombre">Nombre<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="nombre" id="nombreProductoAdminTienda" ng-model="nombreProductoNuevo" placeholder="Nombre...">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="tipo">Tipo<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="tipo" id="tipoProductoAdminTienda" ng-model="tipoProductoNuevo" placeholder="Tipo...">
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-6">
-                                    <label for="precio">Precio<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="precio" id="precioProductoAdminTienda" ng-model="precioProductoNuevo" placeholder="Precio..." min="0">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="unidades">Unidades<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="unidades" id="unidadesProductoAdminTienda" ng-model="unidadesProductoNuevo" placeholder="Unidades..." min="0" max="100">
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-12 mt-2">
-        
-                                    <div class="wrapper">
-                                        <div class="file-upload" id="fileProductoAdminTienda">
-                                            <input type="file" name="imagen" id="imagenProductoAdminTienda" onchange="angular.element(this).scope().imagenSeleccionadaProductoAdminTienda(this)" accept=".png,.jpeg,.jpg,.gif" />
-                                            <i class="fa fa-upload"></i>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-12 mt-3">
-        
-                                    <div class="text-center">
-                                        <img src="../img/default.png" id="imagenInsertProductoAdminTienda">
-                                    </div>
-                                    
-                                </div>
-                            </div>
-        
-                            <div class="text-center m-2">
-                                <button type="button" id="btnInsertarProductoAdminTienda" class="btn btn-light" ng-click="insertarProductoAdminTienda()"><i class="fas fa-plus"></i></button>
-                                <button type="button" id="btnCancelarInsertarProductoAdminTienda" class="btn btn-light" ng-click="cancelarInsertarProductoAdminTienda()"><i class="far fa-times-circle"></i></button>
-                            </div>
-        
-                        </form>
-        
-                    </div>
-
-                    <!--actualizar tienda-->
-                    <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divTiendasAdminTienda">
-        
-                        <h4 class='text-center'>ACTUALIZAR TIENDA <i class="fas fa-eye" ng-click="mostrarUpdateTiendaAdminTienda()"></i></h4>
-        
-                        <form class='m-2' ng-show="tiendaUpdateAdminTienda=='si'">
-        
-                            <div class="form-row">
-                                <div class="col-lg-6">
-                                    <label for="nombre">Nombre<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="nombre" id="nombreTiendaUpdateAdminTienda" ng-model="nombreTiendaUpdateAdminTienda">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="direccion">Dirección<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="direccion" id="direccionTiendaUpdateAdminTienda" ng-model="direccionTiendaUpdateAdminTienda">
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-6">
-                                    <label for="tipo">Tipo<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="tipo" id="tipoTiendaUpdateAdminTienda" ng-model="tipoTiendaUpdateAdminTienda">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="telefono">Teléfono<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="telefono" id="telefonoTiendaUpdateAdminTienda" ng-model="telefonoTiendaUpdateAdminTienda" min="900000000" max="999999999">
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-6">
-                                    <label for="email">Email<span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" name="email" id="emailTiendaUpdateAdminTienda" ng-model="emailTiendaUpdateAdminTienda">
-                                </div>
-                                <div class="col-lg-6">
-        
-                                    <div class="wrapper">
-                                        <div class="file-upload" id="fileTiendaAdminTienda">
-                                            <input type="file" name="tienda" id="imagenTiendaUpdateAdminTienda" onchange="angular.element(this).scope().imagenSeleccionadaTiendaUpdateAdminTienda(this)" accept=".png,.jpeg,.jpg,.gif" />
-                                            <i class="fa fa-upload"></i>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-12 mt-2">
-        
-                                    <div class="text-center">
-                                        <img src="../img/{{imagenTiendaUpdateAdminTienda}}" id="imagenUpdateTiendaAdminTienda">
-                                    </div>
-                                    
-                                </div>
-                            </div>
-        
-                            <div class="text-center m-2">
-                                <button type="button" id="btnUpdateTiendaAdminTienda" class="btn btn-light" ng-click="actualizarAdminTienda()"><i class="fas fa-pencil-alt"></i></button>
-                                <button type="button" id="btnCancelUpdateTiendaAdminTienda" class="btn btn-light" ng-click="cancelUpdateTiendaAdminTienda()"><i class="far fa-times-circle"></i></button>
-                            </div>
-        
-                        </form>
-        
-        
-                    </div>
-        
-                </div>  
-
-                <div class='row justify-content-center align-items-center'>
-
-                    <!--actualizar y eliminar producto-->
-                    <div class='col-lg-5 col-md-5 col-sm-8 col-10 border rounded mt-1 p-3 mb-3' id="divProductosAdminTienda">
-        
-                        <h4 class='text-center'>ACTUALIZAR PRODUCTO <i class="fas fa-eye" ng-click="mostrarSelectProductoAdminTienda()"></i></h4>
-        
-                        <div class="text-center" ng-show="productoSelectAdminTienda=='si'">
-                            <select id="productosAdminTienda" ng-model="productoSeleccionadoAdminTienda" ng-change="seleccionarProductoAdminTienda()">
-                                <option value="" selected>Seleccionar producto</option>
-                                <option ng-repeat="item in productosTienda" value="{{item.idProducto}}">{{item.idProducto}} -- {{item.objProducto.nombre}}</option>
-                            </select>
-                        </div>
-        
-                        <form class='m-2' ng-show="productoUpdateAdminTienda=='si'">
-        
-                            <div class="form-row">
-                                <div class="col-lg-6">
-                                    <label for="nombre">Nombre<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="nombre" id="nombreProductoUpdateAdminTienda" ng-model="nombreProductoUpdateAdminTienda">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="tipo">Tipo<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="tipo" id="tipoProductoUpdateAdminTienda" ng-model="tipoProductoUpdateAdminTienda">
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-6">
-                                    <label for="precio">Precio<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="precio" id="precioProductoUpdateAdminTienda" ng-model="precioProductoUpdateAdminTienda" min="0">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="unidades">Unidades<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="unidades" id="unidadesProductoUpdateAdminTienda" ng-model="unidadesProductoUpdateAdminTienda" min="0" max="100">
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-12">
-        
-                                    <div class="wrapper mt-2">
-                                        <div class="file-upload" id="fileProductoUpdateAdminTienda">
-                                            <input type="file" name="imagen" id="imagenProductoUpdateAdminTienda" onchange="angular.element(this).scope().imagenSeleccionadaProductoUpdateAdminTienda(this)" accept=".png,.jpeg,.jpg,.gif" />
-                                            <i class="fa fa-upload"></i>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-lg-12 mt-3">
-        
-                                    <div class="text-center">
-                                        <img src="../img/{{imagenProductoUpdateAdminTienda}}" id="imagenUpdateProductoAdminTienda">
-                                    </div>
-                                    
-                                </div>
-                            </div>
-        
-                            <div class="text-center m-2">
-                                <button type="button" id="btnUpdateProductoAdminTienda" class="btn btn-light" ng-click="actualizarProductoAdmin()"><i class="fas fa-pencil-alt"></i></button>
-                                <button type="button" id="btnDeleteProductoAdminTienda" class="btn btn-light" ng-click="eliminarProductoAdminTienda()"><i class="fas fa-trash-alt"></i></button>
-                                <button type="button" id="btnCancelUpdateProductoAdminTienda" class="btn btn-light" ng-click="cancelUpdateProducto()"><i class="far fa-times-circle"></i></button>
-                            </div>
-        
-                        </form>
-                        
-                    </div>
-
                 </div>
         
             </div>
