@@ -49,4 +49,15 @@
    /*div azul*/
    .container-fluid .divContacto{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.85);
+  }
+
+  @media(max-width: 350px) {
+    .container-fluid .divContacto .contacto .col-lg-4 .email{
+        font-size: 12px;
+    }
+
+    .container-fluid .divContacto .justify-content-center h2{
+      font-size: 26px;
+  }
+    
 }
