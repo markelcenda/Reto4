@@ -119,7 +119,6 @@ app.controller("miControlador", function ($scope, $http) {
             $scope.tipoTiendaNuevo = "";
             $scope.telefonoTiendaNuevo = "";
             $scope.emailTiendaNuevo = "";
-
             $scope.tiendaInsert = "no";
         }
 
@@ -156,7 +155,7 @@ app.controller("miControlador", function ($scope, $http) {
             } else {//si no hay datos vacios
 
                 for (let i = 0; i < $scope.tiendas.length; i++) {
-
+                    //validacion de datos
                     if (nombre == $scope.tiendas[i].nombre || telefono == $scope.tiendas[i].telefono || email == $scope.tiendas[i].email) {
 
                         permitirInsert = false;
@@ -189,7 +188,6 @@ app.controller("miControlador", function ($scope, $http) {
                     }
 
                     var url = "../../controller/cInsertarTienda.php";
-
                     $http.post(url, data).then(function (response) {
                         //mensaje
                         alert(response.data.list);
@@ -202,9 +200,9 @@ app.controller("miControlador", function ($scope, $http) {
             }
         }
         funcionesAdministradores(admin, adminTienda);
-
     }
 
+    //si eres adminTienda ocultar div de insertar tienda
     function zonaAdminTienda(admin, idTienda) {
         $scope.adminGeneral="si";
         $scope.divInsertarTienda = "no";
@@ -216,8 +214,7 @@ app.controller("miControlador", function ($scope, $http) {
         $scope.productoSelect = "no";
         $scope.productoSelectTienda = "no";
 
-        /*en insertarProducto mostrar select de la lista de tiendas*/
-        if (admin == 1) {
+        if (admin == 1) {//si eres admin general
             $scope.divSelectTiendas = "si";
             $scope.mostrarSelectTienda = function () {
                 $scope.tiendaSelect = "si";
@@ -234,30 +231,34 @@ app.controller("miControlador", function ($scope, $http) {
             $scope.btnDeleteTienda="si";
             $scope.selectTiendaUpdateProducto="si";
 
-        } else {
-            $scope.divSelectTiendas = "no";
-            $scope.tiendaSelect = "no";
-
-            $scope.mostrarSelectTienda = function () {
+        } else {//si no eres admin general
+            if(adminTienda==null){//si no eres adminTienda
+                $scope.adminGeneral="no";
+                $("#divZonaAdministradores").hide();
+                $("#divZonaAdministradores2").hide();
+            }else{//si eres adminTienda
+                $scope.divSelectTiendas = "no";
                 $scope.tiendaSelect = "no";
-                $scope.tiendaUpdate = "si";
-                $scope.seleccionarTienda();
-            }
-            $scope.mostrarSelectProducto = function () {
-                $scope.productoSelect = "no";
-                $scope.productoSelectTienda = "si";
-                $scope.productosByIdTienda();
-            }
-            /*cancelar update producto*/
-            $scope.cancelUpdateProducto = function () {
-                $scope.productoSelectTienda = "no";
-                $scope.productoUpdate = "no";
-            }
 
-            $scope.btnDeleteTienda="no";
-            $scope.selectTiendaUpdateProducto="no";
+                $scope.mostrarSelectTienda = function () {
+                    $scope.tiendaSelect = "no";
+                    $scope.tiendaUpdate = "si";
+                    $scope.seleccionarTienda();
+                }
+                $scope.mostrarSelectProducto = function () {
+                    $scope.productoSelect = "no";
+                    $scope.productoSelectTienda = "si";
+                    $scope.productosByIdTienda();
+                }
+                /*cancelar update producto*/
+                $scope.cancelUpdateProducto = function () {
+                    $scope.productoSelectTienda = "no";
+                    $scope.productoUpdate = "no";
+                }
+                $scope.btnDeleteTienda="no";
+                $scope.selectTiendaUpdateProducto="no";
+            }
         }
-
         /*div insert producto*/
         $scope.productoInsert = "no";
         $scope.mostrarInsertProducto = function () {
@@ -284,12 +285,10 @@ app.controller("miControlador", function ($scope, $http) {
             $scope.imagenProducto = element.files[0];
 
             var reader = new FileReader();
-
             reader.onloadend = function () {
                 $scope.savedFileBase64 = reader.result;
                 document.getElementById("imagenInsertProducto").src = $scope.savedFileBase64;
             }
-
             if ($scope.imagenProducto) {
                 reader.readAsDataURL($scope.imagenProducto);
             }
@@ -299,9 +298,9 @@ app.controller("miControlador", function ($scope, $http) {
         /*Insertar producto*/
         $scope.insertarProducto = function () {
 
+            //datos para hacer insert
             var nombre = $scope.nombreProductoNuevo;
             var tipo = $scope.tipoProductoNuevo;
-
             var precio = $scope.precioProductoNuevo;
             var unidades = $scope.unidadesProductoNuevo;
             var idTienda = $scope.tiendaSeleccionada;
@@ -316,23 +315,20 @@ app.controller("miControlador", function ($scope, $http) {
                 } else {/*Si se ha hecho el change de la imagen*/
                     var data = { "nombre": nombre, "tipo": tipo, "imagen": $scope.imagenProducto.name, "savedFileBase64": $scope.savedFileBase64 };
                 }
-
                 var url = "../../controller/cInsertarProducto.php";
-
                 $http.post(url, data).then(function (response) {
 
                     /*id del ultimo producto*/
                     $http.get("../../controller/cLastId.php").then(function (response) {
                         $scope.lastId = response.data.list.id;
 
-                        if (admin == 1) {
+                        if (admin == 1) {//si eres admin general
                             var data = { "idProducto": $scope.lastId, "idTienda": idTienda, "precio": precio, "unidades": unidades };
-                        } else {
+                        } else {//si eres adminTienda
                             var data = { "idProducto": $scope.lastId, "idTienda": adminTienda, "precio": precio, "unidades": unidades };
                         }
 
                         var url = "../../controller/cInsertarProductoTienda.php";
-
                         $http.post(url, data).then(function (response) {
                             //Mensaje
                             alert(response.data.list);
@@ -354,12 +350,11 @@ app.controller("miControlador", function ($scope, $http) {
         $scope.seleccionarTienda = function () {
 
             var url = "../../controller/cFindTienda.php";
-
-            if (admin == 1) {
+            if (admin == 1) {//si eres admin general
                 var data = { "id": $scope.tiendaSeleccionada };
                 /*Mostrar formulario*/
                 $scope.tiendaUpdate = "si";
-            } else {
+            } else {//si eres adminTienda
                 var data = { "id": adminTienda };
             }
 
@@ -379,12 +374,10 @@ app.controller("miControlador", function ($scope, $http) {
             $scope.imagenTiendaUpdate = element.files[0];
 
             var reader = new FileReader();
-
             reader.onloadend = function () {
                 $scope.savedFileBase64 = reader.result;
                 document.getElementById("imagenUpdateTienda").src = $scope.savedFileBase64;
             }
-
             if ($scope.imagenTiendaUpdate) {
                 reader.readAsDataURL($scope.imagenTiendaUpdate);
             }
@@ -394,6 +387,7 @@ app.controller("miControlador", function ($scope, $http) {
         /*Actualizar tienda*/
         $scope.actualizarTiendaAdmin = function () {
 
+            //datos para hacer el update
             var nombre = $("#nombreTiendaUpdate").val();
             var direccion = $("#direccionTiendaUpdate").val();
             var tipo = $("#tipoTiendaUpdate").val();
@@ -405,13 +399,13 @@ app.controller("miControlador", function ($scope, $http) {
                 alert("Se ha producido un error. ¡Rellena todo el formulario!");
             } else {//si no hay datos vacios
 
-                if (admin == 1) {
+                if (admin == 1) {//si eres admin general
                     if ($scope.savedFileBase64 == "") {/*Si no se ha hecho el change de la imagen*/
                         var data = { "id": $scope.tiendaSeleccionada, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdate, "savedFileBase64": $scope.savedFileBase64 };
                     } else {/*Si se ha hecho el change de la imagen*/
                         var data = { "id": $scope.tiendaSeleccionada, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdate.name, "savedFileBase64": $scope.savedFileBase64 };
                     }
-                } else {
+                } else {//si eres adminTienda
                     if ($scope.savedFileBase64 == "") {/*Si no se ha hecho el change de la imagen*/
                         var data = { "id": adminTienda, "nombre": nombre, "direccion": direccion, "tipo": tipo, "telefono": telefono, "email": email, "imagen": $scope.imagenTiendaUpdate, "savedFileBase64": $scope.savedFileBase64 };
                     } else {/*Si se ha hecho el change de la imagen*/
@@ -463,12 +457,10 @@ app.controller("miControlador", function ($scope, $http) {
             $scope.imagenProductoUpdate = element.files[0];
 
             var reader = new FileReader();
-
             reader.onloadend = function () {
                 $scope.savedFileBase64 = reader.result;
                 document.getElementById("imagenUpdateProducto").src = $scope.savedFileBase64;
             }
-
             if ($scope.imagenProductoUpdate) {
                 reader.readAsDataURL($scope.imagenProductoUpdate);
             }
@@ -478,6 +470,7 @@ app.controller("miControlador", function ($scope, $http) {
         /*Actualizar tienda*/
         $scope.actualizarProductoAdmin = function () {
 
+            //datos
             var nombre = $("#nombreProductoUpdate").val();
             var tipo = $("#tipoProductoUpdate").val();
 
@@ -491,7 +484,6 @@ app.controller("miControlador", function ($scope, $http) {
                 }
 
                 var url = "../../controller/cUpdateProducto.php";
-
                 $http.post(url, data).then(function (response) {
 
                     /*datos del producto*/
@@ -503,13 +495,12 @@ app.controller("miControlador", function ($scope, $http) {
                         alert("Se ha producido un error. ¡Rellena todo el formulario!");
                     } else {//si no hay datos vacios
 
-                        if(admin==1){
+                        if(admin==1){//si eres admin general
                             var data = { "idProducto": $scope.productoSeleccionado, "idTienda": idTiendaSeleccionada, "precio": precio, "unidades": unidades };
-                        }else{
+                        }else{//si eres adminTienda
                             var data = { "idProducto": $scope.productoSeleccionado, "idTienda": adminTienda, "precio": precio, "unidades": unidades };
                         }
                         var url = "../../controller/cUpdateProductoTienda.php";
-
                         $http.post(url, data).then(function (response) {
                             //Mensaje
                             alert(response.data.list);
@@ -531,7 +522,6 @@ app.controller("miControlador", function ($scope, $http) {
 
                 var url = "../../controller/cDeleteTienda.php";
                 var data = { 'id': $scope.tiendaSeleccionada };
-
                 $http.post(url, data).then(function (response) {
                     //Mensaje
                     alert(response.data.list);
@@ -550,7 +540,6 @@ app.controller("miControlador", function ($scope, $http) {
 
                 var url = "../../controller/cDeleteProducto.php";
                 var data = { 'id': $scope.productoSeleccionado };
-
                 $http.post(url, data).then(function (response) {
                     //Mensaje
                     alert(response.data.list);
@@ -566,16 +555,14 @@ app.controller("miControlador", function ($scope, $http) {
 
         var url = "../../controller/cVentas.php";
         var data = { "idUsuario": idUsuario };
-
         $http.post(url, data).then(function (response) {
             $scope.ventas = response.data.list;
 
+            //si no tiene ningun pedido realizado
             if ($scope.ventas.length == 0) {
                 $("#rowConsultas").html("<h2 class='text-white text-center'>¡NO TIENES PEDIDOS REALIZADOS!</h2>")
             }
-
         });
-
     }
 
     function zonaUsuario(idUsuario, admin) {
@@ -596,7 +583,6 @@ app.controller("miControlador", function ($scope, $http) {
 
             var url = "../../controller/cFindUsuario.php";
             var data = { "idUsuario": idUsuario };
-
             $http.post(url, data).then(function (response) {
                 $scope.usuario = response.data.list;
                 /*datos para añadir al formulario*/
@@ -605,33 +591,32 @@ app.controller("miControlador", function ($scope, $http) {
                 $scope.usernameUsuario = $scope.usuario.username;
                 $scope.passwordUsuario = $scope.usuario.password;
             });
+        }
 
-            /*ocultar formulario*/
-            $scope.cancelUpdateUsuario = function () {
-                $scope.formUpdateUsuario = "no";
-            }
+        /*ocultar formulario*/
+        $scope.cancelUpdateUsuario = function () {
+            $scope.formUpdateUsuario = "no";
+        }
 
-            /*update usuario*/
-            $scope.updateUsuario = function () {
+        /*update usuario*/
+        $scope.updateUsuario = function () {
 
-                /*datos del usuario*/
-                var nombre = $("#updateNombreUsuario").val();
-                var apellidos = $("#updateApellidosUsuario").val();
-                var username = $("#updateUsernameUsuario").val();
-                var password = $("#updatePasswordUsuario").val();
+            /*datos del usuario*/
+            var nombre = $("#updateNombreUsuario").val();
+            var apellidos = $("#updateApellidosUsuario").val();
+            var username = $("#updateUsernameUsuario").val();
+            var password = $("#updatePasswordUsuario").val();
 
-                if (nombre == "" || apellidos == "" || password == "") {
-                    alert("Se ha producido un error. ¡Rellena todo el formulario!");
-                } else {
-                    var url = "../../controller/cUpdateUsuario.php";
-                    var data = { "idUsuario": idUsuario, "nombre": nombre, "apellidos": apellidos, "username": username, "password": password };
-
-                    $http.post(url, data).then(function (response) {
-                        //mensaje
-                        alert(response.data.mensaje);
-                        window.location.reload();
-                    });
-                }
+            if (nombre == "" || apellidos == "" || password == "") {//si los datos estan vacios
+                alert("Se ha producido un error. ¡Rellena todo el formulario!");
+            } else {//si los datos no estan vacios
+                var url = "../../controller/cUpdateUsuario.php";
+                var data = { "idUsuario": idUsuario, "nombre": nombre, "apellidos": apellidos, "username": username, "password": password };
+                $http.post(url, data).then(function (response) {
+                    //mensaje
+                    alert(response.data.mensaje);
+                    window.location.reload();
+                });
             }
         }
 
