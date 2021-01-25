@@ -74,12 +74,9 @@ miApp.controller("miControlador", function ($scope, $http) {
 
         $http.get(url)
             .then(function (response) {
-
-                console.log(response.data.listUltimasTres);
                 
                 $scope.tiendas = response.data.listUltimasTres;
                 
-
             });
 
     }
