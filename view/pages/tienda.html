@@ -61,37 +61,35 @@
     </nav>
 
     <span id="myBtn" ng-click='modal()'><i class="shopping-cart" id="shopping-cart"></i></span>
-    <div class="container page-wrapper">
-        <div class="page-inner">
-            <div class="row">
-                <div class="el-wrapper" ng-repeat="item in listaProductos">
-                    <div class="box-up">
-                        <img class="img" ng-src="../img/{{item.imagen}}">
-                        <div class="img-info">
-                            <div class="info-inner">
-                                <span class="p-name">{{item.nombre}}</span>
-                                <span class="p-company">Stock: {{item.objProductoTienda.unidades}}</span>
-                            </div>
-                            <div class="a-size">Tienda: <span class="size"><a
-                                        href="https://google.es/search?q={{item.objProductoTienda.objTienda.nombre}}">{{item.objProductoTienda.objTienda.nombre}}</a></span>
-                            </div>
+    <div class="container">
+        <div class="row">
+            <div class="el-wrapper" ng-repeat="item in listaProductos">
+                <div class="box-up">
+                    <img class="img" ng-src="../img/{{item.imagen}}">
+                    <div class="img-info">
+                        <div class="info-inner">
+                            <span class="p-name">{{item.nombre}}</span>
+                            <span class="p-company">Stock: {{item.objProductoTienda.unidades}}</span>
+                        </div>
+                        <div class="a-size">Tienda: <span class="size"><a
+                                    href="https://google.es/search?q={{item.objProductoTienda.objTienda.nombre}}">{{item.objProductoTienda.objTienda.nombre}}</a></span>
                         </div>
                     </div>
-                    <div class="box-down">
-                        <div class="h-bg">
-                            <div class="h-bg-inner"></div>
-                        </div>
+                </div>
+                <div class="box-down">
+                    <div class="h-bg">
+                        <div class="h-bg-inner"></div>
+                    </div>
 
-                        <div class="cart">
-                            <span class="price">{{item.objProductoTienda.precio}}€</span>
-                            <span class="add-to-cart">
-                                <span class="txt" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}'
-                                    data-idProducto='{{item.objProductoTienda.idProducto}}'
-                                    data-idTienda='{{item.objProductoTienda.idTienda}}'
-                                    data-precio='{{item.objProductoTienda.precio}}' ng-click="addToCart()">Añadir al
-                                    carrito</span>
-                            </span>
-                        </div>
+                    <div class="cart">
+                        <span class="price">{{item.objProductoTienda.precio}}€</span>
+                        <span class="add-to-cart">
+                            <span class="txt" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}'
+                                data-idProducto='{{item.objProductoTienda.idProducto}}'
+                                data-idTienda='{{item.objProductoTienda.idTienda}}'
+                                data-precio='{{item.objProductoTienda.precio}}' ng-click="addToCart()">Añadir al
+                                carrito</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -141,7 +139,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="myModal2" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
