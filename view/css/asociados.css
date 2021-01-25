@@ -42,9 +42,14 @@
 }
 
 .types {
-    background-color: white;
+    background-color: #1e72bc;
+    color: white;
     border-radius: 8px;
     margin: 2% 5% 1% 5%;
-    padding: .01%;
+    padding: 0.5%;
     transition: .5s;
+}
+
+.types:hover {
+    transform: scale(1.1);
 }
