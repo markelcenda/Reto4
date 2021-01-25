@@ -2,16 +2,16 @@ let myApp = angular.module('app', []);
 
 myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
     $scope.listaAsociados = [];
+    $scope.listaTipos = [];
     $scope.filter = "";
 
+    // Carga todos los asociados y los tipos sin repetirse
     $scope.load = () => {
         $http.get('../../controller/cTiendas.php').then(function (response) {
 
             $scope.listaAsociados = response.data.list;
 
             var lista = response.data.list;
-
-            $scope.listaTipos = [];
 
             $scope.listaTipos.push({ tipo: lista[0].tipo });
 
