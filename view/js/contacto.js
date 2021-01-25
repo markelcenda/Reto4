@@ -1,3 +1,4 @@
+//Envia el comentario escrito en el formulario de contacto a un correo electronico
 function enviarComentario(){
 
     var asunto=$("#asunto").val();
