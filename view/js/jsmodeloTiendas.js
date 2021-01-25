@@ -25,76 +25,87 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         var data={"idTienda": idTienda};
         $http.post(url, data).then(function (response) {
             $scope.listaProductos = response.data.productos;
+            console.log($scope.listaProductos);
 
-            //guardar en varibles datos de la tienda para utilizar en el footer*/
-            $scope.nombreTienda=$scope.listaProductos[0].objTienda.nombre;
-            $scope.direccionTienda=$scope.listaProductos[0].objTienda.direccion;
-            $scope.emailTienda=$scope.listaProductos[0].objTienda.email;
-            $scope.telefonoTienda=$scope.listaProductos[0].objTienda.telefono;
+            if($scope.listaProductos.length==0){//si no hay productos en la tienda
+                //añadir imagen de error
+                $("#body").css("background-image", "url('../img/error.jpg')");
+                $("#body").css("background-size", "cover");
+                $("#body").css("background-position", "center");
+                $("#body").html("");
 
-            var numTiendas=$scope.listaProductos.length;
+            }else{//si hay productos en la tienda
 
-            /*cargar imagen de la tienda*/
-            imagen="<img src='../img/" + $scope.listaProductos[numTiendas-1].objTienda.imagen + "' class='img-fluid' alt=''>";
-            $("#insertarLogo").html(imagen);
+                //guardar en varibles datos de la tienda para utilizar en el footer*/
+                $scope.nombreTienda=$scope.listaProductos[0].objTienda.nombre;
+                $scope.direccionTienda=$scope.listaProductos[0].objTienda.direccion;
+                $scope.emailTienda=$scope.listaProductos[0].objTienda.email;
+                $scope.telefonoTienda=$scope.listaProductos[0].objTienda.telefono;
 
-            for(let i=0; i<$scope.listaProductos.length; i++){
+                var numTiendas=$scope.listaProductos.length;
 
-                if($scope.listaProductos[i].objTienda.tipo=="Bicicletas"){
-                    $('#imagenTienda').css("background-image", "url(../img/bicicletas.jpg)"); 
-                }else if($scope.listaProductos[i].objTienda.tipo=="Calzado"){
-                    $('#imagenTienda').css("background-image", "url(../img/zapatillas.jpg)"); 
+                /*cargar imagen de la tienda*/
+                imagen="<img src='../img/" + $scope.listaProductos[numTiendas-1].objTienda.imagen + "' class='img-fluid' alt=''>";
+                $("#insertarLogo").html(imagen);
+
+                for(let i=0; i<$scope.listaProductos.length; i++){
+
+                    if($scope.listaProductos[i].objTienda.tipo=="Bicicletas"){
+                        $('#imagenTienda').css("background-image", "url(../img/bicicletas.jpg)"); 
+                    }else if($scope.listaProductos[i].objTienda.tipo=="Calzado"){
+                        $('#imagenTienda').css("background-image", "url(../img/zapatillas.jpg)"); 
+                    }
+                    else if($scope.listaProductos[i].objTienda.tipo=="Joyeria"){
+                        $('#imagenTienda').css("background-image", "url(../img/joyeria.jpg)"); 
+                    }else if($scope.listaProductos[i].objTienda.tipo=="Moda"){
+                        $('#imagenTienda').css("background-image", "url(../img/moda.jpg)"); 
+                    }else if($scope.listaProductos[i].objTienda.tipo=="Pintura"){
+                        $('#imagenTienda').css("background-image", "url(../img/pintura.jpg)"); 
+                    }else{
+                        $('#imagenTienda').css("background-image", "url(../img/comercio.jpg)"); 
+                        
+                    }
                 }
-                else if($scope.listaProductos[i].objTienda.tipo=="Joyeria"){
-                    $('#imagenTienda').css("background-image", "url(../img/joyeria.jpg)"); 
-                }else if($scope.listaProductos[i].objTienda.tipo=="Moda"){
-                    $('#imagenTienda').css("background-image", "url(../img/moda.jpg)"); 
-                }else if($scope.listaProductos[i].objTienda.tipo=="Pintura"){
-                    $('#imagenTienda').css("background-image", "url(../img/pintura.jpg)"); 
-                }else{
-                    $('#imagenTienda').css("background-image", "url(../img/comercio.jpg)"); 
-                    
-                }
+
+                /*comprobar si hay algun usuario conectado*/
+                var url = "../../controller/cLoggedVerify.php";
+                $http.get(url).then(function(response){
+
+                    if (response.data.mensaje==="logged"){
+
+                        setStock();
+
+                        /*id del usuario paraa utilizar en insertVentas*/
+                        $scope.idUsuario=response.data.id;
+
+                        /*mostrar carrito y quitar btnLogin*/
+                        $("#carrito").show();
+                        $("#botonLogin").hide();
+
+                        //añadir los 2 iconos nuevos
+                        var iconoUsuario="";
+                        iconoUsuario+="<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
+                        $("#iconoUsuario").html(iconoUsuario);
+
+                        var iconoLogout="";
+                        iconoLogout+="<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
+                        
+                        $("#iconoLogout").html(iconoLogout);
+                        
+                        /*al hacer click en btnLogout*/
+                        $("#btnLogout").click(function(){
+                            logout();
+                        });
+
+                        /*al hacer click en paginaUsuario*/
+                        $("#paginaUsuario").click(function(){
+                            window.location.href="usuario.html";
+                        });    
+                    }else{
+                        $("#carrito").hide();
+                    }
+                });
             }
-
-            /*comprobar si hay algun usuario conectado*/
-            var url = "../../controller/cLoggedVerify.php";
-            $http.get(url).then(function(response){
-
-                if (response.data.mensaje==="logged"){
-
-                    setStock();
-
-                    /*id del usuario paraa utilizar en insertVentas*/
-                    $scope.idUsuario=response.data.id;
-
-                    /*mostrar carrito y quitar btnLogin*/
-                    $("#carrito").show();
-                    $("#botonLogin").hide();
-
-                    //añadir los 2 iconos nuevos
-                    var iconoUsuario="";
-                    iconoUsuario+="<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
-                    $("#iconoUsuario").html(iconoUsuario);
-
-                    var iconoLogout="";
-                    iconoLogout+="<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
-                    
-                    $("#iconoLogout").html(iconoLogout);
-                    
-                    /*al hacer click en btnLogout*/
-                    $("#btnLogout").click(function(){
-                        logout();
-                    });
-
-                    /*al hacer click en paginaUsuario*/
-                    $("#paginaUsuario").click(function(){
-                        window.location.href="usuario.html";
-                    });    
-                }else{
-                    $("#carrito").hide();
-                }
-            });
         })
     }
 
@@ -102,12 +113,10 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     $scope.login=function(){
 
         var username=$("#usuario").val();
-        var password=$("#password").val();
-                
+        var password=$("#password").val();     
         var url = "../../controller/cLogin.php";
         var data = { 'username':username, 'password':password};
-
-                
+ 
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
@@ -147,11 +156,9 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 
                 }else {
                     alert(result.mensaje);  
-                }
-                            
+                }           
             })
             .catch(error => console.error('Error status:', error));	
-
     }
 
     /*Funcion logout*/
@@ -344,6 +351,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         for (let i = 0; i < $scope.cart.length; i++) {
             localStorageArray.push(JSON.parse(localStorage[0])[i]);
         }
+        //variable para utilizar en el contador
         sumaContador=0;
         if(localStorage.length==0){
             $scope.contador=0;
