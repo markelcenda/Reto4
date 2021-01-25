@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	loggedVerify();		
 })
 
+//Verifica si existe un usuario con la sesion iniciada
 function loggedVerify(){
 
 	var url = "../../controller/cLoggedVerify.php";
@@ -38,7 +39,7 @@ function loggedVerify(){
 	})
 	.catch(error => console.error('Error status:', error));	  
 }
-
+//Inicia sesion
 function login(){
     var username=$("#username").val();
     var password=$("#password").val();
@@ -88,6 +89,7 @@ function login(){
 	.catch(error => console.error('Error status:', error));	
 }
 
+//Cierra sesion
 function logout(){
 
     var url = "../../controller/cLogout.php";

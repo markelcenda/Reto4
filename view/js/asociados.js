@@ -36,6 +36,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         })
     }
 
+    //Filtro
     $scope.typeFilter = () => {
         if (event.target.innerText != "Todos") {
             $scope.filter = event.target.innerText;

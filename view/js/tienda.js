@@ -2,6 +2,7 @@ let myApp = angular.module('app', []);
 
 myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
     $scope.listaProductos = [];
+    //Mira si hay productos en el carrito
     if (localStorage.getItem('0') != null) {
         $scope.cart = JSON.parse(localStorage.getItem('0'));
     } else {
@@ -9,6 +10,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
     }
     calcTotal();
 
+    //Carga todos los prodcutos
     $scope.load = () => {
         $http.get('../../controller/cProductos.php').then(function (response) {
             $scope.listaProductos = response.data.list;
@@ -22,6 +24,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         });
     }
 
+    //Añade los productos seleccionados al carrito
     $scope.addToCart = () => {
         let idProducto = event.target.dataset.idproducto;
         let idTienda = event.target.dataset.idtienda;
@@ -67,6 +70,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         localStorage.setItem(0, angular.toJson($scope.cart));
     }
 
+    //Abre el modal con la informacion del carrito
     $scope.modal = () => {
         var modal = document.getElementById("myModal");
         var modal2 = document.getElementById("myModal2");
@@ -99,6 +103,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         }
     }
 
+    //Ejecuta la compra
     $scope.buy = () => {
         
         $http.get("../../controller/cLoggedVerify.php").then(function (response) {
@@ -134,6 +139,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         });
     }
 
+    //Limpia el carrito
     $scope.clearCart = () => {
         $scope.cart = [];
         localStorage.clear();
@@ -141,6 +147,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         $scope.load();
     }
 
+    //Calcula el precio total de los productos del carrito
     function calcTotal() {
         $scope.total = 0;
         for (let i = 0; i < $scope.cart.length; i++) {
@@ -149,6 +156,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         }
     }
 
+    //Muestra el stock de cada producto
     function setStock() {
         localStorageArray = []
         for (let i = 0; i < $scope.cart.length; i++) {
