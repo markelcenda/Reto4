@@ -52,6 +52,7 @@ app.controller("miControlador", function($scope,$http){
                 //Si eres administrador general
                  zonaAdmin();
             }
+            /*opciones que tiene cualquier usuario*/
             mostrarVentas(response.data.id);
             zonaUsuario(response.data.id, response.data.admin);
         }else{

@@ -188,7 +188,6 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     $scope.contador=0;
     /*añadir al carro*/
     $scope.addToCart = (position) => {
-        $scope.contador++;
         let idProducto = event.target.dataset.idproducto;
         let idTienda = event.target.dataset.idtienda;
         let imgProducto = event.target.dataset.imagen;
@@ -353,6 +352,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 for (let j = 0; j < $scope.listaProductos.length; j++) {
                     if ($scope.cart[i].idProducto == $scope.listaProductos[j].idProducto) {
                         $scope.listaProductos[j].unidades = $scope.listaProductos[j].unidades - localStorageArray[i].cantidad;
+                        $scope.contador=Number(localStorageArray[j].cantidad+localStorageArray[j].cantidad);
                     }
                 }
             }
