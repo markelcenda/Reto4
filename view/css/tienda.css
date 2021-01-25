@@ -2,7 +2,7 @@ body {
     background-color: #ebebeb;
 }
 
-.input-group button{
+.input-group button {
     background-color: #1e72bc;
     color: white;
     font-weight: 200;
@@ -11,13 +11,12 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
-.input-group button:hover{
+.input-group button:hover {
     background-color: white;
     color: #1e72bc;
     transform: scale(1.1);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.85);
 }
-
 
 .el-wrapper {
     width: 300px;
@@ -186,21 +185,20 @@ body {
     display: inline-flex;
     width: 64px;
     height: 64px;
-    margin: 1% 0 0 88%;
+    margin: 1% 0 0 90%;
     transition: .5s;
     cursor: pointer;
     background-color: #1e72bc;
     color: white;
     border-radius: 50%;
     padding: 15px;
-    position: fixed;
-    
-} 
+    margin-right: 15px;
+}
 
-#myBtn i{
+#myBtn i {
     margin: auto;
     font-size: 125%;
-} 
+}
 
 #myBtn:hover {
     transform: scale(1.15);
@@ -277,6 +275,7 @@ body {
     align-self: center;
 }
 
+
 @media screen and (max-width: 420px) {
     #myModal .btn {
         width: 100%;
@@ -302,5 +301,9 @@ body {
     .el-wrapper {
         width: 290px;
         margin: 30px auto;
+    }
+
+    #myBtn {
+        margin: 1% 0 0 82%;
     }
 }
