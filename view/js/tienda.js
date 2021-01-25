@@ -14,6 +14,12 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
             $scope.listaProductos = response.data.list;
             setStock();
         })
+
+        $http.get("../../controller/cLoggedVerify.php").then(function (response) {
+            if (response.data.mensaje === "logged") {
+                $scope.idUsuario = response.data.id;
+            }
+        });
     }
 
     $scope.addToCart = () => {
@@ -24,6 +30,8 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         let nombre = event.target.dataset.nombre;
         let found = false;
 
+        $scope.idProductoVenta = idProducto;
+        $scope.precioProductoVenta = precio;
 
         if ($scope.cart.length == 0) {
             if ($scope.listaProductos[idProducto - 1].objProductoTienda.unidades > 0) {
@@ -92,16 +100,38 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
     }
 
     $scope.buy = () => {
-        for (let i = 0; i < $scope.cart.length; i++) {
-            var data = { 'idProducto': $scope.cart[i].idProducto, 'idTienda': $scope.cart[i].idTienda, "cantidad": $scope.cart[i].cantidad };
-            $http.post('../../controller/cUpdateStock.php', data).then(function () {
-            });
+        
+        $http.get("../../controller/cLoggedVerify.php").then(function (response) {
+            $scope.idUsuario = response.data.id;
+
+            if ($scope.idUsuario != undefined) {
+                for (let i = 0; i < $scope.cart.length; i++) {
+                    for (let j = 0; j < $scope.cart.length; j++) {
+                        var fecha = new Date();
+                        var año = fecha.getFullYear();
+                        var mes = Number(fecha.getMonth() + 1);
+                        var dia = fecha.getDate();
+                        var fechaCompra = año + "-" + mes + "-" + dia;
+
+                        var data = { 'idProducto': $scope.cart[j].idProducto, 'idTienda': $scope.cart[j].idTienda, "cantidad": $scope.cart[j].cantidad };
+                        var data2 = { "idProducto": $scope.cart[j].idProducto, "idUsuario": $scope.idUsuario,"fecha": fechaCompra, "precio": $scope.precioProductoVenta, "unidades": $scope.cart[j].cantidad, "idTienda": $scope.cart[j].idTienda };
+
+                        $http.post('../../controller/cUpdateStock.php', data).then(function () {
+                        });
+
+                        $http.post('../../controller/cInsertVentas.php', data2).then(function () {
+                        });
+                    }
+                    alert("Gracias por comprar");
+                    $scope.cart = [];
+                    localStorage.clear();
+                    $scope.load();
+                }
+            } else {
+                alert("Tienes que iniciar sesion para comprar");
+            }
             document.getElementById("myModal").style.display = "none"
-            alert("Gracias por comprar");
-            $scope.cart = [];
-            localStorage.clear();
-            $scope.load();
-        }
+        });
     }
 
     $scope.clearCart = () => {

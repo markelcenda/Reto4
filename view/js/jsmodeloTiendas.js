@@ -185,7 +185,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                         
     } 
 
-    $scope.contador=0;
+    //$scope.contador=0;
     /*añadir al carro*/
     $scope.addToCart = (position) => {
         let idProducto = event.target.dataset.idproducto;
@@ -194,6 +194,8 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         let precio = event.target.dataset.precio;
         let nombre = event.target.dataset.nombre;
         let found = false;
+
+        $scope.contador++;
         
         if ($scope.cart.length == 0) {
             if ($scope.listaProductos[position].unidades > 0) {
@@ -339,21 +341,27 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     /*local storage carro*/
     function setStock() {
         localStorageArray = [];
-        if(localStorage.length==0){
-            $scope.contador=0;
-        }else{
-            $scope.contador=Number(localStorage.length+1);
-        }
         for (let i = 0; i < $scope.cart.length; i++) {
             localStorageArray.push(JSON.parse(localStorage[0])[i]);
         }
-        if (localStorage.length != 0) {
+        sumaContador=0;
+        if(localStorage.length==0){
+            $scope.contador=0;
+        }else if (localStorage.length != 0){
             for (let i = 0; i < $scope.cart.length; i++) {
                 for (let j = 0; j < $scope.listaProductos.length; j++) {
                     if ($scope.cart[i].idProducto == $scope.listaProductos[j].idProducto) {
                         $scope.listaProductos[j].unidades = $scope.listaProductos[j].unidades - localStorageArray[i].cantidad;
-                        $scope.contador=Number(localStorageArray[j].cantidad+localStorageArray[j].cantidad);
                     }
+                }
+            }
+            //guardar el contador cuando recargas la pagina y cambias de tienda
+            for(let x=0; x<localStorageArray.length; x++){
+                if(localStorageArray.length==1){
+                    $scope.contador=Number(localStorageArray[x].cantidad);
+                }else{
+                    sumaContador=sumaContador+Number(localStorageArray[x].cantidad);
+                    $scope.contador=sumaContador;
                 }
             }
         }
