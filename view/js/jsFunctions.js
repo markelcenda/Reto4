@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function (event) {
 
+    aos_init();
+
     var btnLeerMas = document.querySelectorAll(".leerMas");
 
     for (let i = 0; i < btnLeerMas.length; i++) {
@@ -11,6 +13,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
     window.onscroll = function () { scrollFunction() };
 
 });
+//Animaciones aos
+function aos_init() {
+
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+}
 
 //Carga los textos necesario al modal de carusel cuando la pantlla tiene un ancho menor a 1120px
 function leerMas() {

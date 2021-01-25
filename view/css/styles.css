@@ -529,7 +529,7 @@ nav form .sesion {
     }
 }
 
-@media(max-width: 415px) {
+@media(max-width: 450px) {
     #seccionInformacion .info p {
         font-size: 99%;
         margin-top: 19px;
