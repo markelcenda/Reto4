@@ -74,13 +74,9 @@ miApp.controller("miControlador", function ($scope, $http) {
 
         $http.get(url)
             .then(function (response) {
-                
                 $scope.tiendas = response.data.listUltimasTres;
-                
             });
-
     }
-
 
     //Funcion de registro de usuario
     $scope.registrarse = function () {
