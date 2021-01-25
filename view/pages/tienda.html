@@ -60,10 +60,15 @@
         </div>
     </nav>
 
-    <span id="myBtn" ng-click='modal()'><i class="shopping-cart" id="shopping-cart"></i></span>
+    <div class="input-group">
+        <input type="search" class="form-control rounded col-6 mt-auto mb-5 ml-auto" ng-model="textoBusqueda" placeholder="Buscar Productos" aria-label="Search" aria-describedby="search-addon">
+        <button type="button" class="btn mr-auto mb-5 " data-toggle="popover" title="Información" data-content="!Encuentra el producto perfecto!"><i class="fa fa-search"></i></button>
+      </div>
+
+    <span id="myBtn" ng-click='modal()'><i class="fas fa-shopping-cart shopping-cart"></i></span>
     <div class="container">
-        <div class="row">
-            <div class="el-wrapper" ng-repeat="item in listaProductos">
+        <div class="row" >
+            <div class="el-wrapper" ng-repeat="item in listaProductos | filter:textoBusqueda" ng-init="position=$index">
                 <div class="box-up">
                     <img class="img" ng-src="../img/{{item.imagen}}">
                     <div class="img-info">
