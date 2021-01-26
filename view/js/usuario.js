@@ -63,24 +63,6 @@ app.controller("miControlador", function ($scope, $http) {
         });
     }
 
-    // cargarTienda();
-
-    // function cargarTienda() {
-
-    //     if (admin == 1) {//si eres admin general
-    //         $scope.nombreTiendaUpdate = response.data.list.nombre;
-    //     } else {//si eres adminTienda
-    //         var url = "../../controller/cFindTienda.php";
-    //         var data = { "id": adminTienda };
-    //         $http.post(url, data).then(function (response) {
-    //             /*valores para añadir al formulario*/
-    //             $scope.nombreTiendaUpdate = response.data.list.nombre;
-    //         });
-
-    //     }
-
-    // }
-
     /*Funcion logout*/
     function logout() {
 
@@ -213,7 +195,6 @@ app.controller("miControlador", function ($scope, $http) {
                 } else {
                     alert("¡Datos repetidos!");
                 }
-
             }
         }
         funcionesAdministradores(admin, adminTienda);
@@ -584,10 +565,10 @@ app.controller("miControlador", function ($scope, $http) {
             /*al hacer click en el boton delete*/
             $("#deletebtnProducto").click(function () {
 
-                if(admin==1){
+                if(admin==1){//si eres admin
                     var url = "../../controller/cDeleteProductoAdmin.php";
                     var data = { 'id': $scope.productoSeleccionado };
-                }else{
+                }else{//si eres adminTienda
                     var url = "../../controller/cDeleteProductoAdminTienda.php";
                     var data = { 'idProducto': $scope.productoSeleccionado, "idTienda": adminTienda};
                 }
