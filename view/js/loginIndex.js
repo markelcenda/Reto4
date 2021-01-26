@@ -68,6 +68,7 @@ function login() {
 				//añadir los 2 iconos nuevos
 				var newRow = "";
 				newRow = "<div class='row justify-content-center'>";
+				newRow += "<p class='text-white m-auto'>"+result.username+"</p>";
 				newRow += "<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
 				newRow += "<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
 				newRow += "</div>";
