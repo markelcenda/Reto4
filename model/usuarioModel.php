@@ -208,6 +208,24 @@ class usuarioModel extends usuarioClass
         $this->CloseConnect();
     }
 
+    /*Convierte al administrador de una tienda que se acaba de eliminar en usuario normal*/
+    public function adminTiendaNull(){
+
+        $this->OpenConnect();
+
+        $idTienda = $this->getAdminTienda();
+
+        $sql = "CALL spModificarAdminTiendaAlEliminarTienda($idTienda)";
+
+        if ($this->link->query($sql)) {
+            return "correcto";
+        } else {
+            return "error";
+        }
+
+        $this->CloseConnect();
+    }
+
     /*Lista de todos los usuarios AdminTienda*/
     public function setUsuariosAdminTienda()
     {
