@@ -31,14 +31,17 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         let imgProducto = event.target.dataset.imagen;
         let precio = event.target.dataset.precio;
         let nombre = event.target.dataset.nombre;
+        let tienda = event.target.dataset.tienda;
         let found = false;
+
+        console.log(tienda);
 
         $scope.idProductoVenta = idProducto;
         $scope.precioProductoVenta = precio;
 
         if ($scope.cart.length == 0) {
             if ($scope.listaProductos[idProducto - 1].objProductoTienda.unidades > 0) {
-                $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio });
+                $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda});
                 $scope.listaProductos[idProducto - 1].objProductoTienda.unidades--;
                 calcTotal();
             } else {
@@ -57,7 +60,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
             }
             if (!found) {
                 if ($scope.listaProductos[idProducto - 1].objProductoTienda.unidades > 0) {
-                    $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio });
+                    $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda});
                     $scope.listaProductos[idProducto - 1].objProductoTienda.unidades--;
                     calcTotal();
                 }
