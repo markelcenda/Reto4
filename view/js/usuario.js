@@ -26,7 +26,7 @@ app.controller("miControlador", function ($scope, $http) {
                 //añadir los 2 iconos nuevos
                 var newRow = "";
                 newRow = "<div class='row justify-content-center'>";
-                newRow += "<p class='text-white m-auto'>"+response.data.username+"</p>";
+                newRow += "<p class='text-white mt-auto mb-auto ml-auto'>"+response.data.username+"</p>";
                 newRow += "<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
                 newRow += "<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
                 newRow += "</div>";
