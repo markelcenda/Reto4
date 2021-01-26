@@ -135,7 +135,7 @@
         
                         <form class='m-2' ng-show="productoInsert=='si'">
         
-                            <div class="form-row">
+                            <div class="form-row" ng-show="productoAdmin=='si'">
                                 <div class="col-lg-6">
                                     <label for="nombre">Nombre<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="nombre" id="nombreProducto" ng-model="nombreProductoNuevo" placeholder="Nombre...">
@@ -145,8 +145,22 @@
                                     <input type="text" class="form-control" name="tipo" id="tipoProducto" ng-model="tipoProductoNuevo" placeholder="Tipo...">
                                 </div>
                             </div>
+
+                            <div class="form-row" ng-show="selectProductosAdminTienda=='si'">
+                                <div class="col-lg-12">
+                                    <div class="text-center">
+                                        <label for="productos">Productos<span class="text-danger">*</span></label>
+                                        <br>
+                                        <select id="productos" ng-model="productoSeleccionado" ng-change="mostrarInsertProductoAdminTienda()">
+                                            <option value="" selected>Seleccionar Producto</option>
+                                            <option ng-repeat="item in productos" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                            </div>
         
-                            <div class="form-row">
+                            <div class="form-row" ng-show="productoAdminTienda=='si'">
                                 <div class="col-lg-6">
                                     <label for="precio">Precio<span class="text-danger">*</span></label>
                                     <input type="number" class="form-control" name="precio" id="precioProducto" ng-model="precioProductoNuevo" placeholder="Precio..." min="0">
@@ -158,15 +172,7 @@
                             </div>
         
                             <div class="form-row justify-content-center">
-                                <div class="col-lg-12" ng-show="divSelectTiendas=='si'">
-                                    <label for="tiendas">Tienda<span class="text-danger">*</span></label>
-                                    <br>
-                                    <select id="tiendas" ng-model="tiendaSeleccionada" >
-                                        <option value="" selected>Seleccionar tienda</option>
-                                        <option ng-repeat="item in tiendas" value="{{item.id}}">{{item.nombre}}</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-12 m-2">
+                                <div class="col-lg-12 m-2" ng-show="productoAdmin=='si'">
         
                                     <div class="wrapper">
                                         <div class="file-upload" id="fileProducto">
@@ -178,7 +184,7 @@
                                 </div>
                             </div>
         
-                            <div class="form-row">
+                            <div class="form-row" ng-show="productoAdmin=='si'">
                                 <div class="col-lg-12 mt-3">
         
                                     <div class="text-center">
@@ -188,7 +194,7 @@
                                 </div>
                             </div>
         
-                            <div class="text-center m-2">
+                            <div class="text-center m-2" ng-show="btnInsertProductos=='si'">
                                 <button type="button" id="btnInsertarProducto" class="btn btn-light" ng-click="insertarProducto()"><i class="fas fa-plus"></i></button>
                                 <button type="button" id="btnCancelarInsertarProducto" class="btn btn-light" ng-click="cancelarInsertarProducto()"><i class="far fa-times-circle"></i></button>
                             </div>
@@ -296,7 +302,7 @@
         
                         <form class='m-2' ng-show="productoUpdate=='si'">
         
-                            <div class="form-row">
+                            <div class="form-row" ng-show="updateProductoAdmin=='si'">
                                 <div class="col-lg-6">
                                     <label for="nombre">Nombre<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="nombre" id="nombreProductoUpdate" ng-model="nombreProductoUpdate">
@@ -307,7 +313,7 @@
                                 </div>
                             </div>
         
-                            <div class="form-row">
+                            <div class="form-row" ng-show="updateProductoAdminTienda=='si'">
                                 <div class="col-lg-6">
                                     <label for="precio">Precio<span class="text-danger">*</span></label>
                                     <input type="number" class="form-control" name="precio" id="precioProductoUpdate" ng-model="precioProductoUpdate" min="0">
@@ -318,15 +324,7 @@
                                 </div>
                             </div>
         
-                            <div class="form-row">
-                                <div class="col-lg-6" ng-show="selectTiendaUpdateProducto=='si'">
-                                    <label for="tiendasUpdate3">Tienda<span class="text-danger">*</span></label>
-                                    <br>
-                                    <select id="tiendasUpdate3">
-                                        <option value="{{idTienda}}">{{idTienda}} -- {{nombreTienda}}</option>
-                                        <option ng-repeat="item in tiendas" ng-if="idTienda!=item.id" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
-                                    </select>
-                                </div>
+                            <div class="form-row" ng-show="updateProductoAdmin=='si'">
                                 <div class="col-lg-12 m-2">
         
                                     <div class="wrapper">
@@ -339,7 +337,7 @@
                                 </div>
                             </div>
         
-                            <div class="form-row">
+                            <div class="form-row" ng-show="updateProductoAdmin=='si'">
                                 <div class="col-lg-12 mt-3">
         
                                     <div class="text-center">

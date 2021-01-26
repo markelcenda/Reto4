@@ -77,6 +77,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
 
                         /*id del usuario paraa utilizar en insertVentas*/
                         $scope.idUsuario=response.data.id;
+                        console.log($scope.idUsuario);
 
                         /*mostrar carrito y quitar btnLogin*/
                         $("#carrito").show();
