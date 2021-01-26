@@ -566,8 +566,14 @@ app.controller("miControlador", function ($scope, $http) {
             /*al hacer click en el boton delete*/
             $("#deletebtnProducto").click(function () {
 
-                var url = "../../controller/cDeleteProducto.php";
-                var data = { 'id': $scope.productoSeleccionado };
+                if(admin==1){
+                    var url = "../../controller/cDeleteProductoAdmin.php";
+                    var data = { 'id': $scope.productoSeleccionado };
+                }else{
+                    var url = "../../controller/cDeleteProductoAdminTienda.php";
+                    var data = { 'idProducto': $scope.productoSeleccionado, "idTienda": adminTienda};
+                }
+                
                 $http.post(url, data).then(function (response) {
                     //Mensaje
                     alert(response.data.list);
