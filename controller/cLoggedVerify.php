@@ -11,7 +11,6 @@ if (isset($_SESSION['username'])){
     $response["nombre"]=$_SESSION['nombre'];
     $response["apellidos"]=$_SESSION['apellidos'];
     $response["username"]=$_SESSION['username'];
-    $response["password"]=$_SESSION['password'];
     $response["admin"]=$_SESSION['admin'];
     $response["adminTienda"]=$_SESSION['adminTienda'];
 
