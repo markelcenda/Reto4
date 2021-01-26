@@ -128,12 +128,10 @@ app.controller("miControlador", function ($scope, $http) {
             $scope.imagenTienda = element.files[0];
 
             var reader = new FileReader();
-
             reader.onloadend = function () {
                 $scope.savedFileBase64 = reader.result;
                 document.getElementById("imagenInsertTienda").src = $scope.savedFileBase64;
             }
-
             if ($scope.imagenTienda) {
                 reader.readAsDataURL($scope.imagenTienda);
             }
@@ -318,7 +316,7 @@ app.controller("miControlador", function ($scope, $http) {
         /*Insertar producto*/
         $scope.insertarProducto = function () {
 
-            if(admin==1){
+            if(admin==1){//si eres admin general solo pudes añadir el nombre, tipo e imagen del producto
 
                 var nombre = $scope.nombreProductoNuevo;
                 var tipo = $scope.tipoProductoNuevo;
@@ -340,20 +338,18 @@ app.controller("miControlador", function ($scope, $http) {
                     });
             }
 
-            }else{
+            }else{//si eres adminTienda solo puedes añadir el precio y unidades del producto
 
                 var precio = $scope.precioProductoNuevo;
                 var unidades = $scope.unidadesProductoNuevo;
 
-                //si los datos estan vavios
+                //si los datos estan vacios
                 if (precio == "" || unidades == "") {
                     alert("Se ha producido un error. ¡Rellena todo el formulario!");
                 } else {//si no estan vacios
 
-                    
                     var data = { "idProducto": $scope.productoSeleccionado, "idTienda": adminTienda, "precio": precio, "unidades": unidades };
                     var url = "../../controller/cInsertarProductoTienda.php";
-                    console.log(data);
                     $http.post(url, data).then(function (response) {
                         //Mensaje
                         alert(response.data.list);
@@ -458,11 +454,11 @@ app.controller("miControlador", function ($scope, $http) {
         $scope.productoUpdate = "no";
         $scope.seleccionarProducto = function () {
 
-            if(admin==1){
+            if(admin==1){//si eres admin mostrar los divs correspondientes
                 $scope.updateProductoAdmin="si";
                 $scope.updateProductoAdminTienda="no";
                 $scope.productoUpdate="si";
-            }else{
+            }else{//si eres adminTienda mostrar los div correspondientes
                 $scope.updateProductoAdminTienda="si";
                 $scope.updateProductoAdmin="no";
                 $scope.productoUpdate="si";
@@ -502,8 +498,7 @@ app.controller("miControlador", function ($scope, $http) {
         /*Actualizar tienda*/
         $scope.actualizarProductoAdmin = function () {
 
-            if(admin==1){
-
+            if(admin==1){//si eres admin general solo pudes actualizar el nombre, tipo e imagen del producto
                 //datos
                 var nombre = $("#nombreProductoUpdate").val();
                 var tipo = $("#tipoProductoUpdate").val();
@@ -523,7 +518,7 @@ app.controller("miControlador", function ($scope, $http) {
                         window.location.reload();    
                     });
                 }
-            }else{
+            }else{//si eres adminTienda solo pudes actualizar el precio y unidades del producto
 
                 /*datos del producto*/
                 var precio = $("#precioProductoUpdate").val();
