@@ -204,7 +204,7 @@ body {
     transform: scale(1.15);
 }
 
-#myModal {
+.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -217,18 +217,18 @@ body {
     overflow-y: initial !important;
 }
 
-#myModal h1, p {
+.modal h1, p {
     color: black;
     text-align: center;
 }
 
-#myModal .modal-content {
+.modal-content {
     background-color: #fefefe;
     margin: 2% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 40%;
-    min-width: 350px;
+    width: 40% !important;
+    min-width: 440px !important;
 }
 
 .close {
@@ -245,7 +245,7 @@ body {
     cursor: pointer;
 }
 
-#myModal .btn {
+.modal .btn {
     align-self: center;
     background-color: red;
     border: 1px solid red;
@@ -253,18 +253,18 @@ body {
     margin: 1%;
 }
 
-#myModal .btn:hover {
+.modal .btn:hover {
     color: red;
     background-color: white;
 }
 
-#myModal .btn:not(:first-child) {
+.modal .btn:not(:first-child) {
     background-color: #1e72bc;
     border: 1px solid #1e72bc;
     white-space: nowrap;
 }
 
-#myModal .btn:not(:first-child):hover {
+.modal .btn:not(:first-child):hover {
     color: #1e72bc;
     background-color: white;
 }
@@ -273,6 +273,31 @@ body {
     height: 80%;
     width: 80%;
     align-self: center;
+}
+
+.deleteBtn{
+    cursor: pointer;
+   
+}
+
+.deleteBtn:hover{
+    color: red !important;
+    background-color: none;
+}
+
+.cantidadBtn{
+    margin-left: -50em ;
+    border: 1px solid #1e72bc !important;
+    color: white !important;
+    background-color: #1e72bc !important;
+    width: 50px !important;
+    margin: 10% !important;
+    height: 30px !important;
+}
+
+.cantidadBtn:hover{
+    background-color: white !important;
+    color: #1e72bc !important;
 }
 
 

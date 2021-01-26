@@ -26,7 +26,7 @@ app.controller("miControlador", function ($scope, $http) {
                 //añadir los 2 iconos nuevos
                 var newRow = "";
                 newRow = "<div class='row justify-content-center'>";
-                newRow += "<p class='text-white mt-auto mb-auto ml-auto'>"+response.data.username+"</p>";
+                newRow += "<p class='text-white mt-auto mb-auto ml-auto'>" + response.data.username + "</p>";
                 newRow += "<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
                 newRow += "<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
                 newRow += "</div>";
@@ -62,6 +62,24 @@ app.controller("miControlador", function ($scope, $http) {
             }
         });
     }
+
+    // cargarTienda();
+
+    // function cargarTienda() {
+
+    //     if (admin == 1) {//si eres admin general
+    //         $scope.nombreTiendaUpdate = response.data.list.nombre;
+    //     } else {//si eres adminTienda
+    //         var url = "../../controller/cFindTienda.php";
+    //         var data = { "id": adminTienda };
+    //         $http.post(url, data).then(function (response) {
+    //             /*valores para añadir al formulario*/
+    //             $scope.nombreTiendaUpdate = response.data.list.nombre;
+    //         });
+
+    //     }
+
+    // }
 
     /*Funcion logout*/
     function logout() {
@@ -203,7 +221,7 @@ app.controller("miControlador", function ($scope, $http) {
 
     //si eres adminTienda ocultar div de insertar tienda
     function zonaAdminTienda(admin, idTienda) {
-        $scope.adminGeneral="si";
+        $scope.adminGeneral = "si";
         $scope.divInsertarTienda = "no";
         funcionesAdministradores(admin, idTienda);
     }
@@ -227,17 +245,17 @@ app.controller("miControlador", function ($scope, $http) {
                 $scope.productoSelect = "no";
                 $scope.productoUpdate = "no";
             }
-            $scope.btnDeleteTienda="si";
-            $scope.selectTiendaUpdateProducto="si";
-            $scope.productoAdminTienda="no";
-            $scope.productoAdmin="si";
+            $scope.btnDeleteTienda = "si";
+            $scope.selectTiendaUpdateProducto = "si";
+            $scope.productoAdminTienda = "no";
+            $scope.productoAdmin = "si";
 
         } else {//si no eres admin general
-            if(adminTienda==null){//si no eres adminTienda
-                $scope.adminGeneral="no";
+            if (adminTienda == null) {//si no eres adminTienda
+                $scope.adminGeneral = "no";
                 $("#divZonaAdministradores").hide();
                 $("#divZonaAdministradores2").hide();
-            }else{//si eres adminTienda
+            } else {//si eres adminTienda
                 $scope.divSelectTiendas = "no";
                 $scope.tiendaSelect = "no";
 
@@ -256,29 +274,29 @@ app.controller("miControlador", function ($scope, $http) {
                     $scope.productoSelectTienda = "no";
                     $scope.productoUpdate = "no";
                 }
-                $scope.btnDeleteTienda="no";
-                $scope.selectTiendaUpdateProducto="no";
-                $scope.productoAdminTienda="si";
-                $scope.productoAdmin="no";
+                $scope.btnDeleteTienda = "no";
+                $scope.selectTiendaUpdateProducto = "no";
+                $scope.productoAdminTienda = "si";
+                $scope.productoAdmin = "no";
             }
         }
         /*div insert producto*/
         $scope.productoInsert = "no";
         $scope.mostrarInsertProducto = function () {
-            
-            if(admin==1){
-                $scope.productoInsert = "si";
-                $scope.selectProductosAdminTienda="no";
-                $scope.btnInsertProductos="si";
-            }else{
-                $scope.productoInsert = "si";
-                $scope.selectProductosAdminTienda="si";
-                $scope.productoAdminTienda="no";
-                $scope.btnInsertProductos="no";
 
-                $scope.mostrarInsertProductoAdminTienda=function(){
-                    $scope.productoAdminTienda="si";
-                    $scope.btnInsertProductos="si";
+            if (admin == 1) {
+                $scope.productoInsert = "si";
+                $scope.selectProductosAdminTienda = "no";
+                $scope.btnInsertProductos = "si";
+            } else {
+                $scope.productoInsert = "si";
+                $scope.selectProductosAdminTienda = "si";
+                $scope.productoAdminTienda = "no";
+                $scope.btnInsertProductos = "no";
+
+                $scope.mostrarInsertProductoAdminTienda = function () {
+                    $scope.productoAdminTienda = "si";
+                    $scope.btnInsertProductos = "si";
                 }
             }
         }
@@ -316,7 +334,7 @@ app.controller("miControlador", function ($scope, $http) {
         /*Insertar producto*/
         $scope.insertarProducto = function () {
 
-            if(admin==1){//si eres admin general solo pudes añadir el nombre, tipo e imagen del producto
+            if (admin == 1) {//si eres admin general solo pudes añadir el nombre, tipo e imagen del producto
 
                 var nombre = $scope.nombreProductoNuevo;
                 var tipo = $scope.tipoProductoNuevo;
@@ -336,9 +354,9 @@ app.controller("miControlador", function ($scope, $http) {
                         alert(response.data.list);
                         window.location.reload();
                     });
-            }
+                }
 
-            }else{//si eres adminTienda solo puedes añadir el precio y unidades del producto
+            } else {//si eres adminTienda solo puedes añadir el precio y unidades del producto
 
                 var precio = $scope.precioProductoNuevo;
                 var unidades = $scope.unidadesProductoNuevo;
@@ -356,7 +374,7 @@ app.controller("miControlador", function ($scope, $http) {
                         window.location.reload();
                     });
                 }
-            } 
+            }
         }
 
         /*cancelar update tienda*/
@@ -442,31 +460,31 @@ app.controller("miControlador", function ($scope, $http) {
         }
 
         /*cargar productos pasandole idTienda*/
-        $scope.productosByIdTienda=function(){
+        $scope.productosByIdTienda = function () {
             var url = "../../controller/cFindProductoByIdTienda.php";
             var data = { "idTienda": adminTienda };
             $http.post(url, data).then(function (response) {
-                $scope.productosTienda=response.data.list;
+                $scope.productosTienda = response.data.list;
             });
         }
-        
+
         /*Conseguir datos para updateProducto*/
         $scope.productoUpdate = "no";
         $scope.seleccionarProducto = function () {
 
-            if(admin==1){//si eres admin mostrar los divs correspondientes
-                $scope.updateProductoAdmin="si";
-                $scope.updateProductoAdminTienda="no";
-                $scope.productoUpdate="si";
-            }else{//si eres adminTienda mostrar los div correspondientes
-                $scope.updateProductoAdminTienda="si";
-                $scope.updateProductoAdmin="no";
-                $scope.productoUpdate="si";
+            if (admin == 1) {//si eres admin mostrar los divs correspondientes
+                $scope.updateProductoAdmin = "si";
+                $scope.updateProductoAdminTienda = "no";
+                $scope.productoUpdate = "si";
+            } else {//si eres adminTienda mostrar los div correspondientes
+                $scope.updateProductoAdminTienda = "si";
+                $scope.updateProductoAdmin = "no";
+                $scope.productoUpdate = "si";
             }
 
             var url = "../../controller/cFindProducto.php";
             var data = { "id": $scope.productoSeleccionado };
-            
+
             $http.post(url, data).then(function (response) {
                 /*valores para añadir al formulario*/
                 $scope.nombreProductoUpdate = response.data.list.nombre;
@@ -476,7 +494,7 @@ app.controller("miControlador", function ($scope, $http) {
                 $scope.unidadesProductoUpdate = Number(response.data.list.objProductoTienda.unidades);
                 $scope.idTienda = response.data.list.objProductoTienda.idTienda;
                 $scope.nombreTienda = response.data.list.objProductoTienda.objTienda.nombre;
-        
+
             });
         }
 
@@ -498,7 +516,7 @@ app.controller("miControlador", function ($scope, $http) {
         /*Actualizar tienda*/
         $scope.actualizarProductoAdmin = function () {
 
-            if(admin==1){//si eres admin general solo pudes actualizar el nombre, tipo e imagen del producto
+            if (admin == 1) {//si eres admin general solo pudes actualizar el nombre, tipo e imagen del producto
                 //datos
                 var nombre = $("#nombreProductoUpdate").val();
                 var tipo = $("#tipoProductoUpdate").val();
@@ -513,12 +531,12 @@ app.controller("miControlador", function ($scope, $http) {
                     }
 
                     var url = "../../controller/cUpdateProducto.php";
-                    $http.post(url, data).then(function (response) { 
+                    $http.post(url, data).then(function (response) {
                         alert(response.data.list);
-                        window.location.reload();    
+                        window.location.reload();
                     });
                 }
-            }else{//si eres adminTienda solo pudes actualizar el precio y unidades del producto
+            } else {//si eres adminTienda solo pudes actualizar el precio y unidades del producto
 
                 /*datos del producto*/
                 var precio = $("#precioProductoUpdate").val();
