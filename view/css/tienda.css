@@ -204,7 +204,7 @@ body {
     transform: scale(1.15);
 }
 
-.modal {
+#myModal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -217,12 +217,12 @@ body {
     overflow-y: initial !important;
 }
 
-.modal h1, p {
+#myModal h1, p {
     color: black;
     text-align: center;
 }
 
-.modal-content {
+#myModal .modal-content {
     background-color: #fefefe;
     margin: 2% auto;
     padding: 20px;
@@ -245,7 +245,7 @@ body {
     cursor: pointer;
 }
 
-.modal .btn {
+#myModal .btn {
     align-self: center;
     background-color: red;
     border: 1px solid red;
@@ -253,18 +253,18 @@ body {
     margin: 1%;
 }
 
-.modal .btn:hover {
+#myModal .btn:hover {
     color: red;
     background-color: white;
 }
 
-.modal .btn:not(:first-child) {
+#myModal .btn:not(:first-child) {
     background-color: #1e72bc;
     border: 1px solid #1e72bc;
     white-space: nowrap;
 }
 
-.modal .btn:not(:first-child):hover {
+#myModal .btn:not(:first-child):hover {
     color: #1e72bc;
     background-color: white;
 }
