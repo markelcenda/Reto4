@@ -398,7 +398,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 }
 
             }
-            
+
         localStorage.clear();
         localStorage.setItem(0, angular.toJson($scope.cart));
         $scope.load()
@@ -416,6 +416,10 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
 
                 if ($scope.cart[i].cantidad > 1) {
                     $scope.cart[i].cantidad -= 1;
+                    calcTotal();
+                }else{
+                    $scope.contador =  $scope.contador - $scope.cart[i].cantidad;
+                    $scope.cart.splice(i, 1);
                     calcTotal();
                 }
 
