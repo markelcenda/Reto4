@@ -167,7 +167,7 @@ class productoModel extends productoClass{
         
         $id=$this->getId();
         
-        $sql="call spDeleteProducto($id)";
+        $sql="call spDeleteProductoAdmin($id)";
         
         if ($this->link->query($sql)){
             return "Producto eliminado correctamente";

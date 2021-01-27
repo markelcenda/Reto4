@@ -162,6 +162,22 @@ class productoTiendaModel extends productoTiendaClass{
         
         $this->CloseConnect();
     }
+
+    public function deleteProducto(){
+        $this->OpenConnect();
+        
+        $idProducto=$this->getIdProducto();
+        $idTienda=$this->getIdTienda();
+        
+        $sql="call spDeleteProductoAdminTienda($idProducto,$idTienda)";
+        
+        if ($this->link->query($sql)){
+            return "Producto eliminado correctamente";
+        }else{
+            return "Error al eliminar";
+        }
+        $this->CloseConnect();
+    }
     
     function ObjVars(){
         return get_object_vars($this);
