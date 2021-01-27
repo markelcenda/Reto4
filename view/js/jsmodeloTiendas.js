@@ -241,6 +241,76 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         localStorage.setItem(0, angular.toJson($scope.cart));
     }
 
+     /*añadir al carro desde el carro*/
+     $scope.addToCart2 = () => {
+
+        let idProducto = event.target.dataset.idproducto;
+        let idTienda = event.target.dataset.idtienda;
+        let imgProducto = event.target.dataset.imagen;
+        let precio = event.target.dataset.precio;
+        let nombre = event.target.dataset.nombre;
+        let tienda = event.target.dataset.tienda;
+        let found = false;
+
+        $scope.idProductoVenta = idProducto;
+        $scope.precioProductoVenta = precio;
+
+        if ($scope.cart.length == 0) {
+            if ($scope.productosTienda[idProducto-1].unidades > 0) {
+                $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
+                $scope.productosTienda[idProducto-1].unidades--;
+                calcTotal();
+            } else {
+                alert("No quedan mas unidades")
+            }
+        } else if ($scope.cart.length != 0) {
+            for (let i = 0; i < $scope.cart.length; i++) {
+
+                if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].idTienda==idTienda) {
+                    if ($scope.productosTienda[idProducto-1].unidades > 0) {
+                        $scope.cart[i].cantidad++;
+                        $scope.productosTienda[idProducto-1].unidades--;
+                        found = true;
+                        calcTotal();
+                    }
+                }
+            }
+            if (!found) {
+                if ($scope.productosTienda[idProducto-1].unidades > 0) {
+                    $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
+                    $scope.productosTienda[idProducto-1].unidades--;
+                    calcTotal();
+                }
+                else {
+                    alert("No quedan mas unidades")
+                }
+            }
+        }
+        localStorage.clear();
+        localStorage.setItem(0, angular.toJson($scope.cart));
+        // let idProducto = event.target.dataset.idproducto;
+        // console.log($scope.cart);
+
+        // for(let i = 0; i < $scope.cart.length; i++){
+          
+        //     if($scope.cart[i].idProducto == idProducto){
+
+        //         if($scope.cart[i].cantidad > 1){
+        //             $scope.cart[i].cantidad += 1;;
+        //         }else{
+        //             alert("No quedan mas unidades");
+        //         }
+
+        //         break;
+        //     }
+
+        // }
+
+        // calcTotal();
+
+        // localStorage.setItem(0, angular.toJson($scope.cart));
+    }
+
     /*abrir modal*/
     $scope.modal = () => {
         var modal = document.getElementById("myModal");
@@ -310,6 +380,53 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
             $scope.total = $scope.total + ($scope.cart[i].precio * $scope.cart[i].cantidad);
             $scope.total = Math.round($scope.total * 100) / 100;
         }
+    }
+
+    // Quita el producto del carrito 
+    $scope.removeCart = () => {
+
+        let idProducto = event.target.dataset.idproducto;
+
+        for(let i = 0; i < $scope.cart.length; i++){
+          
+            if($scope.cart[i].idProducto == idProducto){
+               
+                $scope.cart.splice(i, 1);
+                break;
+            }
+
+        }
+
+        calcTotal();
+
+        localStorage.setItem(0, angular.toJson($scope.cart));
+        
+    }
+
+     // Reduce uno el stock desde el carro
+     $scope.removeFromCart2 = () => {
+
+        let idProducto = event.target.dataset.idproducto;
+        console.log($scope.cart);
+
+        for(let i = 0; i < $scope.cart.length; i++){
+          
+            if($scope.cart[i].idProducto == idProducto){
+
+                if($scope.cart[i].cantidad > 1){
+                    $scope.cart[i].cantidad -= 1;
+                }
+               
+                break;
+            }
+
+        }
+
+        calcTotal();
+
+        localStorage.setItem(0, angular.toJson($scope.cart));
+       
+
     }
 
     /*ordenar stock de mayor a menor*/
