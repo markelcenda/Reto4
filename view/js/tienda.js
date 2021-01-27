@@ -73,6 +73,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         localStorage.setItem(0, angular.toJson($scope.cart));
     }
 
+    /*añadir al carro desde el carro*/
     $scope.addToCart2 = () => {
         let idProducto = event.target.dataset.idproducto;
         let idTienda = event.target.dataset.idtienda;
@@ -237,12 +238,13 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
 
     }
 
-    // Reduce uno el stock
+    // Reduce uno el stock desde el carro
     $scope.removeFromCart2 = () => {
         let idProducto = event.target.dataset.idproducto;
+        let idTienda = event.target.dataset.idtienda;
 
         for (let i = 0; i < $scope.cart.length; i++) {
-            if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].cantidad > 1) {
+            if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].cantidad > 1 && $scope.cart[i].idTienda==idTienda) {
                 $scope.cart[i].cantidad--;
                 $scope.productosTienda[idProducto-1].unidades++;
                 calcTotal();

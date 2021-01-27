@@ -468,6 +468,7 @@ app.controller("miControlador", function ($scope, $http) {
             var data = { "id": $scope.productoSeleccionado };
 
             $http.post(url, data).then(function (response) {
+                console.log(response.data.list);
                 /*valores para añadir al formulario*/
                 $scope.nombreProductoUpdate = response.data.list.nombre;
                 $scope.tipoProductoUpdate = response.data.list.tipo;
