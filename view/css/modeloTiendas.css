@@ -383,6 +383,31 @@ body, html {
     background-color: white;
 }
 
+.cantidadBtn{
+    margin-left: -50em ;
+    border: 1px solid #1e72bc !important;
+    color: white !important;
+    background-color: #1e72bc !important;
+    width: 50px !important;
+    margin: 10% !important;
+    height: 30px !important;
+}
+
+.cantidadBtn:hover{
+    background-color: white !important;
+    color: #1e72bc !important;
+}
+
+.deleteBtn{
+    cursor: pointer;
+   
+}
+
+.deleteBtn:hover{
+    color: red !important;
+    background-color: none;
+}
+
 #myModal2 img {
     height: 80%;
     width: 80%;

@@ -1,8 +1,8 @@
-idTienda=location.search.substring(1, location.search.length);
+idTienda = location.search.substring(1, location.search.length);
 
 /*popover*/
 document.addEventListener("DOMContentLoaded", function (event) {
-	$('[data-toggle="popover"]').popover();
+    $('[data-toggle="popover"]').popover();
 })
 
 let myApp = angular.module('app', []);
@@ -21,62 +21,62 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     /*cargar productos*/
     $scope.load = () => {
 
-        var url="../../controller/cProductosByIdTienda.php";
-        var data={"idTienda": idTienda};
+        var url = "../../controller/cProductosByIdTienda.php";
+        var data = { "idTienda": idTienda };
         $http.post(url, data).then(function (response) {
             $scope.listaProductos = response.data.productos;
             console.log($scope.listaProductos);
 
-            if($scope.listaProductos.length==0){//si no hay productos en la tienda
+            if ($scope.listaProductos.length == 0) {//si no hay productos en la tienda
                 //añadir imagen de error
                 $("#body").css("background-image", "url('../img/error.jpg')");
                 $("#body").css("background-size", "cover");
                 $("#body").css("background-position", "center");
                 $("#body").html("");
 
-            }else{//si hay productos en la tienda
+            } else {//si hay productos en la tienda
 
                 //guardar en varibles datos de la tienda para utilizar en el footer*/
-                $scope.nombreTienda=$scope.listaProductos[0].objTienda.nombre;
-                $scope.direccionTienda=$scope.listaProductos[0].objTienda.direccion;
-                $scope.emailTienda=$scope.listaProductos[0].objTienda.email;
-                $scope.telefonoTienda=$scope.listaProductos[0].objTienda.telefono;
+                $scope.nombreTienda = $scope.listaProductos[0].objTienda.nombre;
+                $scope.direccionTienda = $scope.listaProductos[0].objTienda.direccion;
+                $scope.emailTienda = $scope.listaProductos[0].objTienda.email;
+                $scope.telefonoTienda = $scope.listaProductos[0].objTienda.telefono;
 
-                var numTiendas=$scope.listaProductos.length;
+                var numTiendas = $scope.listaProductos.length;
 
                 /*cargar imagen de la tienda*/
-                imagen="<img src='../img/" + $scope.listaProductos[numTiendas-1].objTienda.imagen + "' class='img-fluid' alt=''>";
+                imagen = "<img src='../img/" + $scope.listaProductos[numTiendas - 1].objTienda.imagen + "' class='img-fluid' alt=''>";
                 $("#insertarLogo").html(imagen);
 
-                for(let i=0; i<$scope.listaProductos.length; i++){
+                for (let i = 0; i < $scope.listaProductos.length; i++) {
 
-                    if($scope.listaProductos[i].objTienda.tipo=="Bicicletas"){
-                        $('#imagenTienda').css("background-image", "url(../img/bicicletas.jpg)"); 
-                    }else if($scope.listaProductos[i].objTienda.tipo=="Calzado"){
-                        $('#imagenTienda').css("background-image", "url(../img/zapatillas.jpg)"); 
+                    if ($scope.listaProductos[i].objTienda.tipo == "Bicicletas") {
+                        $('#imagenTienda').css("background-image", "url(../img/bicicletas.jpg)");
+                    } else if ($scope.listaProductos[i].objTienda.tipo == "Calzado") {
+                        $('#imagenTienda').css("background-image", "url(../img/zapatillas.jpg)");
                     }
-                    else if($scope.listaProductos[i].objTienda.tipo=="Joyeria"){
-                        $('#imagenTienda').css("background-image", "url(../img/joyeria.jpg)"); 
-                    }else if($scope.listaProductos[i].objTienda.tipo=="Moda"){
-                        $('#imagenTienda').css("background-image", "url(../img/moda.jpg)"); 
-                    }else if($scope.listaProductos[i].objTienda.tipo=="Pintura"){
-                        $('#imagenTienda').css("background-image", "url(../img/pintura.jpg)"); 
-                    }else{
-                        $('#imagenTienda').css("background-image", "url(../img/comercio.jpg)"); 
-                        
+                    else if ($scope.listaProductos[i].objTienda.tipo == "Joyeria") {
+                        $('#imagenTienda').css("background-image", "url(../img/joyeria.jpg)");
+                    } else if ($scope.listaProductos[i].objTienda.tipo == "Moda") {
+                        $('#imagenTienda').css("background-image", "url(../img/moda.jpg)");
+                    } else if ($scope.listaProductos[i].objTienda.tipo == "Pintura") {
+                        $('#imagenTienda').css("background-image", "url(../img/pintura.jpg)");
+                    } else {
+                        $('#imagenTienda').css("background-image", "url(../img/comercio.jpg)");
+
                     }
                 }
 
                 /*comprobar si hay algun usuario conectado*/
                 var url = "../../controller/cLoggedVerify.php";
-                $http.get(url).then(function(response){
+                $http.get(url).then(function (response) {
 
-                    if (response.data.mensaje==="logged"){
+                    if (response.data.mensaje === "logged") {
 
                         setStock();
 
                         /*id del usuario paraa utilizar en insertVentas*/
-                        $scope.idUsuario=response.data.id;
+                        $scope.idUsuario = response.data.id;
                         console.log($scope.idUsuario);
 
                         /*mostrar carrito y quitar btnLogin*/
@@ -84,25 +84,25 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                         $("#botonLogin").hide();
 
                         //añadir los 2 iconos nuevos
-                        var iconoUsuario="";
-                        iconoUsuario+="<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
+                        var iconoUsuario = "";
+                        iconoUsuario += "<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
                         $("#iconoUsuario").html(iconoUsuario);
 
-                        var iconoLogout="";
-                        iconoLogout+="<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
-                        
+                        var iconoLogout = "";
+                        iconoLogout += "<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
+
                         $("#iconoLogout").html(iconoLogout);
-                        
+
                         /*al hacer click en btnLogout*/
-                        $("#btnLogout").click(function(){
+                        $("#btnLogout").click(function () {
                             logout();
                         });
 
                         /*al hacer click en paginaUsuario*/
-                        $("#paginaUsuario").click(function(){
-                            window.location.href="usuario.html";
-                        });    
-                    }else{
+                        $("#paginaUsuario").click(function () {
+                            window.location.href = "usuario.html";
+                        });
+                    } else {
                         $("#carrito").hide();
                     }
                 });
@@ -111,69 +111,69 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     }
 
     /*login*/
-    $scope.login=function(){
+    $scope.login = function () {
 
-        var username=$("#usuario").val();
-        var password=$("#password").val();     
+        var username = $("#usuario").val();
+        var password = $("#password").val();
         var url = "../../controller/cLogin.php";
-        var data = { 'username':username, 'password':password};
- 
+        var data = { 'username': username, 'password': password };
+
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
-            headers:{'Content-Type': 'application/json'} 
-                      
-            })
+            headers: { 'Content-Type': 'application/json' }
+
+        })
             .then(res => res.json()).then(result => {
                 console.log(result);
-                
-                if(result.mensaje=="no error"){ 
+
+                if (result.mensaje == "no error") {
 
                     alert("Sesión iniciada")
-                
+
                     /*mostrar carrito y quitar btnLogin*/
                     $("#carrito").show();
                     $("#botonLogin").hide();
 
                     //añadir los 2 iconos nuevos
-                    var iconoUsuario="";
-                    iconoUsuario+="<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
+                    var iconoUsuario = "";
+                    iconoUsuario += "<button type='button' class='btn' id='paginaUsuario'><i class='fa fa-user'></i></button>";
                     $("#iconoUsuario").html(iconoUsuario);
 
-                    var iconoLogout="";
-                    iconoLogout+="<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
-                    
+                    var iconoLogout = "";
+                    iconoLogout += "<button type='button' class='btn' id='btnLogout'><i class='fa fa-window-close'></i></button>";
+
                     $("#iconoLogout").html(iconoLogout);
-                    
+
                     /*al hacer click en btnLogout*/
-                    $("#btnLogout").click(function(){
+                    $("#btnLogout").click(function () {
                         logout();
                     });
 
                     /*al hacer click en paginaUsuario*/
-                    $("#paginaUsuario").click(function(){
-                        window.location.href="usuario.html";
-                    });   
-                
-                }else {
-                    alert(result.mensaje);  
-                }           
+                    $("#paginaUsuario").click(function () {
+                        window.location.href = "usuario.html";
+                    });
+
+                } else {
+                    alert(result.mensaje);
+                }
             })
-            .catch(error => console.error('Error status:', error));	
+            .catch(error => console.error('Error status:', error));
     }
 
     /*Funcion logout*/
-    function logout(){
+    function logout() {
 
         var url = "../../controller/cLogout.php";
-    
-        $http.get(url).then(function(response){
-                            
+
+        $http.get(url).then(function (response) {
+
             window.location.reload();
             alert("Sesión cerrada");
-                        
+
             /*Volver a poner el login del navbar*/
-            var reset=`<form id="zonaLogin" class="form-inline my-2 my-lg-0 d-flex justify-content-center">
+            var reset = `<form id="zonaLogin" class="form-inline my-2 my-lg-0 d-flex justify-content-center">
                         <div class="sesion">
                             <i class="fas fa-user"></i>
                         </div>
@@ -186,14 +186,14 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                         <button id="btnRegister"><i class="fas fa-user-plus"></i></button>
                         <button id="btnLogout" class="d-none"><i class="fas fa-window-close"></i></button>
                         </form>`;
-    
-            $("#zonaLogin").html(reset);
-                            
-        });
-                        
-    } 
 
-    //$scope.contador=0;
+            $("#zonaLogin").html(reset);
+
+        });
+
+    }
+
+    $scope.contador = 0;
     /*añadir al carro*/
     $scope.addToCart = (position) => {
         let idProducto = event.target.dataset.idproducto;
@@ -205,7 +205,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         let found = false;
 
         $scope.contador++;
-        
+
         if ($scope.cart.length == 0) {
             if ($scope.listaProductos[position].unidades > 0) {
                 $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
@@ -241,8 +241,8 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         localStorage.setItem(0, angular.toJson($scope.cart));
     }
 
-     /*añadir al carro desde el carro*/
-     $scope.addToCart2 = () => {
+    /*añadir al carro desde el carro*/
+    $scope.addToCart2 = () => {
 
         let idProducto = event.target.dataset.idproducto;
         let idTienda = event.target.dataset.idtienda;
@@ -256,9 +256,9 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         $scope.precioProductoVenta = precio;
 
         if ($scope.cart.length == 0) {
-            if ($scope.productosTienda[idProducto-1].unidades > 0) {
+            if ($scope.productosTienda[idProducto - 1].unidades > 0) {
                 $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
-                $scope.productosTienda[idProducto-1].unidades--;
+                $scope.productosTienda[idProducto - 1].unidades--;
                 calcTotal();
             } else {
                 alert("No quedan mas unidades")
@@ -266,19 +266,19 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         } else if ($scope.cart.length != 0) {
             for (let i = 0; i < $scope.cart.length; i++) {
 
-                if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].idTienda==idTienda) {
-                    if ($scope.productosTienda[idProducto-1].unidades > 0) {
+                if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].idTienda == idTienda) {
+                    if ($scope.productosTienda[idProducto - 1].unidades > 0) {
                         $scope.cart[i].cantidad++;
-                        $scope.productosTienda[idProducto-1].unidades--;
+                        $scope.productosTienda[idProducto - 1].unidades--;
                         found = true;
                         calcTotal();
                     }
                 }
             }
             if (!found) {
-                if ($scope.productosTienda[idProducto-1].unidades > 0) {
+                if ($scope.productosTienda[idProducto - 1].unidades > 0) {
                     $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
-                    $scope.productosTienda[idProducto-1].unidades--;
+                    $scope.productosTienda[idProducto - 1].unidades--;
                     calcTotal();
                 }
                 else {
@@ -292,7 +292,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         // console.log($scope.cart);
 
         // for(let i = 0; i < $scope.cart.length; i++){
-          
+
         //     if($scope.cart[i].idProducto == idProducto){
 
         //         if($scope.cart[i].cantidad > 1){
@@ -332,19 +332,19 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     $scope.buy = () => {
         for (let i = 0; i < $scope.cart.length; i++) {
 
-            for(let j=0; j<$scope.cart.length; j++){
+            for (let j = 0; j < $scope.cart.length; j++) {
 
                 /*conseguir fecha actual en formato yyyy-mm-dd*/
-                var fecha=new Date();
-                var año=fecha.getFullYear();
-                var mes=Number(fecha.getMonth()+1);
-                var dia=fecha.getDate();
-                var fechaCompra=año + "-" + mes + "-" + dia;
+                var fecha = new Date();
+                var año = fecha.getFullYear();
+                var mes = Number(fecha.getMonth() + 1);
+                var dia = fecha.getDate();
+                var fechaCompra = año + "-" + mes + "-" + dia;
 
                 /*datos para hacer inserVenta y updateStock*/
                 var data = { 'idProducto': $scope.cart[j].idProducto, 'idTienda': $scope.cart[j].idTienda, "cantidad": $scope.cart[j].cantidad };
-                var data2={"idProducto":$scope.cart[j].idProducto, "idUsuario":$scope.idUsuario, "fecha":fechaCompra, "precio":$scope.cart[j].precio, "unidades":$scope.cart[j].cantidad, "idTienda":idTienda};
-                
+                var data2 = { "idProducto": $scope.cart[j].idProducto, "idUsuario": $scope.idUsuario, "fecha": fechaCompra, "precio": $scope.cart[j].precio, "unidades": $scope.cart[j].cantidad, "idTienda": idTienda };
+
                 $http.post('../../controller/cUpdateStock.php', data).then(function () {
                 });
 
@@ -367,10 +367,11 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     /*vaciar carrito*/
     $scope.clearCart = () => {
         $scope.cart = [];
-        $scope.contador=0;
+        $scope.contador = 0;
         localStorage.clear();
-        document.getElementById("myModal").style.display = "none";;
+        document.getElementById("myModal").style.display = "none";
         $scope.load();
+        calcTotal();
     }
 
     /*calcular precio total*/
@@ -387,79 +388,80 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
 
         let idProducto = event.target.dataset.idproducto;
 
-        for(let i = 0; i < $scope.cart.length; i++){
-          
-            if($scope.cart[i].idProducto == idProducto){
-               
-                $scope.cart.splice(i, 1);
-                break;
+            for (let i = 0; i < $scope.cart.length; i++) {
+
+                if ($scope.cart[i].idProducto == idProducto) {
+                    $scope.contador =  $scope.contador - $scope.cart[i].cantidad;
+                    $scope.cart.splice(i, 1);
+                    calcTotal();
+                    break;
+                }
+
             }
-
-        }
-
-        calcTotal();
-
+            
+        localStorage.clear();
         localStorage.setItem(0, angular.toJson($scope.cart));
-        
+        $scope.load()
     }
 
-     // Reduce uno el stock desde el carro
-     $scope.removeFromCart2 = () => {
+    // Reduce uno el stock desde el carro
+    $scope.removeFromCart2 = () => {
 
         let idProducto = event.target.dataset.idproducto;
         console.log($scope.cart);
 
-        for(let i = 0; i < $scope.cart.length; i++){
-          
-            if($scope.cart[i].idProducto == idProducto){
+        for (let i = 0; i < $scope.cart.length; i++) {
 
-                if($scope.cart[i].cantidad > 1){
+            if ($scope.cart[i].idProducto == idProducto) {
+
+                if ($scope.cart[i].cantidad > 1) {
                     $scope.cart[i].cantidad -= 1;
+                    calcTotal();
                 }
-               
+
                 break;
             }
 
         }
 
-        calcTotal();
-
+        localStorage.clear();
         localStorage.setItem(0, angular.toJson($scope.cart));
-       
+        $scope.load()
+
 
     }
 
     /*ordenar stock de mayor a menor*/
-    $scope.stockMayorMenor=function(){
-        $scope.listaProductos.sort(function(a, b) {
+    $scope.stockMayorMenor = function () {
+        $scope.listaProductos.sort(function (a, b) {
             return b.unidades - a.unidades;
         });
     }
 
     /*ordenar stock de menor a mayor*/
-    $scope.stockMenorMayor=function(){
-        $scope.listaProductos.sort(function(a, b) {
+    $scope.stockMenorMayor = function () {
+        $scope.listaProductos.sort(function (a, b) {
             return a.unidades - b.unidades;
         });
     }
 
     /*ordenar precio de mayor a menor*/
-    $scope.precioMayorMenor=function(){
-        $scope.listaProductos.sort(function(a, b) {
+    $scope.precioMayorMenor = function () {
+        $scope.listaProductos.sort(function (a, b) {
             return b.precio - a.precio;
         });
     }
 
     /*ordenar precio de menor a mayor*/
-    $scope.precioMenorMayor=function(){
-        $scope.listaProductos.sort(function(a, b) {
+    $scope.precioMenorMayor = function () {
+        $scope.listaProductos.sort(function (a, b) {
             return a.precio - b.precio;
         });
     }
 
     /*cargar los productos por defecto*/
-    $scope.reset=function(){
-        $scope.listaProductos.sort(function(a, b) {
+    $scope.reset = function () {
+        $scope.listaProductos.sort(function (a, b) {
             return a.idProducto - b.idProducto;
         });
     }
@@ -471,10 +473,10 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
             localStorageArray.push(JSON.parse(localStorage[0])[i]);
         }
         //variable para utilizar en el contador
-        sumaContador=0;
-        if(localStorage.length==0){
-            $scope.contador=0;
-        }else if (localStorage.length != 0){
+        sumaContador = 0;
+        if (localStorage.length == 0) {
+            $scope.contador = 0;
+        } else if (localStorage.length != 0) {
             for (let i = 0; i < $scope.cart.length; i++) {
                 for (let j = 0; j < $scope.listaProductos.length; j++) {
                     if ($scope.cart[i].idProducto == $scope.listaProductos[j].idProducto) {
@@ -483,12 +485,12 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                 }
             }
             //guardar el contador cuando recargas la pagina y cambias de tienda
-            for(let x=0; x<localStorageArray.length; x++){
-                if(localStorageArray.length==1){
-                    $scope.contador=Number(localStorageArray[x].cantidad);
-                }else{
-                    sumaContador=sumaContador+Number(localStorageArray[x].cantidad);
-                    $scope.contador=sumaContador;
+            for (let x = 0; x < localStorageArray.length; x++) {
+                if (localStorageArray.length == 1) {
+                    $scope.contador = Number(localStorageArray[x].cantidad);
+                } else {
+                    sumaContador = sumaContador + Number(localStorageArray[x].cantidad);
+                    $scope.contador = sumaContador;
                 }
             }
         }
