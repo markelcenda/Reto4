@@ -332,10 +332,9 @@ body {
         margin: 1% 0 0 82%;
     }
 
-    #myModal{
+    #myModal, #myModal2{
         margin: auto;
         justify-content: center;
-        display: flex;
     }
 
     .modal-content{

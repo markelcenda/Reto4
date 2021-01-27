@@ -122,6 +122,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
 
     //Abre el modal con la informacion del carrito
     $scope.modal = () => {
+
         var modal = document.getElementById("myModal");
         var modal2 = document.getElementById("myModal2");
         var btn = document.getElementById("myBtn");
@@ -130,9 +131,9 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
 
         btn.onclick = function () {
             if ($scope.cart.length != 0) {
-                modal.style.display = "block";
+                modal.style.display = "flex";
             } else {
-                modal2.style.display = "block";
+                modal2.style.display = "flex";
             }
         }
 
