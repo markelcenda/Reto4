@@ -122,7 +122,7 @@
                                 <div class="cart">
                                     <span class="price">{{item.precio}}€</span>
                                     <span class="add-to-cart">
-                                        <span class="txt" data-nombre='{{item.objProducto.nombre}}' data-imagen='{{item.objProducto.imagen}}' data-idProducto='{{item.idProducto}}' data-idTienda='{{item.idTienda}}' data-precio='{{item.precio}}' ng-click="addToCart($index)" >Añadir al carrito</span>
+                                        <span class="txt" data-nombre='{{item.objProducto.nombre}}' data-imagen='{{item.objProducto.imagen}}' data-idProducto='{{item.idProducto}}' data-idTienda='{{item.idTienda}}' data-precio='{{item.precio}}' data-tienda='{{item.objTienda.nombre}}' ng-click="addToCart($index)" >Añadir al carrito</span>
                                     </span>
                                 </div>
                             </div>
@@ -151,6 +151,8 @@
                                     <th scope="col">Producto</th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col">Precio</th>
+                                    <th scope="col">Tienda</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -161,6 +163,8 @@
                                     <td>{{item.nombre}}</td>
                                     <td>{{item.cantidad}}</td>
                                     <td>{{item.precio}}€</td>
+                                    <td>{{item.tienda}}</td>
+                                    <td><a type="button" ng-click="removeCart()" class="deleteBtn" data-idProducto='{{item.idProducto}}'>Eliminar</a></td>
                                 </tr>
                             </tbody>
                         </table>
