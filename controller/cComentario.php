@@ -6,7 +6,7 @@ $asunto=$data['asunto'];
 $mensaje=$data['mensaje'];
 
 ini_set( 'display_errors', 1 );
-    error_reporting( E_ALL );
+    // error_reporting( E_ALL );
     $para = "mmanemane932@gmail.com";
     $email="grupo4ze@shx7.guebs.net";
     $headers = "De:" . $email;
