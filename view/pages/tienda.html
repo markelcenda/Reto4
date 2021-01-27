@@ -102,16 +102,16 @@
     
     <div class="container">
         <div class="row" >
-            <div class="el-wrapper" ng-repeat="item in listaProductos | filter:textoBusqueda" ng-init="position=$index" data-aos="zoom-in">
+            <div class="el-wrapper" ng-repeat="item in productosTienda | filter:textoBusqueda" ng-init="position=$index" data-aos="zoom-in">
                 <div class="box-up">
-                    <img class="img" ng-src="../img/{{item.imagen}}">
+                    <img class="img" ng-src="../img/{{item.objProducto.imagen}}">
                     <div class="img-info">
                         <div class="info-inner">
-                            <span class="p-name">{{item.nombre}}</span>
-                            <span class="p-company">Stock: {{item.objProductoTienda.unidades}}</span>
+                            <span class="p-name">{{item.objProducto.nombre}}</span>
+                            <span class="p-company">Stock: {{item.unidades}}</span>
                         </div>
                         <div class="a-size">Tienda: <span class="size"><a
-                                    href="https://google.es/search?q={{item.objProductoTienda.objTienda.nombre}}">{{item.objProductoTienda.objTienda.nombre}}</a></span>
+                                    href="https://google.es/search?q={{item.objProductoTienda.objTienda.nombre}}">{{item.objTienda.nombre}}</a></span>
                         </div>
                     </div>
                 </div>
@@ -121,13 +121,13 @@
                     </div>
 
                     <div class="cart">
-                        <span class="price">{{item.objProductoTienda.precio}}€</span>
+                        <span class="price">{{item.precio}}€</span>
                         <span class="add-to-cart">
-                            <span class="txt" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}'
-                                data-idProducto='{{item.objProductoTienda.idProducto}}'
-                                data-idTienda='{{item.objProductoTienda.idTienda}}'
-                                data-tienda='{{item.objProductoTienda.objTienda.nombre}}'
-                                data-precio='{{item.objProductoTienda.precio}}' ng-click="addToCart()">Añadir al
+                            <span class="txt" data-nombre='{{item.objProducto.nombre}}' data-imagen='{{item.objProducto.imagen}}'
+                                data-idProducto='{{item.idProducto}}'
+                                data-idTienda='{{item.idTienda}}'
+                                data-tienda='{{item.objTienda.nombre}}'
+                                data-precio='{{item.precio}}' ng-click="addToCart(position)">Añadir al
                                 carrito</span>
                         </span>
                     </div>
@@ -166,13 +166,15 @@
                                 <img ng-src="../img/{{item.imgProducto}}" class="img-fluid img-thumbnail">
                             </td>
                             <td>{{item.nombre}}</td>
-                            <td><a type="button" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}'
+                            <td>
+                                <a type="button" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}'
                                 data-idProducto='{{item.idProducto}}' data-idTienda='{{item.idTienda}}'
-                                data-precio='{{item.precio}}' ng-click="addToCart()"
-                                class="btn btn-primary btn-sm cantidadBtn">&#43;</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.cantidad}}<br><a
-                                type="button" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}'
+                                data-precio='{{item.precio}}' ng-click="addToCart2()"
+                                class="btn btn-primary btn-sm cantidadBtn">&#43;</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.cantidad}}
+                                <br>
+                                <a type="button" data-nombre='{{item.nombre}}' data-imagen='{{item.imagen}}'
                                 data-idProducto='{{item.idProducto}}' data-idTienda='{{item.idTienda}}'
-                                data-precio='{{item.precio}}' ng-click="removeFromCart()" class="btn btn-primary btn-sm cantidadBtn">&#8722;</a></td>
+                                data-precio='{{item.precio}}' ng-click="removeFromCart2()" class="btn btn-primary btn-sm cantidadBtn">&#8722;</a></td>
                             <td>{{item.precio}}€</td>
                             <td>{{item.tienda}}</td>
                             <td><a type="button" ng-click="removeCart()" class="deleteBtn" data-idProducto='{{item.idProducto}}'>Eliminar</a></td>

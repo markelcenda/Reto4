@@ -6,10 +6,13 @@ if($_SERVER["SERVER_NAME"]=="grupo4.zerbitzaria.net"){
 }
 include_once 'ventaClass.php';
 include_once 'productoModel.php';
+include_once 'tiendaModel.php';
 
 class ventaModel extends ventaClass{
     
     private $link;
+    private $objProducto;
+    private $objTienda;
     
     public function OpenConnect()
     {
@@ -64,6 +67,12 @@ class ventaModel extends ventaClass{
             $producto->findProductoById();
 
             $venta->objProducto=$producto->ObjVars();
+
+            $tienda=new tiendaModel();
+            $tienda->setId($row["idTienda"]);
+            $tienda->findTiendaById();
+
+            $venta->objTienda=$tienda->ObjVars();
       
             array_push($list, get_object_vars($venta));
         }

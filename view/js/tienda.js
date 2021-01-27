@@ -14,6 +14,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
     $scope.load = () => {
         $http.get('../../controller/cProductos.php').then(function (response) {
             $scope.listaProductos = response.data.list;
+            $scope.productosTienda = response.data.productos;
             setStock();
         })
 
@@ -25,7 +26,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
     }
 
     //Añade los productos seleccionados al carrito
-    $scope.addToCart = () => {
+    $scope.addToCart = (position) => {
         let idProducto = event.target.dataset.idproducto;
         let idTienda = event.target.dataset.idtienda;
         let imgProducto = event.target.dataset.imagen;
@@ -34,34 +35,80 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         let tienda = event.target.dataset.tienda;
         let found = false;
 
-        console.log(tienda);
-
         $scope.idProductoVenta = idProducto;
         $scope.precioProductoVenta = precio;
 
         if ($scope.cart.length == 0) {
-            if ($scope.listaProductos[idProducto - 1].objProductoTienda.unidades > 0) {
+            if ($scope.productosTienda[position].unidades > 0) {
                 $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
-                $scope.listaProductos[idProducto - 1].objProductoTienda.unidades--;
+                $scope.productosTienda[position].unidades--;
                 calcTotal();
             } else {
                 alert("No quedan mas unidades")
             }
         } else if ($scope.cart.length != 0) {
             for (let i = 0; i < $scope.cart.length; i++) {
-                if ($scope.cart[i].idProducto == idProducto) {
-                    if ($scope.listaProductos[idProducto - 1].objProductoTienda.unidades > 0) {
+
+                if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].idTienda==idTienda) {
+                    if ($scope.productosTienda[position].unidades > 0) {
                         $scope.cart[i].cantidad++;
-                        $scope.listaProductos[idProducto - 1].objProductoTienda.unidades--;
+                        $scope.productosTienda[position].unidades--;
                         found = true;
                         calcTotal();
                     }
                 }
             }
             if (!found) {
-                if ($scope.listaProductos[idProducto - 1].objProductoTienda.unidades > 0) {
+                if ($scope.productosTienda[position].unidades > 0) {
                     $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
-                    $scope.listaProductos[idProducto - 1].objProductoTienda.unidades--;
+                    $scope.productosTienda[position].unidades--;
+                    calcTotal();
+                }
+                else {
+                    alert("No quedan mas unidades")
+                }
+            }
+        }
+        localStorage.clear();
+        localStorage.setItem(0, angular.toJson($scope.cart));
+    }
+
+    $scope.addToCart2 = () => {
+        let idProducto = event.target.dataset.idproducto;
+        let idTienda = event.target.dataset.idtienda;
+        let imgProducto = event.target.dataset.imagen;
+        let precio = event.target.dataset.precio;
+        let nombre = event.target.dataset.nombre;
+        let tienda = event.target.dataset.tienda;
+        let found = false;
+
+        $scope.idProductoVenta = idProducto;
+        $scope.precioProductoVenta = precio;
+
+        if ($scope.cart.length == 0) {
+            if ($scope.productosTienda[idProducto-1].unidades > 0) {
+                $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
+                $scope.productosTienda[idProducto-1].unidades--;
+                calcTotal();
+            } else {
+                alert("No quedan mas unidades")
+            }
+        } else if ($scope.cart.length != 0) {
+            for (let i = 0; i < $scope.cart.length; i++) {
+
+                if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].idTienda==idTienda) {
+                    if ($scope.productosTienda[idProducto-1].unidades > 0) {
+                        $scope.cart[i].cantidad++;
+                        $scope.productosTienda[idProducto-1].unidades--;
+                        found = true;
+                        calcTotal();
+                    }
+                }
+            }
+            if (!found) {
+                if ($scope.productosTienda[idProducto-1].unidades > 0) {
+                    $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
+                    $scope.productosTienda[idProducto-1].unidades--;
                     calcTotal();
                 }
                 else {
@@ -122,7 +169,7 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
                         var fechaCompra = año + "-" + mes + "-" + dia;
 
                         var data = { 'idProducto': $scope.cart[j].idProducto, 'idTienda': $scope.cart[j].idTienda, "cantidad": $scope.cart[j].cantidad };
-                        var data2 = { "idProducto": $scope.cart[j].idProducto, "idUsuario": $scope.idUsuario, "fecha": fechaCompra, "precio": $scope.precioProductoVenta, "unidades": $scope.cart[j].cantidad, "idTienda": $scope.cart[j].idTienda };
+                        var data2 = { "idProducto": $scope.cart[j].idProducto, "idUsuario": $scope.idUsuario, "fecha": fechaCompra, "precio": $scope.cart[j].precio, "unidades": $scope.cart[j].cantidad, "idTienda": $scope.cart[j].idTienda };
                         $http.post('../../controller/cUpdateStock.php', data).then(function () {
                         });
 
@@ -178,7 +225,25 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         for (let i = 0; i < $scope.cart.length; i++) {
             if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].cantidad > 1) {
                 $scope.cart[i].cantidad--;
-                $scope.listaProductos[idProducto - 1].objProductoTienda.unidades++;
+                $scope.productosTienda[position].unidades++;
+                calcTotal();
+            } else if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].cantidad == 1) {
+                $scope.removeCart();
+            }
+        }
+        localStorage.clear();
+        localStorage.setItem(0, angular.toJson($scope.cart));
+
+    }
+
+    // Reduce uno el stock
+    $scope.removeFromCart2 = () => {
+        let idProducto = event.target.dataset.idproducto;
+
+        for (let i = 0; i < $scope.cart.length; i++) {
+            if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].cantidad > 1) {
+                $scope.cart[i].cantidad--;
+                $scope.productosTienda[idProducto-1].unidades++;
                 calcTotal();
             } else if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].cantidad == 1) {
                 $scope.removeCart();
@@ -200,15 +265,15 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
 
     //Muestra el stock de cada producto
     function setStock() {
-        let localStorageArray = []
+        let localStorageArray = [];
         for (let i = 0; i < $scope.cart.length; i++) {
             localStorageArray.push(JSON.parse(localStorage[0])[i]);
         }
         if (localStorage.length != 0) {
             for (let i = 0; i < $scope.cart.length; i++) {
-                for (let j = 0; j < $scope.listaProductos.length; j++) {
-                    if ($scope.cart[i].idProducto == $scope.listaProductos[j].objProductoTienda.idProducto) {
-                        $scope.listaProductos[j].objProductoTienda.unidades = $scope.listaProductos[j].objProductoTienda.unidades - localStorageArray[i].cantidad;
+                for (let j = 0; j < $scope.productosTienda.length; j++) {
+                    if ($scope.cart[i].idProducto == $scope.productosTienda[j].idProducto) {
+                        $scope.productosTienda[j].unidades = $scope.productosTienda[j].unidades - localStorageArray[i].cantidad;
                     }
                 }
             }
@@ -270,6 +335,4 @@ myApp.controller('myController', ['$scope', '$http', function ($scope, $http) {
         $scope.email = "";
         $scope.password = "";
     }
-
-
 }]);
