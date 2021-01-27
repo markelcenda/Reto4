@@ -17,6 +17,7 @@ function enviarComentario(){
         headers:{'Content-Type': 'application/json'} 
         })
         .then(res => res.json()).then(result => {
+            console.log(result);
 
             alert("Email enviado.")
         })
