@@ -256,9 +256,9 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         $scope.precioProductoVenta = precio;
 
         if ($scope.cart.length == 0) {
-            if ($scope.productosTienda[idProducto - 1].unidades > 0) {
+            if ($scope.listaProductos[idProducto - 1].unidades > 0) {
                 $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
-                $scope.productosTienda[idProducto - 1].unidades--;
+                $scope.listaProductos[idProducto - 1].unidades--;
                 calcTotal();
             } else {
                 alert("No quedan mas unidades")
@@ -266,19 +266,19 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         } else if ($scope.cart.length != 0) {
             for (let i = 0; i < $scope.cart.length; i++) {
 
-                if ($scope.cart[i].idProducto == idProducto && $scope.cart[i].idTienda == idTienda) {
-                    if ($scope.productosTienda[idProducto - 1].unidades > 0) {
+                if ($scope.cart[i].idProducto == idProducto) {
+                    if ($scope.listaProductos[idProducto - 1].unidades > 0) {
                         $scope.cart[i].cantidad++;
-                        $scope.productosTienda[idProducto - 1].unidades--;
+                        $scope.listaProductos[idProducto - 1].unidades--;
                         found = true;
                         calcTotal();
                     }
                 }
             }
             if (!found) {
-                if ($scope.productosTienda[idProducto - 1].unidades > 0) {
+                if ($scope.listaProductos[idProducto - 1].unidades > 0) {
                     $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
-                    $scope.productosTienda[idProducto - 1].unidades--;
+                    $scope.listaProductos[idProducto - 1].unidades--;
                     calcTotal();
                 }
                 else {
@@ -288,27 +288,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         }
         localStorage.clear();
         localStorage.setItem(0, angular.toJson($scope.cart));
-        // let idProducto = event.target.dataset.idproducto;
-        // console.log($scope.cart);
 
-        // for(let i = 0; i < $scope.cart.length; i++){
-
-        //     if($scope.cart[i].idProducto == idProducto){
-
-        //         if($scope.cart[i].cantidad > 1){
-        //             $scope.cart[i].cantidad += 1;;
-        //         }else{
-        //             alert("No quedan mas unidades");
-        //         }
-
-        //         break;
-        //     }
-
-        // }
-
-        // calcTotal();
-
-        // localStorage.setItem(0, angular.toJson($scope.cart));
     }
 
     /*abrir modal*/
@@ -396,7 +376,6 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                     calcTotal();
                     break;
                 }
-
             }
 
         localStorage.clear();
@@ -413,7 +392,6 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         for (let i = 0; i < $scope.cart.length; i++) {
 
             if ($scope.cart[i].idProducto == idProducto) {
-
                 if ($scope.cart[i].cantidad > 1) {
                     $scope.cart[i].cantidad -= 1;
                     calcTotal();
@@ -422,17 +400,13 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                     $scope.cart.splice(i, 1);
                     calcTotal();
                 }
-
                 break;
             }
-
         }
 
         localStorage.clear();
         localStorage.setItem(0, angular.toJson($scope.cart));
         $scope.load()
-
-
     }
 
     /*ordenar stock de mayor a menor*/
