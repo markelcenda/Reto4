@@ -25,7 +25,6 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         var data = { "idTienda": idTienda };
         $http.post(url, data).then(function (response) {
             $scope.listaProductos = response.data.productos;
-            console.log($scope.listaProductos);
 
             if ($scope.listaProductos.length == 0) {//si no hay productos en la tienda
                 //añadir imagen de error
@@ -77,7 +76,6 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
 
                         /*id del usuario paraa utilizar en insertVentas*/
                         $scope.idUsuario = response.data.id;
-                        console.log($scope.idUsuario);
 
                         /*mostrar carrito y quitar btnLogin*/
                         $("#carrito").show();
@@ -154,6 +152,8 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
                     $("#paginaUsuario").click(function () {
                         window.location.href = "usuario.html";
                     });
+
+                    window.location.reload();
 
                 } else {
                     alert(result.mensaje);
