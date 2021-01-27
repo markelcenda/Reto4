@@ -331,4 +331,25 @@ body {
     #myBtn {
         margin: 1% 0 0 82%;
     }
+
+    #myModal{
+        margin: auto;
+        justify-content: center;
+        display: flex;
+    }
+
+    .modal-content{
+        width: 100%;
+        text-align: center;
+        transform: scale(0.75);
+        margin: auto;
+        justify-content: center;
+        display: flex;
+    }
+
+    .modal-body{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
