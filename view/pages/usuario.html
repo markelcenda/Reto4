@@ -149,8 +149,6 @@
                             <div class="form-row" ng-show="selectProductosAdminTienda=='si'">
                                 <div class="col-lg-12">
                                     <div class="text-center">
-                                        <label for="productos">Productos<span class="text-danger">*</span></label>
-                                        <br>
                                         <select id="productos" ng-model="productoSeleccionado" ng-change="mostrarInsertProductoAdminTienda()">
                                             <option value="" selected>Seleccionar Producto</option>
                                             <option ng-repeat="item in productos" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
@@ -289,7 +287,7 @@
                         <div class="text-center" ng-show="productoSelect=='si'">
                             <select id="productos" ng-model="productoSeleccionado" ng-change="seleccionarProducto()">
                                 <option value="" selected>Seleccionar producto</option>
-                                <option ng-repeat="item in productos" value="{{item.id}}">{{item.id}} -- {{item.nombre}} -- {{item.objProductoTienda.objTienda.nombre}}</option>
+                                <option ng-repeat="item in productos" value="{{item.id}}">{{item.id}} -- {{item.nombre}}</option>
                             </select>
                         </div>
 
