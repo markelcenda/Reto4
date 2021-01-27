@@ -446,6 +446,7 @@ app.controller("miControlador", function ($scope, $http) {
             var data = { "idTienda": adminTienda };
             $http.post(url, data).then(function (response) {
                 $scope.productosTienda = response.data.list;
+                console.log($scope.productosTienda);
             });
         }
 
@@ -590,7 +591,6 @@ app.controller("miControlador", function ($scope, $http) {
         var data = { "idUsuario": idUsuario };
         $http.post(url, data).then(function (response) {
             $scope.ventas = response.data.list;
-
             //si no tiene ningun pedido realizado
             if ($scope.ventas.length == 0) {
                 $("#rowConsultas").html("<h2 class='text-white text-center'>¡NO TIENES PEDIDOS REALIZADOS!</h2>")
