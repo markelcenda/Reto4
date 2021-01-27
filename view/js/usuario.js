@@ -446,7 +446,6 @@ app.controller("miControlador", function ($scope, $http) {
             var data = { "idTienda": adminTienda };
             $http.post(url, data).then(function (response) {
                 $scope.productosTienda = response.data.list;
-                console.log($scope.productosTienda);
             });
         }
 
@@ -458,26 +457,20 @@ app.controller("miControlador", function ($scope, $http) {
                 $scope.updateProductoAdmin = "si";
                 $scope.updateProductoAdminTienda = "no";
                 $scope.productoUpdate = "si";
+                var data = { "id": $scope.productoSeleccionado };
+                var url = "../../controller/cFindProducto.php";
             } else {//si eres adminTienda mostrar los div correspondientes
                 $scope.updateProductoAdminTienda = "si";
                 $scope.updateProductoAdmin = "no";
                 $scope.productoUpdate = "si";
+                var data = { "idProducto": $scope.productoSeleccionado, "idTienda": adminTienda };
+                var url = "../../controller/cFindProductoRepetido.php";
             }
 
-            var url = "../../controller/cFindProducto.php";
-            var data = { "id": $scope.productoSeleccionado };
-
             $http.post(url, data).then(function (response) {
-                console.log(response.data.list);
                 /*valores para añadir al formulario*/
-                $scope.nombreProductoUpdate = response.data.list.nombre;
-                $scope.tipoProductoUpdate = response.data.list.tipo;
-                $scope.imagenProductoUpdate = response.data.list.imagen;
-                $scope.precioProductoUpdate = Number(response.data.list.objProductoTienda.precio);
-                $scope.unidadesProductoUpdate = Number(response.data.list.objProductoTienda.unidades);
-                $scope.idTienda = response.data.list.objProductoTienda.idTienda;
-                $scope.nombreTienda = response.data.list.objProductoTienda.objTienda.nombre;
-
+                $scope.precioProductoUpdate = Number(response.data.list.precio);
+                $scope.unidadesProductoUpdate = Number(response.data.list.unidades);
             });
         }
 

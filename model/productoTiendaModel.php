@@ -219,6 +219,36 @@ class productoTiendaModel extends productoTiendaClass{
         $this->CloseConnect();
         return $list;
     }
+
+    public function findProductoRepetido(){
+        
+        $this->OpenConnect();
+        
+        $idProducto=$this->getIdProducto();
+        $idTienda=$this->getIdTienda();
+        
+        $sql="CALL spFindProductoTiendaRepetido($idProducto,$idTienda)";
+        
+        $result = $this->link->query($sql);
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { //each row
+          
+            $this->setIdProducto($row['idProducto']);
+            $this->setIdTienda($row['idTienda']);
+            $this->setPrecio($row['precio']);
+            $this->setUnidades($row['unidades']);
+            
+            /*objTienda*/
+            $tienda=new tiendaModel();
+            $tienda->setId($row['idTienda']);
+            $tienda->findTiendaById();
+            
+            $this->objTienda=$tienda->ObjVars();
+        
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+    }
     
     function ObjVars(){
         return get_object_vars($this);
