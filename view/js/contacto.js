@@ -18,9 +18,12 @@ function enviarComentario(){
         })
         .then(res => res.json()).then(result => {
 
-            alert("Email enviado.");
         })
         .catch(error => console.error('Error status:', error));	
+
+        alert("Email enviado.");
+
+        window.location.reload();
     }
 }
 
