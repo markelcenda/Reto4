@@ -201,13 +201,14 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         let imgProducto = event.target.dataset.imagen;
         let precio = event.target.dataset.precio;
         let nombre = event.target.dataset.nombre;
+        let tienda = event.target.dataset.tienda;
         let found = false;
 
         $scope.contador++;
         
         if ($scope.cart.length == 0) {
             if ($scope.listaProductos[position].unidades > 0) {
-                $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio });
+                $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
                 $scope.listaProductos[position].unidades--;
                 calcTotal();
             } else {
@@ -226,7 +227,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
             }
             if (!found) {
                 if ($scope.listaProductos[position].unidades > 0) {
-                    $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio });
+                    $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
                     $scope.listaProductos[position].unidades--;
                     calcTotal();
                 }
