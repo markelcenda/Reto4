@@ -302,17 +302,33 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     /*abrir modal*/
     $scope.modal = () => {
         var modal = document.getElementById("myModal");
+        var modal2 = document.getElementById("myModal2");
         var btn = document.getElementById("myBtn");
         var span = document.getElementsByClassName("close")[0];
+        var span2 = document.getElementsByClassName("close")[1];
 
-        if ($scope.cart.length != 0) {
-            btn.onclick = function () {
-                modal.style.display = "block";
+        btn.onclick = function () {
+            if ($scope.cart.length != 0) {
+                modal.style.display = "flex";
+            } else {
+                modal2.style.display = "flex";
             }
         }
 
         span.onclick = function () {
             modal.style.display = "none";
+        }
+
+        span2.onclick = function () {
+            modal2.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            } else if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
         }
     }
 

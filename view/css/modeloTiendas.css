@@ -337,6 +337,7 @@ body, html {
     border: 1px solid #888;
     width: 53%;
     min-width: 350px;
+    height: max-content !important;
 }
 
 .close {
