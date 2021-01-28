@@ -229,6 +229,7 @@ body {
     border: 1px solid #888;
     width: 40% !important;
     min-width: 440px !important;
+    height: max-content !important;
 }
 
 .close {
