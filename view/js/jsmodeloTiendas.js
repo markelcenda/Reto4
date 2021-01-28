@@ -255,10 +255,18 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
         $scope.idProductoVenta = idProducto;
         $scope.precioProductoVenta = precio;
 
+        //guardar en un array todos los idProducto de los products de la tienda
+        var idProductos=[];
+        for(let i=0; i<$scope.listaProductos.length; i++){
+            idProductos.push($scope.listaProductos[i].idProducto);
+        }
+        //devolver la posicion del producto seleccionado en el array
+        var a = idProductos.indexOf(idProducto);
+
         if ($scope.cart.length == 0) {
-            if ($scope.listaProductos[idProducto - 1].unidades > 0) {
+            if ($scope.listaProductos[a].unidades > 0) {
                 $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
-                $scope.listaProductos[idProducto - 1].unidades--;
+                $scope.listaProductos[a].unidades--;
                 calcTotal();
             } else {
                 alert("No quedan mas unidades")
@@ -267,18 +275,18 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
             for (let i = 0; i < $scope.cart.length; i++) {
 
                 if ($scope.cart[i].idProducto == idProducto) {
-                    if ($scope.listaProductos[idProducto - 1].unidades > 0) {
+                    if ($scope.listaProductos[a].unidades > 0) {
                         $scope.cart[i].cantidad++;
-                        $scope.listaProductos[idProducto - 1].unidades--;
+                        $scope.listaProductos[a].unidades--;
                         found = true;
                         calcTotal();
                     }
                 }
             }
             if (!found) {
-                if ($scope.listaProductos[idProducto - 1].unidades > 0) {
+                if ($scope.listaProductos[a].unidades > 0) {
                     $scope.cart.push({ "idProducto": idProducto, "idTienda": idTienda, "cantidad": 1, "nombre": nombre, "imgProducto": imgProducto, "precio": precio, "tienda": tienda });
-                    $scope.listaProductos[idProducto - 1].unidades--;
+                    $scope.listaProductos[a].unidades--;
                     calcTotal();
                 }
                 else {
@@ -405,7 +413,7 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
 
         localStorage.clear();
         localStorage.setItem(0, angular.toJson($scope.cart));
-        $scope.load()
+        $scope.load();
     }
 
     /*ordenar stock de mayor a menor*/
