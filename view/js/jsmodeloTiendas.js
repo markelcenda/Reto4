@@ -387,7 +387,6 @@ myApp.controller('miControlador', ['$scope', '$http', function ($scope, $http) {
     $scope.removeFromCart2 = () => {
 
         let idProducto = event.target.dataset.idproducto;
-        console.log($scope.cart);
 
         for (let i = 0; i < $scope.cart.length; i++) {
 

@@ -459,19 +459,28 @@ app.controller("miControlador", function ($scope, $http) {
                 $scope.productoUpdate = "si";
                 var data = { "id": $scope.productoSeleccionado };
                 var url = "../../controller/cFindProducto.php";
+
+                $http.post(url, data).then(function (response) {
+                    /*valores para añadir al formulario*/
+                    $scope.nombreProductoUpdate = response.data.list.nombre;
+                    $scope.tipoProductoUpdate=response.data.list.tipo;
+                    $scope.imagenProductoUpdate=response.data.list.imagen;
+                });
             } else {//si eres adminTienda mostrar los div correspondientes
                 $scope.updateProductoAdminTienda = "si";
                 $scope.updateProductoAdmin = "no";
                 $scope.productoUpdate = "si";
                 var data = { "idProducto": $scope.productoSeleccionado, "idTienda": adminTienda };
                 var url = "../../controller/cFindProductoRepetido.php";
+
+                $http.post(url, data).then(function (response) {
+                    /*valores para añadir al formulario*/
+                    $scope.precioProductoUpdate = Number(response.data.list.precio);
+                    $scope.unidadesProductoUpdate = Number(response.data.list.unidades);
+                });
             }
 
-            $http.post(url, data).then(function (response) {
-                /*valores para añadir al formulario*/
-                $scope.precioProductoUpdate = Number(response.data.list.precio);
-                $scope.unidadesProductoUpdate = Number(response.data.list.unidades);
-            });
+            
         }
 
         /*Imagen tienda update*/
